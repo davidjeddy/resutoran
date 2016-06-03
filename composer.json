@@ -1,0 +1,32 @@
+{
+	"name": "davidjeddy/resutoran",
+	"description": "Restaurant Review",
+	"keywords": [
+        "restaurant",
+        "review",
+        "module"
+    ],
+	"homepage": "https://github.com/davidjeddy/yii2-resutoran#readme",
+	"type": "module",
+	"license": "All Rights Reserved",
+	"authors": [
+        {
+          "name": "David J Eddy",
+          "email": "me@davidjeddy.com",
+          "homepage": "http://www.davidjeddy.com",
+          "role": "Creator"
+        }
+	],
+	"support": {
+        "issues": "https://github.com/davidjeddy/yii2-resutoran/issues",
+        "source": "https://github.com/davidjeddy/yii2-resutoran"
+	},
+	"require": {
+        "yiisoft/yii2": "^2.0.6"
+	},
+	"autoload": {
+        "psr-4": {
+          "davidjeddy\\resutoran\\": ""
+      }
+    }
+}
