@@ -13,13 +13,12 @@ class m160611_062020_init_resutoran extends Migration
             SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
             SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
             
-            
             -- -----------------------------------------------------
             -- Table `resu_franchise`
             -- -----------------------------------------------------
             CREATE TABLE IF NOT EXISTS `resu_franchise` (
               `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-              `name` VARCHAR(64) NOT NULL,
+              `name` VARCHAR(128) NOT NULL,
               PRIMARY KEY (`id`),
               UNIQUE INDEX `idresu_franchise_UNIQUE` (`id` ASC),
               UNIQUE INDEX `name_UNIQUE` (`name` ASC))
@@ -31,6 +30,7 @@ class m160611_062020_init_resutoran extends Migration
             -- -----------------------------------------------------
             CREATE TABLE IF NOT EXISTS `resu_services_option` (
               `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+              `value` TEXT NOT NULL,
               PRIMARY KEY (`id`),
               UNIQUE INDEX `id_UNIQUE` (`id` ASC))
             ENGINE = InnoDB;
@@ -41,6 +41,7 @@ class m160611_062020_init_resutoran extends Migration
             -- -----------------------------------------------------
             CREATE TABLE IF NOT EXISTS `resu_hours_option` (
               `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+              `value` TEXT NOT NULL,
               PRIMARY KEY (`id`),
               UNIQUE INDEX `id_UNIQUE` (`id` ASC))
             ENGINE = InnoDB;
@@ -51,6 +52,7 @@ class m160611_062020_init_resutoran extends Migration
             -- -----------------------------------------------------
             CREATE TABLE IF NOT EXISTS `resu_menu_option` (
               `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+              `value` TEXT NOT NULL,
               PRIMARY KEY (`id`),
               UNIQUE INDEX `id_UNIQUE` (`id` ASC))
             ENGINE = InnoDB;
@@ -61,6 +63,16 @@ class m160611_062020_init_resutoran extends Migration
             -- -----------------------------------------------------
             CREATE TABLE IF NOT EXISTS `resu_contact` (
               `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+              `country_code` INT(2) NOT NULL,
+              `phone1` INT NOT NULL,
+              `phone2` INT NULL,
+              `phone3` INT NULL,
+              `address1` TEXT NULL,
+              `address2` TEXT NULL,
+              `address3` TEXT NULL,
+              `country` TEXT NULL,
+              `city` TEXT NULL,
+              `prov` VARCHAR(2) NULL,
               PRIMARY KEY (`id`),
               UNIQUE INDEX `id_UNIQUE` (`id` ASC))
             ENGINE = InnoDB;
@@ -71,6 +83,7 @@ class m160611_062020_init_resutoran extends Migration
             -- -----------------------------------------------------
             CREATE TABLE IF NOT EXISTS `resu_price_option` (
               `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+              `value` DECIMAL(6,2) NOT NULL,
               PRIMARY KEY (`id`),
               UNIQUE INDEX `id_UNIQUE` (`id` ASC))
             ENGINE = InnoDB;
@@ -81,6 +94,7 @@ class m160611_062020_init_resutoran extends Migration
             -- -----------------------------------------------------
             CREATE TABLE IF NOT EXISTS `resu_decor_option` (
               `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+              `value` TEXT NOT NULL,
               PRIMARY KEY (`id`),
               UNIQUE INDEX `id_UNIQUE` (`id` ASC))
             ENGINE = InnoDB;
@@ -91,6 +105,7 @@ class m160611_062020_init_resutoran extends Migration
             -- -----------------------------------------------------
             CREATE TABLE IF NOT EXISTS `resu_ambiance_option` (
               `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+              `value` TEXT NOT NULL,
               PRIMARY KEY (`id`),
               UNIQUE INDEX `id_UNIQUE` (`id` ASC))
             ENGINE = InnoDB;
@@ -101,6 +116,7 @@ class m160611_062020_init_resutoran extends Migration
             -- -----------------------------------------------------
             CREATE TABLE IF NOT EXISTS `resu_map` (
               `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+              `value` TEXT NOT NULL,
               PRIMARY KEY (`id`),
               UNIQUE INDEX `id_UNIQUE` (`id` ASC))
             ENGINE = InnoDB;
@@ -164,6 +180,7 @@ class m160611_062020_init_resutoran extends Migration
             -- -----------------------------------------------------
             CREATE TABLE IF NOT EXISTS `resu_cuisine_option` (
               `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+              `value` TEXT NOT NULL,
               PRIMARY KEY (`id`),
               UNIQUE INDEX `id_UNIQUE` (`id` ASC))
             ENGINE = InnoDB;
@@ -174,6 +191,7 @@ class m160611_062020_init_resutoran extends Migration
             -- -----------------------------------------------------
             CREATE TABLE IF NOT EXISTS `resu_boolean_option` (
               `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+              `value` TEXT NOT NULL,
               PRIMARY KEY (`id`),
               UNIQUE INDEX `id_UNIQUE` (`id` ASC))
             ENGINE = InnoDB;
@@ -184,6 +202,7 @@ class m160611_062020_init_resutoran extends Migration
             -- -----------------------------------------------------
             CREATE TABLE IF NOT EXISTS `resu_dress_code_option` (
               `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+              `value` TEXT NOT NULL,
               PRIMARY KEY (`id`),
               UNIQUE INDEX `id_UNIQUE` (`id` ASC))
             ENGINE = InnoDB;
@@ -194,6 +213,7 @@ class m160611_062020_init_resutoran extends Migration
             -- -----------------------------------------------------
             CREATE TABLE IF NOT EXISTS `resu_seating_option` (
               `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+              `value` TEXT NOT NULL,
               PRIMARY KEY (`id`),
               UNIQUE INDEX `id_UNIQUE` (`id` ASC))
             ENGINE = InnoDB;
@@ -204,6 +224,7 @@ class m160611_062020_init_resutoran extends Migration
             -- -----------------------------------------------------
             CREATE TABLE IF NOT EXISTS `resu_payment_option` (
               `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+              `value` TEXT NOT NULL,
               PRIMARY KEY (`id`),
               UNIQUE INDEX `id_UNIQUE` (`id` ASC))
             ENGINE = InnoDB;
@@ -214,6 +235,7 @@ class m160611_062020_init_resutoran extends Migration
             -- -----------------------------------------------------
             CREATE TABLE IF NOT EXISTS `resu_reservation_option` (
               `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+              `value` TEXT NOT NULL,
               PRIMARY KEY (`id`),
               UNIQUE INDEX `id_UNIQUE` (`id` ASC))
             ENGINE = InnoDB;
@@ -224,6 +246,7 @@ class m160611_062020_init_resutoran extends Migration
             -- -----------------------------------------------------
             CREATE TABLE IF NOT EXISTS `resu_media_option` (
               `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+              `value` TEXT NOT NULL,
               PRIMARY KEY (`id`),
               UNIQUE INDEX `id_UNIQUE` (`id` ASC))
             ENGINE = InnoDB;
