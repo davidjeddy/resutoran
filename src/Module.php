@@ -10,7 +10,7 @@ class Module extends \yii\base\Module
     /**
      * @inheritdoc
      */
-    public $controllerNamespace = 'davidjeddy\modules\resutoran\common\controllers';
+    public $controllerNamespace = 'resutoran\common\controllers';
 
     /**
      * @inheritdoc
