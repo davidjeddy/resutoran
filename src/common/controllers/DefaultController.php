@@ -1,6 +1,6 @@
 <?php
 
-namespace davidjeddy\modules\resutoran\common\controllers;
+namespace resutoran\common\controllers;
 
 use yii\web\Controller;
 
