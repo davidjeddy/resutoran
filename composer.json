@@ -1,5 +1,5 @@
 {
-    "name": "davidjeddy/resutoran",
+    "name": "davidjeddy/yii2-resutoran",
     "description": "Resutoran Yii2 Module",
     "keywords": [
         "restaurant",
@@ -11,10 +11,10 @@
     "license": "All Rights Reserved",
     "authors": [
         {
-            "name": "David J Eddy",
-            "email": "me@davidjeddy.com",
-            "homepage": "http://www.davidjeddy.com",
-            "role": "Creator"
+          "name": "David J Eddy",
+          "email": "me@davidjeddy.com",
+          "homepage": "http://www.davidjeddy.com",
+          "role": "Creator"
         }
     ],
     "support": {
@@ -22,11 +22,11 @@
         "source": "https://github.com/davidjeddy/yii2-resutoran"
     },
     "require": {
-        "yiisoft/yii2": "^2.0.8"
+      "yiisoft/yii2": "^2.0.8"
     },
     "autoload": {
         "psr-4": {
-            "resutoran\\": ""
+          "resutoran\\": "src/"
       }
     }
 }
