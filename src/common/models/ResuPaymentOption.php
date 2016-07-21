@@ -5,21 +5,21 @@ namespace resutoran\common\models;
 use Yii;
 
 /**
- * This is the model class for table "resu_ambiance_option".
+ * This is the model class for table "resu_payment_option".
  *
  * @property integer $id
  * @property string $value
  *
- * @property ResuLocation[] $resuLocations
+ * @property ResuLocationPayment[] $resuLocationPayments
  */
-class ResuAmbianceOption extends \yii\db\ActiveRecord
+class ResuPaymentOption extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'resu_ambiance_option';
+        return 'resu_payment_option';
     }
 
     /**
@@ -47,17 +47,17 @@ class ResuAmbianceOption extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getResuLocations()
+    public function getResuLocationPayments()
     {
-        return $this->hasMany(ResuLocation::className(), ['resu_ambiance_option_id' => 'id']);
+        return $this->hasMany(ResuLocationPayment::className(), ['resu_payment_option_id' => 'id']);
     }
 
     /**
      * @inheritdoc
-     * @return \resutoran\common\models\query\ResuAmbianceOptionQuery the active query used by this AR class.
+     * @return \resutoran\common\models\query\ResuPaymentOptionQuery the active query used by this AR class.
      */
     public static function find()
     {
-        return new \resutoran\common\models\query\ResuAmbianceOptionQuery(get_called_class());
+        return new \resutoran\common\models\query\ResuPaymentOptionQuery(get_called_class());
     }
 }

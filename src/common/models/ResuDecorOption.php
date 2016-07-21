@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\resutoran\common\models;
+namespace resutoran\common\models;
 
 use Yii;
 
@@ -50,14 +50,5 @@ class ResuDecorOption extends \yii\db\ActiveRecord
     public function getResuLocations()
     {
         return $this->hasMany(ResuLocation::className(), ['resu_decor_option_id' => 'id']);
-    }
-
-    /**
-     * @inheritdoc
-     * @return \app\modules\resutoran\common\models\query\ResuDecorOptionQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new \app\modules\resutoran\common\models\query\ResuDecorOptionQuery(get_called_class());
     }
 }

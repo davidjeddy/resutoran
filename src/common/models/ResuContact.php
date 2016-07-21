@@ -1,11 +1,11 @@
 <?php
 
-namespace app\modules\resutoran\common\models;
+namespace resutoran\common\models;
 
 use Yii;
 
 /**
- * This is the model class for table "{{%resu_contact}}".
+ * This is the model class for table "resu_contact".
  *
  * @property integer $id
  * @property integer $country_code
@@ -28,7 +28,7 @@ class ResuContact extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%resu_contact}}';
+        return 'resu_contact';
     }
 
     /**
@@ -74,10 +74,10 @@ class ResuContact extends \yii\db\ActiveRecord
 
     /**
      * @inheritdoc
-     * @return \app\modules\resutoran\common\models\query\ResuContactQuery the active query used by this AR class.
+     * @return \resutoran\common\models\query\ResuContactQuery the active query used by this AR class.
      */
     public static function find()
     {
-        return new \app\modules\resutoran\common\models\query\ResuContactQuery(get_called_class());
+        return new \resutoran\common\models\query\ResuContactQuery(get_called_class());
     }
 }

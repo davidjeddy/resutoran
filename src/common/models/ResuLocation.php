@@ -1,11 +1,11 @@
 <?php
 
-namespace app\modules\resutoran\common\models;
+namespace resutoran\common\models;
 
 use Yii;
 
 /**
- * This is the model class for table "{{%resu_location}}".
+ * This is the model class for table "resu_location".
  *
  * @property integer $id
  * @property string $name
@@ -40,7 +40,7 @@ class ResuLocation extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%resu_location}}';
+        return 'resu_location';
     }
 
     /**
@@ -208,10 +208,10 @@ class ResuLocation extends \yii\db\ActiveRecord
 
     /**
      * @inheritdoc
-     * @return \app\modules\resutoran\common\models\query\ResuLocationQuery the active query used by this AR class.
+     * @return \resutoran\common\models\query\ResuLocationQuery the active query used by this AR class.
      */
     public static function find()
     {
-        return new \app\modules\resutoran\common\models\query\ResuLocationQuery(get_called_class());
+        return new \resutoran\common\models\query\ResuLocationQuery(get_called_class());
     }
 }

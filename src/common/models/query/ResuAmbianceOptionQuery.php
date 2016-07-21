@@ -1,34 +1,12 @@
 <?php
 
-namespace app\modules\resutoran\common\models\query;
+namespace resutoran\common\models\query;
 
 /**
- * This is the ActiveQuery class for [[\app\modules\resutoran\common\models\ResuAmbianceOption]].
+ * This is the ActiveQuery class for [[\resutoran\common\models\ResuAmbianceOption]].
  *
- * @see \app\modules\resutoran\common\models\ResuAmbianceOption
+ * @see \resutoran\common\models\ResuAmbianceOption
  */
-class ResuAmbianceOptionQuery extends \yii\db\ActiveQuery
+class ResuAmbianceOptionQuery extends \resutoran\common\models\query\BaseQuery
 {
-    /*public function active()
-    {
-        return $this->andWhere('[[status]]=1');
-    }*/
-
-    /**
-     * @inheritdoc
-     * @return \app\modules\resutoran\common\models\ResuAmbianceOption[]|array
-     */
-    public function all($db = null)
-    {
-        return parent::all($db);
-    }
-
-    /**
-     * @inheritdoc
-     * @return \app\modules\resutoran\common\models\ResuAmbianceOption|array|null
-     */
-    public function one($db = null)
-    {
-        return parent::one($db);
-    }
 }

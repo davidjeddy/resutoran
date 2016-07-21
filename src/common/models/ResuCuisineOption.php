@@ -5,21 +5,21 @@ namespace resutoran\common\models;
 use Yii;
 
 /**
- * This is the model class for table "resu_ambiance_option".
+ * This is the model class for table "resu_cuisine_option".
  *
  * @property integer $id
  * @property string $value
  *
- * @property ResuLocation[] $resuLocations
+ * @property ResuLocationCuisine[] $resuLocationCuisines
  */
-class ResuAmbianceOption extends \yii\db\ActiveRecord
+class ResuCuisineOption extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'resu_ambiance_option';
+        return 'resu_cuisine_option';
     }
 
     /**
@@ -47,17 +47,17 @@ class ResuAmbianceOption extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getResuLocations()
+    public function getResuLocationCuisines()
     {
-        return $this->hasMany(ResuLocation::className(), ['resu_ambiance_option_id' => 'id']);
+        return $this->hasMany(ResuLocationCuisine::className(), ['resu_cuisine_option_id' => 'id']);
     }
 
     /**
      * @inheritdoc
-     * @return \resutoran\common\models\query\ResuAmbianceOptionQuery the active query used by this AR class.
+     * @return \resutoran\common\models\query\ResuCuisineOptionQuery the active query used by this AR class.
      */
     public static function find()
     {
-        return new \resutoran\common\models\query\ResuAmbianceOptionQuery(get_called_class());
+        return new \resutoran\common\models\query\ResuCuisineOptionQuery(get_called_class());
     }
 }

@@ -1,11 +1,11 @@
 <?php
 
-namespace app\modules\resutoran\common\models;
+namespace resutoran\common\models;
 
 use Yii;
 
 /**
- * This is the model class for table "{{%resu_menu_option}}".
+ * This is the model class for table "resu_menu_option".
  *
  * @property integer $id
  * @property string $value
@@ -19,7 +19,7 @@ class ResuMenuOption extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%resu_menu_option}}';
+        return 'resu_menu_option';
     }
 
     /**
@@ -54,10 +54,10 @@ class ResuMenuOption extends \yii\db\ActiveRecord
 
     /**
      * @inheritdoc
-     * @return \app\modules\resutoran\common\models\query\ResuMenuOptionQuery the active query used by this AR class.
+     * @return \resutoran\common\models\query\ResuMenuOptionQuery the active query used by this AR class.
      */
     public static function find()
     {
-        return new \app\modules\resutoran\common\models\query\ResuMenuOptionQuery(get_called_class());
+        return new \resutoran\common\models\query\ResuMenuOptionQuery(get_called_class());
     }
 }

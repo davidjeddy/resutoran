@@ -1,6 +1,6 @@
 <?php
 
-namespace davidjeddy\modules\resutoran;
+namespace resutoran\modules;
 
 /**
  * resutoran module definition class

@@ -1,6 +1,6 @@
 {
 	"name": "davidjeddy/resutoran",
-	"description": "Restaurant Review",
+	"description": "Resutoran Yii2 Module",
 	"keywords": [
         "restaurant",
         "review",
@@ -16,17 +16,17 @@
           "homepage": "http://www.davidjeddy.com",
           "role": "Creator"
         }
-	],
-	"support": {
+    ],
+    "support": {
         "issues": "https://github.com/davidjeddy/yii2-resutoran/issues",
         "source": "https://github.com/davidjeddy/yii2-resutoran"
-	},
-	"require": {
-        "yiisoft/yii2": "^2.0.6"
-	},
-	"autoload": {
+    },
+    "require": {
+      "yiisoft/yii2": "^2.0.8"
+    },
+    "autoload": {
         "psr-4": {
-          "davidjeddy\\resutoran\\": ""
+          "resutoran\\": ""
       }
     }
 }
