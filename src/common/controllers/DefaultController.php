@@ -15,6 +15,8 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
+        echo __CLASS__ . ' -> ' . __METHOD__;
+        exit;
         return $this->render('index');
     }
 }
