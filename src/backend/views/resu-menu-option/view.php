@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model common\models\ResuMenuOption */
 
-$this->title = $model->id;
+$this->title = $model->value;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('resutoran', ' Menu Options'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

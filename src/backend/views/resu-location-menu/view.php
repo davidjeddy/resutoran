@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model common\models\ResuLocationMenu */
 
-$this->title = $model->id;
+$this->title = $model->value;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('resutoran', ' Location Menus'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
