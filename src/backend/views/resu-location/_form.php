@@ -19,7 +19,7 @@ use yii\helpers\Html;
     <?php echo $form->field($model, 'value')->textInput(['maxlength' => true]) ?>
 
     <?php // echo $form->field($model, 'resu_franchise_id')->textInput() ?>
-    <?php echo $form->field($model, 'resu_franchise_id')->widget(Select2::classvalue(), [
+    <?php echo $form->field($model, 'resu_franchise_id')->widget(Select2::className(), [
         'data'      => ArrayHelper::map(\resutoran\common\models\ResuFranchise::find()->all(), 'id', 'value'),
         'options'   => [
             'class'       => 'form-control',
@@ -33,7 +33,7 @@ use yii\helpers\Html;
     ])->label('Franchise'); ?>
 
     <?php // echo $form->field($model, 'resu_contact_id')->textInput() ?>
-    <?php echo $form->field($model, 'resu_contact_id')->widget(Select2::classvalue(), [
+    <?php echo $form->field($model, 'resu_contact_id')->widget(Select2::className(), [
         'data'      => ArrayHelper::map(\resutoran\common\models\ResuContact::find()->all(), 'id', 'value'),
         'options'   => [
             'class'       => 'form-control',
@@ -47,7 +47,7 @@ use yii\helpers\Html;
     ])->label('Contact'); ?>
 
     <?php // echo $form->field($model, 'resu_price_option_id')->textInput() ?>
-    <?php echo $form->field($model, 'resu_price_option_id')->widget(Select2::classvalue(), [
+    <?php echo $form->field($model, 'resu_price_option_id')->widget(Select2::className(), [
         'data'      => ArrayHelper::map(\resutoran\common\models\ResuPriceOption::find()->all(), 'id', 'value'),
         'options'   => [
             'class'       => 'form-control',
@@ -61,7 +61,7 @@ use yii\helpers\Html;
     ])->label('Pricing'); ?>
 
     <?php // echo $form->field($model, 'resu_decor_option_id')->textInput() ?>
-    <?php echo $form->field($model, 'resu_decor_option_id')->widget(Select2::classvalue(), [
+    <?php echo $form->field($model, 'resu_decor_option_id')->widget(Select2::className(), [
         'data'      => ArrayHelper::map(\resutoran\common\models\ResuDecorOption::find()->all(), 'id', 'value'),
         'options'   => [
             'class'       => 'form-control',
@@ -75,7 +75,7 @@ use yii\helpers\Html;
     ])->label('Decor'); ?>
 
     <?php // echo $form->field($model, 'resu_ambiance_option_id')->textInput() ?>
-    <?php echo $form->field($model, 'resu_ambiance_option_id')->widget(Select2::classvalue(), [
+    <?php echo $form->field($model, 'resu_ambiance_option_id')->widget(Select2::className(), [
         'data'      => ArrayHelper::map(\resutoran\common\models\ResuAmbianceOption::find()->all(), 'id', 'value'),
         'options'   => [
             'class'       => 'form-control',
