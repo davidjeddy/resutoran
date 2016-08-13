@@ -5,7 +5,7 @@ namespace resutoran\common\models;
 use Yii;
 
 /**
- * This is the model class for table "resu_location".
+ * This is the model class for table "{{%resu_location}}".
  *
  * @property integer $id
  * @property string $name
@@ -15,6 +15,11 @@ use Yii;
  * @property integer $resu_decor_option_id
  * @property integer $resu_ambiance_option_id
  * @property integer $resu_map_id
+ * @property integer $created_at
+ * @property integer $created_by
+ * @property integer $updated_at
+ * @property integer $updated_by
+ * @property integer $deleted_at
  *
  * @property ResuAmbianceOption $resuAmbianceOption
  * @property ResuContact $resuContact
@@ -33,14 +38,14 @@ use Yii;
  * @property ResuLocationSeating[] $resuLocationSeatings
  * @property ResuLocationService[] $resuLocationServices
  */
-class ResuLocation extends \yii\db\ActiveRecord
+class ResuLocation extends \resutoran\common\models\ResuBase
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'resu_location';
+        return '{{%resu_location}}';
     }
 
     /**
@@ -49,8 +54,8 @@ class ResuLocation extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'resu_franchise_id', 'resu_contact_id', 'resu_price_option_id', 'resu_decor_option_id', 'resu_ambiance_option_id', 'resu_map_id'], 'required'],
-            [['resu_franchise_id', 'resu_contact_id', 'resu_price_option_id', 'resu_decor_option_id', 'resu_ambiance_option_id', 'resu_map_id'], 'integer'],
+            [['name', 'resu_franchise_id', 'resu_contact_id', 'resu_price_option_id', 'resu_decor_option_id', 'resu_ambiance_option_id', 'resu_map_id', 'created_by'], 'required'],
+            [['resu_franchise_id', 'resu_contact_id', 'resu_price_option_id', 'resu_decor_option_id', 'resu_ambiance_option_id', 'resu_map_id', 'created_at', 'created_by', 'updated_at', 'updated_by', 'deleted_at'], 'integer'],
             [['name'], 'string', 'max' => 64],
             [['resu_ambiance_option_id'], 'exist', 'skipOnError' => true, 'targetClass' => ResuAmbianceOption::className(), 'targetAttribute' => ['resu_ambiance_option_id' => 'id']],
             [['resu_contact_id'], 'exist', 'skipOnError' => true, 'targetClass' => ResuContact::className(), 'targetAttribute' => ['resu_contact_id' => 'id']],
@@ -67,14 +72,19 @@ class ResuLocation extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('resu', 'ID'),
-            'name' => Yii::t('resu', 'Name'),
-            'resu_franchise_id' => Yii::t('resu', 'Resu Franchise ID'),
-            'resu_contact_id' => Yii::t('resu', 'Resu Contact ID'),
-            'resu_price_option_id' => Yii::t('resu', 'Resu Price Option ID'),
-            'resu_decor_option_id' => Yii::t('resu', 'Resu Decor Option ID'),
-            'resu_ambiance_option_id' => Yii::t('resu', 'Resu Ambiance Option ID'),
-            'resu_map_id' => Yii::t('resu', 'Resu Map ID'),
+            'id' => Yii::t('app', 'ID'),
+            'name' => Yii::t('app', 'Name'),
+            'resu_franchise_id' => Yii::t('app', 'Resu Franchise ID'),
+            'resu_contact_id' => Yii::t('app', 'Resu Contact ID'),
+            'resu_price_option_id' => Yii::t('app', 'Resu Price Option ID'),
+            'resu_decor_option_id' => Yii::t('app', 'Resu Decor Option ID'),
+            'resu_ambiance_option_id' => Yii::t('app', 'Resu Ambiance Option ID'),
+            'resu_map_id' => Yii::t('app', 'Resu Map ID'),
+            'created_at' => Yii::t('app', 'Created At'),
+            'created_by' => Yii::t('app', 'Created By'),
+            'updated_at' => Yii::t('app', 'Updated At'),
+            'updated_by' => Yii::t('app', 'Updated By'),
+            'deleted_at' => Yii::t('app', 'Deleted At'),
         ];
     }
 

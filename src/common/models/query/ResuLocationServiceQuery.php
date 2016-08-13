@@ -3,10 +3,11 @@
 namespace resutoran\common\models\query;
 
 /**
- * This is the ActiveQuery class for [[\resutoran\common\models\ResuLocationService]].
+ * This is the ActiveQuery class for [[\common\models\ResuLocationService]].
  *
- * @see \resutoran\common\models\ResuLocationService
+ * @see \common\models\ResuLocationService
  */
-class ResuLocationServiceQuery extends \resutoran\common\models\query\BaseQuery
+class ResuLocationServiceQuery extends \yii\db\ActiveQuery
 {
+
 }

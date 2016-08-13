@@ -5,22 +5,27 @@ namespace resutoran\common\models;
 use Yii;
 
 /**
- * This is the model class for table "resu_location_hours".
+ * This is the model class for table "{{%resu_location_hours}}".
  *
  * @property integer $resu_location_id
  * @property integer $resu_hours_option_id
+ * @property integer $created_at
+ * @property integer $created_by
+ * @property integer $updated_at
+ * @property integer $updated_by
+ * @property integer $deleted_at
  *
  * @property ResuHoursOption $resuHoursOption
  * @property ResuLocation $resuLocation
  */
-class ResuLocationHours extends \yii\db\ActiveRecord
+class ResuLocationHours extends \resutoran\common\models\ResuBase
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'resu_location_hours';
+        return '{{%resu_location_hours}}';
     }
 
     /**
@@ -29,8 +34,8 @@ class ResuLocationHours extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['resu_location_id', 'resu_hours_option_id'], 'required'],
-            [['resu_location_id', 'resu_hours_option_id'], 'integer'],
+            [['resu_location_id', 'resu_hours_option_id', 'created_by'], 'required'],
+            [['resu_location_id', 'resu_hours_option_id', 'created_at', 'created_by', 'updated_at', 'updated_by', 'deleted_at'], 'integer'],
             [['resu_hours_option_id'], 'exist', 'skipOnError' => true, 'targetClass' => ResuHoursOption::className(), 'targetAttribute' => ['resu_hours_option_id' => 'id']],
             [['resu_location_id'], 'exist', 'skipOnError' => true, 'targetClass' => ResuLocation::className(), 'targetAttribute' => ['resu_location_id' => 'id']],
         ];
@@ -42,8 +47,13 @@ class ResuLocationHours extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'resu_location_id' => Yii::t('resu', 'Resu Location ID'),
-            'resu_hours_option_id' => Yii::t('resu', 'Resu Hours Option ID'),
+            'resu_location_id' => Yii::t('app', 'Resu Location ID'),
+            'resu_hours_option_id' => Yii::t('app', 'Resu Hours Option ID'),
+            'created_at' => Yii::t('app', 'Created At'),
+            'created_by' => Yii::t('app', 'Created By'),
+            'updated_at' => Yii::t('app', 'Updated At'),
+            'updated_by' => Yii::t('app', 'Updated By'),
+            'deleted_at' => Yii::t('app', 'Deleted At'),
         ];
     }
 

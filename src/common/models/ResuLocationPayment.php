@@ -5,10 +5,15 @@ namespace resutoran\common\models;
 use Yii;
 
 /**
- * This is the model class for table "resu_location_payment".
+ * This is the model class for table "{{%resu_location_payment}}".
  *
  * @property integer $resu_payment_option_id
  * @property integer $resu_location_id
+ * @property integer $created_at
+ * @property integer $created_by
+ * @property integer $updated_at
+ * @property integer $updated_by
+ * @property integer $deleted_at
  *
  * @property ResuLocation $resuLocation
  * @property ResuPaymentOption $resuPaymentOption
@@ -20,7 +25,7 @@ class ResuLocationPayment extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'resu_location_payment';
+        return '{{%resu_location_payment}}';
     }
 
     /**
@@ -29,8 +34,8 @@ class ResuLocationPayment extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['resu_payment_option_id', 'resu_location_id'], 'required'],
-            [['resu_payment_option_id', 'resu_location_id'], 'integer'],
+            [['resu_payment_option_id', 'resu_location_id', 'created_by'], 'required'],
+            [['resu_payment_option_id', 'resu_location_id', 'created_at', 'created_by', 'updated_at', 'updated_by', 'deleted_at'], 'integer'],
             [['resu_location_id'], 'exist', 'skipOnError' => true, 'targetClass' => ResuLocation::className(), 'targetAttribute' => ['resu_location_id' => 'id']],
             [['resu_payment_option_id'], 'exist', 'skipOnError' => true, 'targetClass' => ResuPaymentOption::className(), 'targetAttribute' => ['resu_payment_option_id' => 'id']],
         ];
@@ -42,8 +47,13 @@ class ResuLocationPayment extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'resu_payment_option_id' => Yii::t('resu', 'Resu Payment Option ID'),
-            'resu_location_id' => Yii::t('resu', 'Resu Location ID'),
+            'resu_payment_option_id' => Yii::t('app', 'Resu Payment Option ID'),
+            'resu_location_id' => Yii::t('app', 'Resu Location ID'),
+            'created_at' => Yii::t('app', 'Created At'),
+            'created_by' => Yii::t('app', 'Created By'),
+            'updated_at' => Yii::t('app', 'Updated At'),
+            'updated_by' => Yii::t('app', 'Updated By'),
+            'deleted_at' => Yii::t('app', 'Deleted At'),
         ];
     }
 

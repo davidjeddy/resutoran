@@ -3,10 +3,11 @@
 namespace resutoran\common\models\query;
 
 /**
- * This is the ActiveQuery class for [[\resutoran\common\models\ResuMediaOption]].
+ * This is the ActiveQuery class for [[\common\models\ResuMediaOption]].
  *
- * @see \resutoran\common\models\ResuMediaOption
+ * @see \common\models\ResuMediaOption
  */
-class ResuMediaOptionQuery extends \resutoran\common\models\query\BaseQuery
+class ResuMediaOptionQuery extends \yii\db\ActiveQuery
 {
+
 }

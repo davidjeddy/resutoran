@@ -3,8 +3,9 @@
 namespace resutoran\common\models\query;
 
 /**
- * This is the base ActiveQuery class for resutoran module query classes
-
+ * This is the ActiveQuery Base class
+ *
+ * @see \common\models\BaseQuery
  */
 class BaseQuery extends \yii\db\ActiveQuery
 {
@@ -15,7 +16,7 @@ class BaseQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \resutoran\common\models\ResuAmbianceOption[]|array
+     * @return \common\models\ResuAmbianceOption[]|array
      */
     public function all($db = null)
     {
@@ -24,7 +25,7 @@ class BaseQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \resutoran\common\models\ResuAmbianceOption|array|null
+     * @return \common\models\ResuAmbianceOption|array|null
      */
     public function one($db = null)
     {
