@@ -1,6 +1,6 @@
 <?php
 
-namespace resutoran\modules;
+namespace resutoran;
 
 /**
  * resutoran module definition class
@@ -10,7 +10,7 @@ class Module extends \yii\base\Module
     /**
      * @inheritdoc
      */
-    public $controllerNamespace = 'resutoran\common\controllers';
+    public $controllerNamespace = 'resutoran\backend\controllers';
 
     /**
      * @inheritdoc
