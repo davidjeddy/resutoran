@@ -34,10 +34,10 @@ class ResuFranchise extends \resutoran\common\models\ResuBase
     {
         return [
             // [['created_by', 'created_at'], 'required'], populated via behavior
-            [['name'], 'required'],
+            [['value'], 'required'],
             [['created_at', 'created_by', 'updated_at', 'updated_by', 'deleted_at'], 'integer'],
-            [['name'], 'string', 'max' => 128],
-            [['name'], 'unique'],
+            [['value'], 'string', 'max' => 128],
+            [['value'], 'unique'],
         ];
     }
 
@@ -48,7 +48,7 @@ class ResuFranchise extends \resutoran\common\models\ResuBase
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'name' => Yii::t('app', 'Name'),
+            'value' => Yii::t('app', 'value'),
             'created_at' => Yii::t('app', 'Created At'),
             'created_by' => Yii::t('app', 'Created By'),
             'updated_at' => Yii::t('app', 'Updated At'),

@@ -21,7 +21,7 @@ class DefaultController extends \resutoran\backend\controllers\BaseController
     {
         return [
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::classname(),
                 'actions' => [
                     'delete' => ['post'],
                 ],
