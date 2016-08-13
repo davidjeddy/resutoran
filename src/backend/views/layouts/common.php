@@ -18,8 +18,23 @@ echo Menu::widget([
         ],
         [
             'icon'      => '<i class="fa fa-bars"></i>',
-            'label'     => \Yii::t('resutoran', 'Reviews'),
-            'url'       => ['/resutoran/reviews'],
+            'label'     => \Yii::t('resutoran', 'Contact'),
+            'url'       => ['/resutoran/resu-contact'],
+        ],
+        [
+            'icon'      => '<i class="fa fa-bars"></i>',
+            'label'     => \Yii::t('resutoran', 'Franchise'),
+            'url'       => ['/resutoran/resu-franchise'],
+        ],
+        [
+            'icon'      => '<i class="fa fa-bars"></i>',
+            'label'     => \Yii::t('resutoran', 'Location'),
+            'url'       => ['/resutoran/resu-location'],
+        ],
+        [
+            'icon'      => '<i class="fa fa-bars"></i>',
+            'label'     => \Yii::t('resutoran', 'Map'),
+            'url'       => ['/resutoran/resu-map'],
         ],
         [
             'icon'      => '<i class="fa fa-bars"></i>',
