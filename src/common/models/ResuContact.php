@@ -42,7 +42,8 @@ class ResuContact extends \resutoran\common\models\ResuBase
     public function rules()
     {
         return [
-            [['country_code', 'phone1', 'created_by'], 'required'],
+            // [['created_by', 'created_at'], 'required'], populated via behavior
+            [['country_code', 'phone1',], 'required'],
             [['country_code', 'phone1', 'phone2', 'phone3', 'created_at', 'created_by', 'updated_at', 'updated_by', 'deleted_at'], 'integer'],
             [['address1', 'address2', 'address3', 'country', 'city'], 'string'],
             [['prov'], 'string', 'max' => 2],

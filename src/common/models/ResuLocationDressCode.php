@@ -34,7 +34,8 @@ class ResuLocationDressCode extends \resutoran\common\models\ResuBase
     public function rules()
     {
         return [
-            [['resu_location_id', 'resu_dress_code_option_id', 'created_by'], 'required'],
+            // [['created_by', 'created_at'], 'required'], populated via behavior
+            [['resu_location_id', 'resu_dress_code_option_id'], 'required'],
             [['resu_location_id', 'resu_dress_code_option_id', 'created_at', 'created_by', 'updated_at', 'updated_by', 'deleted_at'], 'integer'],
             [['resu_dress_code_option_id'], 'exist', 'skipOnError' => true, 'targetClass' => ResuDressCodeOption::className(), 'targetAttribute' => ['resu_dress_code_option_id' => 'id']],
             [['resu_location_id'], 'exist', 'skipOnError' => true, 'targetClass' => ResuLocation::className(), 'targetAttribute' => ['resu_location_id' => 'id']],

@@ -34,7 +34,8 @@ class ResuLocationPayment extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['resu_payment_option_id', 'resu_location_id', 'created_by'], 'required'],
+            // [['created_by', 'created_at'], 'required'], populated via behavior
+            [['resu_payment_option_id', 'resu_location_id'], 'required'],
             [['resu_payment_option_id', 'resu_location_id', 'created_at', 'created_by', 'updated_at', 'updated_by', 'deleted_at'], 'integer'],
             [['resu_location_id'], 'exist', 'skipOnError' => true, 'targetClass' => ResuLocation::className(), 'targetAttribute' => ['resu_location_id' => 'id']],
             [['resu_payment_option_id'], 'exist', 'skipOnError' => true, 'targetClass' => ResuPaymentOption::className(), 'targetAttribute' => ['resu_payment_option_id' => 'id']],
