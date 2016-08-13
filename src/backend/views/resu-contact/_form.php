@@ -14,6 +14,8 @@ use yii\bootstrap\ActiveForm;
 
     <?php echo $form->errorSummary($model); ?>
 
+    <?php echo $form->field($model, 'value')->textInput() ?>
+
     <?php echo $form->field($model, 'country_code')->textInput() ?>
 
     <?php echo $form->field($model, 'phone1')->textInput() ?>

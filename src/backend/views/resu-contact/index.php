@@ -24,10 +24,11 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
+            'value',
             'country_code',
             'phone1',
-            'phone2',
-            'phone3',
+            // 'phone2',
+            // 'phone3',
             // 'address1:ntext',
             // 'address2:ntext',
             // 'address3:ntext',

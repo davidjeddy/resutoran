@@ -43,7 +43,7 @@ class ResuContact extends \resutoran\common\models\ResuBase
     {
         return [
             // [['created_by', 'created_at'], 'required'], populated via behavior
-            [['country_code', 'phone1',], 'required'],
+            [['value', 'country_code', 'phone1'], 'required'],
             [['country_code', 'phone1', 'phone2', 'phone3', 'created_at', 'created_by', 'updated_at', 'updated_by', 'deleted_at'], 'integer'],
             [['address1', 'address2', 'address3', 'country', 'city'], 'string'],
             [['prov'], 'string', 'max' => 2],
@@ -56,22 +56,23 @@ class ResuContact extends \resutoran\common\models\ResuBase
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
+            'id'           => Yii::t('app', 'ID'),
+            'value'        => Yii::t('app', 'Value'),
             'country_code' => Yii::t('app', 'Country Code'),
-            'phone1' => Yii::t('app', 'Phone1'),
-            'phone2' => Yii::t('app', 'Phone2'),
-            'phone3' => Yii::t('app', 'Phone3'),
-            'address1' => Yii::t('app', 'Address1'),
-            'address2' => Yii::t('app', 'Address2'),
-            'address3' => Yii::t('app', 'Address3'),
-            'country' => Yii::t('app', 'Country'),
-            'city' => Yii::t('app', 'City'),
-            'prov' => Yii::t('app', 'Prov'),
-            'created_at' => Yii::t('app', 'Created At'),
-            'created_by' => Yii::t('app', 'Created By'),
-            'updated_at' => Yii::t('app', 'Updated At'),
-            'updated_by' => Yii::t('app', 'Updated By'),
-            'deleted_at' => Yii::t('app', 'Deleted At'),
+            'phone1'       => Yii::t('app', 'Phone1'),
+            'phone2'       => Yii::t('app', 'Phone2'),
+            'phone3'       => Yii::t('app', 'Phone3'),
+            'address1'     => Yii::t('app', 'Address1'),
+            'address2'     => Yii::t('app', 'Address2'),
+            'address3'     => Yii::t('app', 'Address3'),
+            'country'      => Yii::t('app', 'Country'),
+            'city'         => Yii::t('app', 'City'),
+            'prov'         => Yii::t('app', 'Prov'),
+            'created_at'   => Yii::t('app', 'Created At'),
+            'created_by'   => Yii::t('app', 'Created By'),
+            'updated_at'   => Yii::t('app', 'Updated At'),
+            'updated_by'   => Yii::t('app', 'Updated By'),
+            'deleted_at'   => Yii::t('app', 'Deleted At'),
         ];
     }
 

@@ -52,7 +52,7 @@ use yii\helpers\Html;
         'options'   => [
             'class'       => 'form-control',
             'placeholder' => 'Choose Price Option(s)...',
-            'multiple'    => true,
+            'multiple'    => false,
             //'required'    => $model->isAttributeRequired('resu_franchise_id'),
         ],
         'pluginOptions' => [
@@ -66,7 +66,7 @@ use yii\helpers\Html;
         'options'   => [
             'class'       => 'form-control',
             'placeholder' => 'Choose Decor Option(s)...',
-            'multiple'    => true,
+            'multiple'    => false,
             //'required'    => $model->isAttributeRequired('resu_franchise_id'),
         ],
         'pluginOptions' => [
@@ -88,7 +88,19 @@ use yii\helpers\Html;
         ],
     ])->label('Ambiance'); ?>
 
-    <?php echo $form->field($model, 'resu_map_id')->textInput() ?>
+    <?php // echo $form->field($model, 'resu_map_id')->textInput() ?>
+    <?php echo $form->field($model, 'resu_map_id')->widget(Select2::className(), [
+        'data'      => ArrayHelper::map(\resutoran\common\models\ResuMap::find()->all(), 'id', 'value'),
+        'options'   => [
+            'class'       => 'form-control',
+            'placeholder' => 'Choose Map...',
+            'multiple'    => false,
+            //'required'    => $model->isAttributeRequired('resu_franchise_id'),
+        ],
+        'pluginOptions' => [
+            'allowClear' => true
+        ],
+    ])->label('Map'); ?>
 
     <?php // echo $form->field($model, 'created_at')->textInput() ?>
 
