@@ -1,32 +1,50 @@
 {
-    "name": "davidjeddy/yii2-resutoran",
-    "description": "Resutoran Yii2 Module",
-    "keywords": [
-        "restaurant",
-        "review",
-        "module"
-    ],
-    "homepage": "https://github.com/davidjeddy/yii2-resutoran#readme",
-    "type": "module",
-    "license": "All Rights Reserved",
-    "authors": [
-        {
-          "name": "David J Eddy",
-          "email": "me@davidjeddy.com",
-          "homepage": "http://www.davidjeddy.com",
-          "role": "Creator"
-        }
-    ],
-    "support": {
-        "issues": "https://github.com/davidjeddy/yii2-resutoran/issues",
-        "source": "https://github.com/davidjeddy/yii2-resutoran"
-    },
-    "require": {
-      "yiisoft/yii2": "^2.0.8"
-    },
-    "autoload": {
-        "psr-4": {
-          "resutoran\\": "src"
-      }
+  "name": "davidjeddy/yii2-resutoran",
+  "description": "Resutoran Yii2 Module",
+  "keywords": [
+    "restaurant",
+    "review",
+    "module"
+  ],
+  "homepage": "https://github.com/davidjeddy/yii2-resutoran#readme",
+  "type": "module",
+  "license": "All Rights Reserved",
+  "authors": [
+    {
+      "name": "David J Eddy",
+      "email": "me@davidjeddy.com",
+      "homepage": "http://www.davidjeddy.com",
+      "role": "Creator"
     }
+  ],
+  "support": {
+    "issues": "https://github.com/davidjeddy/yii2-resutoran/issues",
+    "source": "https://github.com/davidjeddy/yii2-resutoran"
+  },
+  "require": {
+    "yiisoft/yii2":           "^2.0.8",
+    "yii2tech/ar-softdelete": "^1.0"
+  },
+  "require-dev": {
+    "codeception/codeception":  "^2.0",
+    "codeception/specify":      "^0.4.3",
+    "codeception/verify":       "^0.3.0",
+    "trntv/yii2-debug-xhprof":  "dev-master@dev",
+    "yiisoft/yii2-debug":       "^2.0.0",
+    "yiisoft/yii2-gii":         "^2.0.0",
+    "yiisoft/yii2-codeception": "^2.0.0",
+    "yiisoft/yii2-faker":       "^2.0.0"
+  },
+  "suggest": {
+    "e96/yii2-sentry":          "dev-master as 1.0",
+    "fxp/composer-asset-plugin":"^1.2",
+    "hirak/prestissimo":        "^0.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "resutoran\\backend": "src\\backend",
+      "resutoran\\frontend":"src\\frontend",
+      "resutoran\\common":  "src\\common"
+    }
+  }
 }
