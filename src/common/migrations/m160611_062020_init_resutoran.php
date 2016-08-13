@@ -8,7 +8,7 @@ class m160611_062020_init_resutoran extends Migration
     {
         echo "m160611_062020_init_resutoran is being executed.\n";
 
-        echo "
+        $command = "
             SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
             SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
             SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
@@ -467,14 +467,14 @@ class m160611_062020_init_resutoran extends Migration
             SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
         ";
 
-        return true;
+        return $this->execute($command);
     }
 
     public function safeDown()
     {
         echo "m160611_062020_init_resutoran is being reverted\n";
 
-        echo "
+        $command = "
             SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
             SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
             SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
@@ -513,6 +513,6 @@ class m160611_062020_init_resutoran extends Migration
             SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
         ";
 
-        return true;
+        return $this->execute($command);
     }
 }

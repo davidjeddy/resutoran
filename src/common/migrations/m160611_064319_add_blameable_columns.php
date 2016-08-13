@@ -8,7 +8,7 @@ class m160611_064319_add_blameable_columns extends Migration
     {
         echo "m160611_064319_add_blameable_columns is being executed.\n";
 
-        echo "
+        $command = "
             SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
             SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
             SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
@@ -316,14 +316,14 @@ class m160611_064319_add_blameable_columns extends Migration
             SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
         ";
 
-        return true;
+        return $this->execute($command);
     }
 
     public function safeDown()
     {
         echo "m160611_064319_add_blameable_columns is being reverted.\n";
 
-        echo "
+        $command = "
             SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
             SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
             SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
@@ -624,6 +624,6 @@ class m160611_064319_add_blameable_columns extends Migration
             SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
         ";
 
-        return true;
+        return $this->execute($command);
     }
 }
