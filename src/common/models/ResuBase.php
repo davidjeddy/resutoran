@@ -57,11 +57,12 @@ class ResuBase extends \yii\db\ActiveRecord
     {
         // cnPathArray = className path as an array
         $cnPathArray = explode('\\', self::className());
+        $cnPathCount = count($cnPathArray);
 
         // source http://stackoverflow.com/questions/3353745/how-to-insert-element-into-arrays-at-specific-position
-        $modelClass = array_slice($cnPathArray, 0, count($cnPathArray) - 1, true)
-            + [count($cnPathArray) => 'query']
-            + array_slice($cnPathArray, 0, count($cnPathArray) + 1, true);
+        $modelClass = array_slice($cnPathArray, 0, $cnPathCount - 1, true)
+            + [$cnPathCount => 'query']
+            + array_slice($cnPathArray, 0, $cnPathCount + 1, true);
 
         $modelClass = '\\' . implode('\\', $modelClass) . 'Query';
 
