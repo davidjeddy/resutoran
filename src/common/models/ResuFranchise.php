@@ -64,13 +64,4 @@ class ResuFranchise extends \resutoran\common\models\ResuBase
     {
         return $this->hasMany(ResuLocation::className(), ['resu_franchise_id' => 'id']);
     }
-
-    /**
-     * @inheritdoc
-     * @return \resutoran\common\models\query\ResuFranchiseQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new \resutoran\common\models\query\ResuFranchiseQuery(get_called_class());
-    }
 }

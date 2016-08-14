@@ -63,13 +63,4 @@ class ResuMap extends \resutoran\common\models\ResuBase
     {
         return $this->hasMany(ResuLocation::className(), ['resu_map_id' => 'id']);
     }
-
-    /**
-     * @inheritdoc
-     * @return \resutoran\common\models\query\ResuMapQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new \resutoran\common\models\query\ResuMapQuery(get_called_class());
-    }
 }

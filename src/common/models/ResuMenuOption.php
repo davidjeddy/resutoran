@@ -63,13 +63,4 @@ class ResuMenuOption extends \resutoran\common\models\ResuBase
     {
         return $this->hasMany(ResuLocationMenu::className(), ['resu_menu_option_id' => 'id']);
     }
-
-    /**
-     * @inheritdoc
-     * @return \resutoran\common\models\query\ResuMenuOptionQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new \resutoran\common\models\query\ResuMenuOptionQuery(get_called_class());
-    }
 }

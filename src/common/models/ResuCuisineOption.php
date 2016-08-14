@@ -63,13 +63,4 @@ class ResuCuisineOption extends \resutoran\common\models\ResuBase
     {
         return $this->hasMany(ResuLocationCuisine::className(), ['resu_cuisine_option_id' => 'id']);
     }
-
-    /**
-     * @inheritdoc
-     * @return \resutoran\common\models\query\ResuCuisineOptionQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new \resutoran\common\models\query\ResuCuisineOptionQuery(get_called_class());
-    }
 }

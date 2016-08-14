@@ -73,13 +73,4 @@ class ResuLocationReservation extends \resutoran\common\models\ResuBase
     {
         return $this->hasOne(ResuReservationOption::className(), ['id' => 'resu_reservation_option_id']);
     }
-
-    /**
-     * @inheritdoc
-     * @return \resutoran\common\models\query\ResuLocationReservationQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new \resutoran\common\models\query\ResuLocationReservationQuery(get_called_class());
-    }
 }

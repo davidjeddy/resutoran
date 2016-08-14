@@ -47,4 +47,24 @@ class ResuBase extends \yii\db\ActiveRecord
             ],
         ];
     }
+
+
+    /**
+     * @inheritdoc
+     * @return \resutoran\common\models\query\*Query the active query used by this AR class.
+     */
+    public static function find()
+    {
+        // cnPathArray = className path as an array
+        $cnPathArray = explode('\\', self::className());
+
+        // source http://stackoverflow.com/questions/3353745/how-to-insert-element-into-arrays-at-specific-position
+        $modelClass = array_slice($cnPathArray, 0, count($cnPathArray) - 1, true)
+            + [count($cnPathArray) => 'query']
+            + array_slice($cnPathArray, 0, count($cnPathArray) + 1, true);
+
+        $modelClass = '\\' . implode('\\', $modelClass) . 'Query';
+
+        return new $modelClass(get_called_class());
+    }
 }

@@ -73,13 +73,4 @@ class ResuLocationService extends \resutoran\common\models\ResuBase
     {
         return $this->hasOne(ResuServicesOption::className(), ['id' => 'resu_services_option_id']);
     }
-
-    /**
-     * @inheritdoc
-     * @return \resutoran\common\models\query\ResuLocationServiceQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new \resutoran\common\models\query\ResuLocationServiceQuery(get_called_class());
-    }
 }

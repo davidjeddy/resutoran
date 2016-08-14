@@ -63,13 +63,4 @@ class ResuSeatingOption extends \resutoran\common\models\ResuBase
     {
         return $this->hasMany(ResuLocationSeating::className(), ['resu_seating_option_id' => 'id']);
     }
-
-    /**
-     * @inheritdoc
-     * @return \resutoran\common\models\query\ResuSeatingOptionQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new \resutoran\common\models\query\ResuSeatingOptionQuery(get_called_class());
-    }
 }

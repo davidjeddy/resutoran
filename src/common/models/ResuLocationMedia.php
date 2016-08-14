@@ -73,13 +73,4 @@ class ResuLocationMedia extends \resutoran\common\models\ResuBase
     {
         return $this->hasOne(ResuMediaOption::className(), ['id' => 'resu_media_option_id']);
     }
-
-    /**
-     * @inheritdoc
-     * @return \resutoran\common\models\query\ResuLocationMediaQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new \resutoran\common\models\query\ResuLocationMediaQuery(get_called_class());
-    }
 }

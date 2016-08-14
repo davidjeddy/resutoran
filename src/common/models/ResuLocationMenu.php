@@ -73,13 +73,4 @@ class ResuLocationMenu extends \resutoran\common\models\ResuBase
     {
         return $this->hasOne(ResuMenuOption::className(), ['id' => 'resu_menu_option_id']);
     }
-
-    /**
-     * @inheritdoc
-     * @return \resutoran\common\models\query\ResuLocationMenuQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new \resutoran\common\models\query\ResuLocationMenuQuery(get_called_class());
-    }
 }

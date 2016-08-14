@@ -73,13 +73,4 @@ class ResuLocationPayment extends \yii\db\ActiveRecord
     {
         return $this->hasOne(ResuPaymentOption::className(), ['id' => 'resu_payment_option_id']);
     }
-
-    /**
-     * @inheritdoc
-     * @return \resutoran\common\models\query\ResuLocationPaymentQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new \resutoran\common\models\query\ResuLocationPaymentQuery(get_called_class());
-    }
 }

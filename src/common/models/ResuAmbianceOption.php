@@ -63,13 +63,4 @@ class ResuAmbianceOption extends \resutoran\common\models\ResuBase
     {
         return $this->hasMany(ResuLocation::className(), ['resu_ambiance_option_id' => 'id']);
     }
-
-    /**
-     * @inheritdoc
-     * @return \resutoran\common\models\query\ResuAmbianceOptionQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new \resutoran\common\models\query\ResuAmbianceOptionQuery(get_called_class());
-    }
 }
