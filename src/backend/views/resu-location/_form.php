@@ -108,7 +108,7 @@ use yii\helpers\Html;
     <?php
     echo Html::label('Dress Option');
     echo Select2::widget([
-        'name'      => 'resu_location_dress_code',
+        'name'      => 'ResuLocation[location_options][resu_location_dress_code][]',
         'value'     => null,
         'data'      => ArrayHelper::map(\resutoran\common\models\ResuDressCodeOption::find()->all(), 'id', 'value'),
         'options'   => [
@@ -120,7 +120,7 @@ use yii\helpers\Html;
     <?php
     echo Html::label('Services Option');
     echo Select2::widget([
-        'name'      => 'resu_location_service',
+        'name'      => 'ResuLocation[location_options][resu_location_service][]',
         'value'     => null,
         'data'      => ArrayHelper::map(\resutoran\common\models\ResuServicesOption::find()->all(), 'id', 'value'),
         'options'   => [
@@ -132,7 +132,7 @@ use yii\helpers\Html;
     <?php
     echo Html::label('Boolean Option');
     echo Select2::widget([
-        'name'      => 'resu_location_boolean',
+        'name'      => 'ResuLocation[location_options][resu_location_boolean][]',
         'value'     => null,
         'data'      => ArrayHelper::map(\resutoran\common\models\ResuBooleanOption::find()->all(), 'id', 'value'),
         'options'   => [
@@ -144,7 +144,7 @@ use yii\helpers\Html;
     <?php
     echo Html::label('Reservation Option');
     echo Select2::widget([
-        'name'      => 'resu_location_boolean',
+        'name'      => 'ResuLocation[location_options][resu_location_reservation][]',
         'value'     => null,
         'data'      => ArrayHelper::map(\resutoran\common\models\ResuReservationOption::find()->all(), 'id', 'value'),
         'options'   => [
@@ -156,7 +156,7 @@ use yii\helpers\Html;
     <?php
     echo Html::label('Hours Option');
     echo Select2::widget([
-        'name'      => 'resu_location_boolean',
+        'name'      => 'ResuLocation[location_options][resu_location_hours][]',
         'value'     => null,
         'data'      => ArrayHelper::map(\resutoran\common\models\ResuHoursOption::find()->all(), 'id', 'value'),
         'options'   => [
@@ -168,7 +168,7 @@ use yii\helpers\Html;
     <?php
     echo Html::label('Seating Option');
     echo Select2::widget([
-        'name'      => 'resu_location_seating',
+        'name'      => 'ResuLocation[location_options][resu_location_seating][]',
         'value'     => null,
         'data'      => ArrayHelper::map(\resutoran\common\models\ResuSeatingOption::find()->all(), 'id', 'value'),
         'options'   => [
@@ -180,7 +180,7 @@ use yii\helpers\Html;
     <?php
     echo Html::label('Cuisine Option');
     echo Select2::widget([
-        'name'      => 'resu_location_cuisine',
+        'name'      => 'ResuLocation[location_options][resu_location_cuisine][]',
         'value'     => null,
         'data'      => ArrayHelper::map(\resutoran\common\models\ResuCuisineOption::find()->all(), 'id', 'value'),
         'options'   => [
@@ -192,7 +192,7 @@ use yii\helpers\Html;
     <?php
     echo Html::label('Media Option');
     echo Select2::widget([
-        'name'      => 'resu_location_media',
+        'name'      => 'ResuLocation[location_options][resu_location_media][]',
         'value'     => null,
         'data'      => ArrayHelper::map(\resutoran\common\models\ResuMediaOption::find()->all(), 'id', 'value'),
         'options'   => [
@@ -204,7 +204,7 @@ use yii\helpers\Html;
     <?php
     echo Html::label('Payment Option');
     echo Select2::widget([
-        'name'      => 'resu_location_payment',
+        'name'      => 'ResuLocation[location_options][resu_location_payment][]',
         'value'     => null,
         'data'      => ArrayHelper::map(\resutoran\common\models\ResuPaymentOption::find()->all(), 'id', 'value'),
         'options'   => [

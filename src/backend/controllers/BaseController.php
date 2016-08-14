@@ -73,6 +73,13 @@ class BaseController extends Controller
         $model = new $this->model();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+            // try to save location option data, else return error provided
+            $options = \Yii::$app->request->post()['ResuLocation']['location_options'];
+            if (($locationOptions = $this->saveLocationOptions($model, $options)) === true) {
+                return $locationOptions;
+            }
+
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -130,5 +137,40 @@ class BaseController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    /**
+     * @return boolean
+     */
+    private function saveLocationOptions($model, $optionArray)
+    {
+        $returnData = false;
+
+        foreach ($optionArray as $optionKey => $optionValue) {
+
+            // does the option model class exists?
+            $optionMDL = 'resutoran\common\models\\' . \yii\helpers\BaseInflector::camelize( $optionKey );
+            if (class_exists($optionMDL)) {
+
+                // create a an AR
+                $optionMDL = new $optionMDL;
+
+                // assign the location model id to the optionItem AR object
+                $data = ['resu_location_od' => $model->id];
+                foreach ($optionValue as $optionItemKey => $optionItemValue) {
+                    // todo dynamically get ther option column key - DJE
+                    $data['resu_' . $optionItemKey . '_option_id'] = $optionItemValue;
+                };
+                $optionMDL->setAttributes($data);
+
+                // save location option AR to data store, or return error if present
+                if (!$optionMDL->save() || $optionMDL->errors()) {
+                    return $optionMDL->getErrors();
+                }
+            }
+        }
+
+
+        return $returnData;
     }
 }
