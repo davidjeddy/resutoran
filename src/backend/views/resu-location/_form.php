@@ -6,7 +6,7 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\ResuLocation */
+/* @var $model \resutoran\common\models\ResuLocation */
 /* @var $form yii\bootstrap\ActiveForm */
 ?>
 
@@ -101,6 +101,117 @@ use yii\helpers\Html;
             'allowClear' => true
         ],
     ])->label('Map'); ?>
+
+    <hr>
+    <?php // Multiple select without model ?>
+
+    <?php
+    echo Html::label('Dress Option');
+    echo Select2::widget([
+        'name'      => 'resu_location_dress_code',
+        'value'     => null,
+        'data'      => ArrayHelper::map(\resutoran\common\models\ResuDressCodeOption::find()->all(), 'id', 'value'),
+        'options'   => [
+            'multiple'      => true,
+            'placeholder'   => 'Select Dress Code Options ...'
+        ]
+    ]); ?>
+
+    <?php
+    echo Html::label('Services Option');
+    echo Select2::widget([
+        'name'      => 'resu_location_service',
+        'value'     => null,
+        'data'      => ArrayHelper::map(\resutoran\common\models\ResuServicesOption::find()->all(), 'id', 'value'),
+        'options'   => [
+            'multiple'      => true,
+            'placeholder'   => 'Select Services Options ...'
+        ]
+    ]); ?>
+
+    <?php
+    echo Html::label('Boolean Option');
+    echo Select2::widget([
+        'name'      => 'resu_location_boolean',
+        'value'     => null,
+        'data'      => ArrayHelper::map(\resutoran\common\models\ResuBooleanOption::find()->all(), 'id', 'value'),
+        'options'   => [
+            'multiple'      => true,
+            'placeholder'   => 'Select Boolean Options ...'
+        ]
+    ]); ?>
+
+    <?php
+    echo Html::label('Reservation Option');
+    echo Select2::widget([
+        'name'      => 'resu_location_boolean',
+        'value'     => null,
+        'data'      => ArrayHelper::map(\resutoran\common\models\ResuReservationOption::find()->all(), 'id', 'value'),
+        'options'   => [
+            'multiple'      => true,
+            'placeholder'   => 'Select Reservation Options ...'
+        ]
+    ]); ?>
+
+    <?php
+    echo Html::label('Hours Option');
+    echo Select2::widget([
+        'name'      => 'resu_location_boolean',
+        'value'     => null,
+        'data'      => ArrayHelper::map(\resutoran\common\models\ResuHoursOption::find()->all(), 'id', 'value'),
+        'options'   => [
+            'multiple'      => true,
+            'placeholder'   => 'Select Hours Options ...'
+        ]
+    ]); ?>
+
+    <?php
+    echo Html::label('Seating Option');
+    echo Select2::widget([
+        'name'      => 'resu_location_seating',
+        'value'     => null,
+        'data'      => ArrayHelper::map(\resutoran\common\models\ResuSeatingOption::find()->all(), 'id', 'value'),
+        'options'   => [
+            'multiple'      => true,
+            'placeholder'   => 'Select Seating Options ...'
+        ]
+    ]); ?>
+
+    <?php
+    echo Html::label('Cuisine Option');
+    echo Select2::widget([
+        'name'      => 'resu_location_cuisine',
+        'value'     => null,
+        'data'      => ArrayHelper::map(\resutoran\common\models\ResuCuisineOption::find()->all(), 'id', 'value'),
+        'options'   => [
+            'multiple'      => true,
+            'placeholder'   => 'Select Cuisine Options ...'
+        ]
+    ]); ?>
+
+    <?php
+    echo Html::label('Media Option');
+    echo Select2::widget([
+        'name'      => 'resu_location_media',
+        'value'     => null,
+        'data'      => ArrayHelper::map(\resutoran\common\models\ResuMediaOption::find()->all(), 'id', 'value'),
+        'options'   => [
+            'multiple'      => true,
+            'placeholder'   => 'Select Media Options ...'
+        ]
+    ]); ?>
+
+    <?php
+    echo Html::label('Payment Option');
+    echo Select2::widget([
+        'name'      => 'resu_location_payment',
+        'value'     => null,
+        'data'      => ArrayHelper::map(\resutoran\common\models\ResuPaymentOption::find()->all(), 'id', 'value'),
+        'options'   => [
+            'multiple'      => true,
+            'placeholder'   => 'Select Payment Options ...'
+        ]
+    ]); ?>
 
     <?php // echo $form->field($model, 'created_at')->textInput() ?>
 
