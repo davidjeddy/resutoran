@@ -118,14 +118,14 @@ use yii\helpers\Html;
     ]); ?>
 
     <?php
-    echo Html::label('Services Option');
+    echo Html::label('service Option');
     echo Select2::widget([
         'name'      => 'ResuLocation[location_options][resu_location_service][]',
         'value'     => null,
-        'data'      => ArrayHelper::map(\resutoran\common\models\ResuServicesOption::find()->all(), 'id', 'value'),
+        'data'      => ArrayHelper::map(\resutoran\common\models\ResuserviceOption::find()->all(), 'id', 'value'),
         'options'   => [
             'multiple'      => true,
-            'placeholder'   => 'Select Services Options ...'
+            'placeholder'   => 'Select service Options ...'
         ]
     ]); ?>
 

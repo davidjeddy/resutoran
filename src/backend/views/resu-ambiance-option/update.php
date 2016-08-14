@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\ResuAmbianceOption */
+/* @var $model resutoran\common\models\Resu[location_options][resu_AmbianceOption */
 
 $this->title = Yii::t('backend', 'Update {modelClass}: ', [
     'modelClass' => 'Ambiance Option',

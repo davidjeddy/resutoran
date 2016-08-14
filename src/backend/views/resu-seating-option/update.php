@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\ResuSeatingOption */
+/* @var $model resutoran\common\models\Resu[location_options][resu_SeatingOption */
 
 $this->title = Yii::t('backend', 'Update {modelClass}: ', [
     'modelClass' => 'Seating Option',

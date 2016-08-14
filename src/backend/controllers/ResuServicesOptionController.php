@@ -3,12 +3,12 @@
 namespace resutoran\backend\controllers;
 
 /**
- * ResuServicesOptionController implements the CRUD actions for ResuServicesOption model.
+ * ResuserviceOptionController implements the CRUD actions for ResuserviceOption model.
  */
-class ResuServicesOptionController extends \resutoran\backend\controllers\BaseController
+class ResuserviceOptionController extends \resutoran\backend\controllers\BaseController
 {
     /**
      * @var string
      */
-    protected $model = '\resutoran\common\models\ResuServicesOption';
+    protected $model = '\resutoran\common\models\ResuserviceOption';
 }

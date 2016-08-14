@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\ResuAmbianceOption */
+/* @var $model resutoran\common\models\Resu[location_options][resu_AmbianceOption */
 /* @var $form yii\bootstrap\ActiveForm */
 ?>
 

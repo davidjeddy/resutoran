@@ -4,7 +4,7 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model common\models\ResuCuisineOption */
+/* @var $model resutoran\common\models\Resu[location_options][resu_CuisineOption */
 
 $this->title = Yii::t('backend', 'Create {modelClass}', [
     'modelClass' => 'Cuisine Option',

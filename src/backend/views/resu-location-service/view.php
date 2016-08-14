@@ -4,10 +4,10 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\ResuLocationService */
+/* @var $model resutoran\common\models\Resu[location_options][resu_LocationService */
 
 $this->title = $model->value;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('resutoran', ' Location Services'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('resutoran', ' Location Service'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="resu-location-service-view">
@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'resu_location_id',
-            'resu_services_option_id',
+            'resu_service_option_id',
             'created_at:date',
             'created_by',
             'updated_at:date',

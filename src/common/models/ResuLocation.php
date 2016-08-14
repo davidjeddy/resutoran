@@ -36,7 +36,7 @@ use Yii;
  * @property ResuLocationPayment[] $resuLocationPayments
  * @property ResuLocationReservation[] $resuLocationReservations
  * @property ResuLocationSeating[] $resuLocationSeatings
- * @property ResuLocationService[] $resuLocationServices
+ * @property ResuLocationService[] $resuLocationservice
  */
 class ResuLocation extends \resutoran\common\models\ResuBase
 {
@@ -212,7 +212,7 @@ class ResuLocation extends \resutoran\common\models\ResuBase
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getResuLocationServices()
+    public function getResuLocationservice()
     {
         return $this->hasMany(ResuLocationService::className(), ['resu_location_id' => 'id']);
     }

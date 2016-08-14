@@ -3,11 +3,11 @@
 namespace resutoran\common\models\query;
 
 /**
- * This is the ActiveQuery class for [[\common\models\ResuServicesOption]].
+ * This is the ActiveQuery class for [[\common\models\ResuserviceOption]].
  *
- * @see \common\models\ResuServicesOption
+ * @see \common\models\ResuserviceOption
  */
-class ResuServicesOptionQuery extends \yii\db\ActiveQuery
+class ResuserviceOptionQuery extends \yii\db\ActiveQuery
 {
 
 }

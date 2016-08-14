@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\ResuHoursOption */
+/* @var $model resutoran\common\models\Resu[location_options][resu_HoursOption */
 /* @var $form yii\bootstrap\ActiveForm */
 ?>
 

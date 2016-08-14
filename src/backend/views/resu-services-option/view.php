@@ -4,13 +4,13 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\ResuServicesOption */
+/* @var $model resutoran\common\models\Resu[location_options][resu_serviceOption */
 
 $this->title = $model->value;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('resutoran', ' Services Options'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('resutoran', ' service Options'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="resu-services-option-view">
+<div class="resu-service-option-view">
 
     <p>
         <?php echo Html::a(Yii::t('backend', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>

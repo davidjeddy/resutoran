@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "{{%resu_location_service}}".
  *
  * @property integer $resu_location_id
- * @property integer $resu_services_option_id
+ * @property integer $resu_service_option_id
  * @property integer $created_at
  * @property integer $created_by
  * @property integer $updated_at
@@ -16,7 +16,7 @@ use Yii;
  * @property integer $deleted_at
  *
  * @property ResuLocation $resuLocation
- * @property ResuServicesOption $resuServicesOption
+ * @property ResuserviceOption $resuserviceOption
  */
 class ResuLocationService extends \resutoran\common\models\ResuBase
 {
@@ -35,10 +35,10 @@ class ResuLocationService extends \resutoran\common\models\ResuBase
     {
         return [
             // [['created_by', 'created_at'], 'required'], populated via behavior
-            [['resu_location_id', 'resu_services_option_id'], 'required'],
-            [['resu_location_id', 'resu_services_option_id', 'created_at', 'created_by', 'updated_at', 'updated_by', 'deleted_at'], 'integer'],
+            [['resu_location_id', 'resu_service_option_id'], 'required'],
+            [['resu_location_id', 'resu_service_option_id', 'created_at', 'created_by', 'updated_at', 'updated_by', 'deleted_at'], 'integer'],
             [['resu_location_id'], 'exist', 'skipOnError' => true, 'targetClass' => ResuLocation::className(), 'targetAttribute' => ['resu_location_id' => 'id']],
-            [['resu_services_option_id'], 'exist', 'skipOnError' => true, 'targetClass' => ResuServicesOption::className(), 'targetAttribute' => ['resu_services_option_id' => 'id']],
+            [['resu_service_option_id'], 'exist', 'skipOnError' => true, 'targetClass' => ResuserviceOption::className(), 'targetAttribute' => ['resu_service_option_id' => 'id']],
         ];
     }
 
@@ -49,7 +49,7 @@ class ResuLocationService extends \resutoran\common\models\ResuBase
     {
         return [
             'resu_location_id' => Yii::t('app', 'Resu Location ID'),
-            'resu_services_option_id' => Yii::t('app', 'Resu Services Option ID'),
+            'resu_service_option_id' => Yii::t('app', 'Resu service Option ID'),
             'created_at' => Yii::t('app', 'Created At'),
             'created_by' => Yii::t('app', 'Created By'),
             'updated_at' => Yii::t('app', 'Updated At'),
@@ -69,8 +69,8 @@ class ResuLocationService extends \resutoran\common\models\ResuBase
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getResuServicesOption()
+    public function getResuserviceOption()
     {
-        return $this->hasOne(ResuServicesOption::className(), ['id' => 'resu_services_option_id']);
+        return $this->hasOne(ResuserviceOption::className(), ['id' => 'resu_service_option_id']);
     }
 }

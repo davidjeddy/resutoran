@@ -4,7 +4,7 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model common\models\ResuPaymentOption */
+/* @var $model resutoran\common\models\Resu[location_options][resu_PaymentOption */
 
 $this->title = Yii::t('backend', 'Create {modelClass}', [
     'modelClass' => 'Payment Option',

@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\ResuLocationCuisine */
+/* @var $model resutoran\common\models\Resu[location_options][resu_LocationCuisine */
 /* @var $form yii\bootstrap\ActiveForm */
 ?>
 

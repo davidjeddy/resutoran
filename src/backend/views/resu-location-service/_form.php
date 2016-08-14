@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\ResuLocationService */
+/* @var $model resutoran\common\models\Resu[location_options][resu_LocationService */
 /* @var $form yii\bootstrap\ActiveForm */
 ?>
 
@@ -16,7 +16,7 @@ use yii\bootstrap\ActiveForm;
 
     <?php echo $form->field($model, 'resu_location_id')->textInput() ?>
 
-    <?php echo $form->field($model, 'resu_services_option_id')->textInput() ?>
+    <?php echo $form->field($model, 'resu_service_option_id')->textInput() ?>
 
     <?php // echo $form->field($model, 'created_at')->textInput() ?>
 

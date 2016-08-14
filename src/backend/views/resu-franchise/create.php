@@ -4,7 +4,7 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model common\models\ResuFranchise */
+/* @var $model resutoran\common\models\Resu[location_options][resu_Franchise */
 
 $this->title = Yii::t('backend', 'Create {modelClass}', [
     'modelClass' => 'Franchise',

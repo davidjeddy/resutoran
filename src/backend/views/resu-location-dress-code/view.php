@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\ResuLocationDressCode */
+/* @var $model resutoran\common\models\Resu[location_options][resu_LocationDressCode */
 
 $this->title = $model->value;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('resutoran', ' Location Dress Codes'), 'url' => ['index']];

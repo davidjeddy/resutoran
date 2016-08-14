@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\ResuLocationBoolean */
+/* @var $model resutoran\common\models\Resu[location_options][resu_LocationBoolean */
 
 $this->title = Yii::t('backend', 'Update {modelClass}: ', [
     'modelClass' => 'Location Boolean',

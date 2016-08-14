@@ -5,7 +5,7 @@ namespace resutoran\common\models;
 use Yii;
 
 /**
- * This is the model class for table "{{%resu_services_option}}".
+ * This is the model class for table "{{%resu_service_option}}".
  *
  * @property integer $id
  * @property string $value
@@ -15,16 +15,16 @@ use Yii;
  * @property integer $updated_by
  * @property integer $deleted_at
  *
- * @property ResuLocationService[] $resuLocationServices
+ * @property ResuLocationService[] $resuLocationservice
  */
-class ResuServicesOption extends \resutoran\common\models\ResuBase
+class ResuserviceOption extends \resutoran\common\models\ResuBase
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return '{{%resu_services_option}}';
+        return '{{%resu_service_option}}';
     }
 
     /**
@@ -59,8 +59,8 @@ class ResuServicesOption extends \resutoran\common\models\ResuBase
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getResuLocationServices()
+    public function getResuLocationservice()
     {
-        return $this->hasMany(ResuLocationService::className(), ['resu_services_option_id' => 'id']);
+        return $this->hasMany(ResuLocationService::className(), ['resu_service_option_id' => 'id']);
     }
 }

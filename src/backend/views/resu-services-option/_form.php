@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\ResuServicesOption */
+/* @var $model resutoran\common\models\Resu[location_options][resu_serviceOption */
 /* @var $form yii\bootstrap\ActiveForm */
 ?>
 
-<div class="resu-services-option-form">
+<div class="resu-service-option-form">
 
     <?php $form = ActiveForm::begin(); ?>
 

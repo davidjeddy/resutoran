@@ -6,7 +6,7 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('resutoran', ' Location Services');
+$this->title = Yii::t('resutoran', ' Location Service');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="resu-location-service-index">
@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'resu_location_id',
-            'resu_services_option_id',
+            'resu_service_option_id',
             'created_at:date',
             'created_by',
             // 'updated_at',

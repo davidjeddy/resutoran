@@ -6,15 +6,15 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('resutoran', ' Services Options');
+$this->title = Yii::t('resutoran', ' service Options');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="resu-services-option-index">
+<div class="resu-service-option-index">
 
 
     <p>
         <?php echo Html::a(Yii::t('backend', 'Create {modelClass}', [
-    'modelClass' => 'Services Option',
+    'modelClass' => 'service Option',
 ]), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 

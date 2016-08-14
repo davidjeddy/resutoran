@@ -114,8 +114,8 @@ echo Menu::widget([
                         ],
                         [
                             'icon'  => '<i class="fa fa-angle-double-right"></i>',
-                            'label' => \Yii::t('resutoran', 'Services'),
-                            'url'   => ['/resutoran/resu-services-option/'],
+                            'label' => \Yii::t('resutoran', 'service'),
+                            'url'   => ['/resutoran/resu-service-option/'],
                         ],
                     ]
                 ]
