@@ -15,9 +15,9 @@ use Yii;
  * @property integer $updated_by
  * @property integer $deleted_at
  *
- * @property ResuLocationService[] $resuLocationservice
+ * @property ResuLocationService[] $resuLocationService
  */
-class ResuserviceOption extends \resutoran\common\models\ResuBase
+class ResuServiceOption extends \resutoran\common\models\ResuBase
 {
     /**
      * @inheritdoc

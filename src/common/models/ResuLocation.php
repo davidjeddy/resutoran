@@ -36,7 +36,7 @@ use Yii;
  * @property ResuLocationPayment[] $resuLocationPayments
  * @property ResuLocationReservation[] $resuLocationReservations
  * @property ResuLocationSeating[] $resuLocationSeatings
- * @property ResuLocationService[] $resuLocationservice
+ * @property ResuLocationService[] $resuLocationService
  */
 class ResuLocation extends \resutoran\common\models\ResuBase
 {
