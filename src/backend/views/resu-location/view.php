@@ -28,17 +28,130 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'value',
-            'resu_franchise_id',
-            'resu_contact_id',
-            'resu_price_option_id',
-            'resu_decor_option_id',
-            'resu_ambiance_option_id',
-            'resu_map_id',
+            'resu_franchise_id.value',
+            'resu_contact_id.value',
+            'resu_price_option_id.value',
+            'resu_decor_option_id.value',
+            'resu_ambiance_option_id.value',
+            'resu_map_id.value',
             'created_at:date',
-            'created_by',
+
+            [
+                'label' => 'Boolean Values',
+                'value' => \Yii::$app->controller->renderPartial('../partials/multiItemList',
+                    [
+                        'model' => $model,
+                        'option'=> 'boolean'
+                    ]
+                )
+            ],
+
+            [
+                'label' => 'Cuisine',
+                'value' => \Yii::$app->controller->renderPartial('../partials/multiItemList',
+                    [
+                        'model' => $model,
+                        'option'=> 'cuisine'
+                    ]
+                )
+            ],
+
+            [
+                'label' => 'Dress Code',
+                'value' => \Yii::$app->controller->renderPartial('../partials/multiItemList',
+                    [
+                        'model' => $model,
+                        'option'=> 'dress_code'
+                    ]
+                )
+            ],
+
+            [
+                'label' => 'Hours',
+                'value' => \Yii::$app->controller->renderPartial('../partials/multiItemList',
+                    [
+                        'model' => $model,
+                        'option'=> 'hours'
+                    ]
+                )
+            ],
+
+            [
+                'label' => 'Media',
+                'value' => \Yii::$app->controller->renderPartial('../partials/multiItemList',
+                    [
+                        'model' => $model,
+                        'option'=> 'media'
+                    ]
+                )
+            ],
+
+            [
+                'label' => 'Menu',
+                'value' => \Yii::$app->controller->renderPartial('../partials/multiItemList',
+                    [
+                        'model' => $model,
+                        'option'=> 'menu'
+                    ]
+                )
+            ],
+
+            [
+                'label' => 'Payment',
+                'value' => \Yii::$app->controller->renderPartial('../partials/multiItemList',
+                    [
+                        'model' => $model,
+                        'option'=> 'payment'
+                    ]
+                )
+            ],
+
+            [
+                'label' => 'Reservation',
+                'value' => \Yii::$app->controller->renderPartial('../partials/multiItemList',
+                    [
+                        'model' => $model,
+                        'option'=> 'reservation'
+                    ]
+                )
+            ],
+
+            [
+                'label' => 'Seating',
+                'value' => \Yii::$app->controller->renderPartial('../partials/multiItemList',
+                    [
+                        'model' => $model,
+                        'option'=> 'seating'
+                    ]
+                )
+            ],
+
+            [
+                'label' => 'Service',
+                'value' => \Yii::$app->controller->renderPartial('../partials/multiItemList',
+                    [
+                        'model' => $model,
+                        'option'=> 'service'
+                    ]
+                )
+            ],
+
+            //'created_by',
+            [
+                'label' => 'Created By',
+                'value' => \common\models\User::findOne(['id' => $model->created_by])->username
+            ],
             'updated_at:date',
-            'updated_by',
+            // 'updated_by',
+            [
+                'label' => 'Updated By',
+                'value' => \common\models\User::findOne(['id' => $model->updated_by])->username
+            ],
             // 'deleted_at',
+            //[
+            //    'label' => 'updated_by',
+            //    'value' => \common\models\User::findOne(['id' => $model->updated_by])->username
+            //],
         ],
     ]) ?>
 
