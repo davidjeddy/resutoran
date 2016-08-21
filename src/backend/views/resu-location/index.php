@@ -11,25 +11,29 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="resu-location-index">
 
-
     <p>
         <?php echo Html::a(Yii::t('backend', 'Create {modelClass}', [
-    'modelClass' => 'Location',
-]), ['create'], ['class' => 'btn btn-success']) ?>
+            'modelClass' => 'Location',
+        ]), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php echo GridView::widget([
-        'dataProvider' => $dataProvider,
-        'columns' => [
+        'dataProvider'  => $dataProvider,
+        'columns'       => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'value',
-            'resu_franchise_id',
-            'resu_contact_id',
-            'resu_price_option_id',
+            // 'id',
+            'value:text:Location Name',
+            // 'resu_franchise_id',
+            'resuFranchise.value:text:Franchise',
+            // 'resu_contact_id',
+            'resuContact.value:text:Contact',
+            // 'resu_price_option_id',
+            'resuPriceOption.value:text:Price',
             // 'resu_decor_option_id',
+            'resuDecorOption.value:text:Decor',
             // 'resu_ambiance_option_id',
+            'resuAmbianceOption.value:text:Ambiance',
             // 'resu_map_id',
             // 'created_at',
             // 'created_by',

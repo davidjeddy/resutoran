@@ -118,7 +118,7 @@ use yii\helpers\Html;
     ]); ?>
 
     <?php
-    echo Html::label('service Option');
+    echo Html::label('Service Option');
     echo Select2::widget([
         'name'      => 'ResuLocation[location_options][resu_location_service][]',
         'value'     => null,
@@ -130,7 +130,7 @@ use yii\helpers\Html;
     ]); ?>
 
     <?php
-    echo Html::label('Boolean Option');
+    echo Html::label('Special Option');
     echo Select2::widget([
         'name'      => 'ResuLocation[location_options][resu_location_boolean][]',
         'value'     => null,
