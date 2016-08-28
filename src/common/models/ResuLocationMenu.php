@@ -48,13 +48,13 @@ class ResuLocationMenu extends \resutoran\common\models\ResuBase
     public function attributeLabels()
     {
         return [
-            'resu_location_id' => Yii::t('app', 'Resu Location ID'),
-            'resu_menu_option_id' => Yii::t('app', 'Resu Menu Option ID'),
-            'created_at' => Yii::t('app', 'Created At'),
-            'created_by' => Yii::t('app', 'Created By'),
-            'updated_at' => Yii::t('app', 'Updated At'),
-            'updated_by' => Yii::t('app', 'Updated By'),
-            'deleted_at' => Yii::t('app', 'Deleted At'),
+            'resu_location_id' => Yii::t('resutoran', 'Resu Location ID'),
+            'resu_menu_option_id' => Yii::t('resutoran', 'Resu Menu Option ID'),
+            'created_at' => Yii::t('resutoran', 'Created At'),
+            'created_by' => Yii::t('resutoran', 'Created By'),
+            'updated_at' => Yii::t('resutoran', 'Updated At'),
+            'updated_by' => Yii::t('resutoran', 'Updated By'),
+            'deleted_at' => Yii::t('resutoran', 'Deleted At'),
         ];
     }
 

@@ -46,13 +46,13 @@ class ResuDressCodeOption extends \resutoran\common\models\ResuBase
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'value' => Yii::t('app', 'Value'),
-            'created_at' => Yii::t('app', 'Created At'),
-            'created_by' => Yii::t('app', 'Created By'),
-            'updated_at' => Yii::t('app', 'Updated At'),
-            'updated_by' => Yii::t('app', 'Updated By'),
-            'deleted_at' => Yii::t('app', 'Deleted At'),
+            'id' => Yii::t('resutoran', 'ID'),
+            'value' => Yii::t('resutoran', 'Value'),
+            'created_at' => Yii::t('resutoran', 'Created At'),
+            'created_by' => Yii::t('resutoran', 'Created By'),
+            'updated_at' => Yii::t('resutoran', 'Updated At'),
+            'updated_by' => Yii::t('resutoran', 'Updated By'),
+            'deleted_at' => Yii::t('resutoran', 'Deleted At'),
         ];
     }
 
