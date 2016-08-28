@@ -48,7 +48,7 @@ class ResuFranchise extends \resutoran\common\models\ResuBase
     {
         return [
             'id' => Yii::t('resutoran', 'ID'),
-            'value' => Yii::t('resutoran', 'Franchise Name'),
+            'value' => Yii::t('resutoran', 'value'),
             'created_at' => Yii::t('resutoran', 'Created At'),
             'created_by' => Yii::t('resutoran', 'Created By'),
             'updated_at' => Yii::t('resutoran', 'Updated At'),

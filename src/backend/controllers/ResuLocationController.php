@@ -47,10 +47,9 @@ class ResuLocationController extends \resutoran\backend\controllers\BaseControll
     {
         $returnData = false;
 
-
         foreach ($optionMDLArray as $optionKeyMDL => $optionValueAttributes) {
 
-            // does the option model class exists?
+            // does the option model class exists?s
             $optionMDL = 'resutoran\common\models\\' . \yii\helpers\BaseInflector::camelize( $optionKeyMDL );
             if (class_exists($optionMDL)) {
 

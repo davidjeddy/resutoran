@@ -28,14 +28,30 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'value',
-            'resu_franchise_id.value',
-            'resu_contact_id.value',
-            'resu_price_option_id.value',
-            'resu_decor_option_id.value',
-            'resu_ambiance_option_id.value',
-            'resu_map_id.value',
-            'created_at:date',
-
+            [
+                'label' => 'Franchise',
+                'value' => (\resutoran\common\models\ResuFranchise::findOne(['id' => $model->resu_franchise_id])->value ?: null)
+            ],
+            [
+                'label' => 'Contact',
+                'value' => (\resutoran\common\models\ResuContact::findOne(['id' => $model->resu_contact_id])->value ?: null)
+            ],
+            [
+                'label' => 'Price Range',
+                'value' => (\resutoran\common\models\ResuPriceOption::findOne(['id' => $model->resu_price_option_id])->value ?: null)
+            ],
+            [
+                'label' => 'Price Range',
+                'value' => (\resutoran\common\models\ResuDecorOption::findOne(['id' => $model->resu_decor_option_id])->value ?: null)
+            ],
+            [
+                'label' => 'Price Range',
+                'value' => (\resutoran\common\models\ResuAmbianceOption::findOne(['id' => $model->resu_ambiance_option_id])->value ?: null)
+            ],
+            [
+                'label' => 'Price Range',
+                'value' => (\resutoran\common\models\ResuMap::findOne(['id' => $model->resu_map_id])->value ?: null)
+            ],
             [
                 'label' => 'Boolean Values',
                 'value' => \Yii::$app->controller->renderPartial('../partials/multiItemList',
@@ -45,7 +61,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]
                 )
             ],
-
             [
                 'label' => 'Cuisine',
                 'value' => \Yii::$app->controller->renderPartial('../partials/multiItemList',
@@ -55,7 +70,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]
                 )
             ],
-
             [
                 'label' => 'Dress Code',
                 'value' => \Yii::$app->controller->renderPartial('../partials/multiItemList',
@@ -65,7 +79,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]
                 )
             ],
-
             [
                 'label' => 'Hours',
                 'value' => \Yii::$app->controller->renderPartial('../partials/multiItemList',
@@ -75,7 +88,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]
                 )
             ],
-
             [
                 'label' => 'Media',
                 'value' => \Yii::$app->controller->renderPartial('../partials/multiItemList',
@@ -85,7 +97,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]
                 )
             ],
-
             [
                 'label' => 'Menu',
                 'value' => \Yii::$app->controller->renderPartial('../partials/multiItemList',
@@ -95,7 +106,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]
                 )
             ],
-
             [
                 'label' => 'Payment',
                 'value' => \Yii::$app->controller->renderPartial('../partials/multiItemList',
@@ -105,7 +115,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]
                 )
             ],
-
             [
                 'label' => 'Reservation',
                 'value' => \Yii::$app->controller->renderPartial('../partials/multiItemList',
@@ -115,7 +124,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]
                 )
             ],
-
             [
                 'label' => 'Seating',
                 'value' => \Yii::$app->controller->renderPartial('../partials/multiItemList',
@@ -125,7 +133,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]
                 )
             ],
-
             [
                 'label' => 'Service',
                 'value' => \Yii::$app->controller->renderPartial('../partials/multiItemList',
@@ -135,18 +142,16 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]
                 )
             ],
-
-            //'created_by',
             [
                 'label' => 'Created By',
-                'value' => \common\models\User::findOne(['id' => $model->created_by])->username
+                'value' => (\common\models\User::findOne(['id' => $model->created_by])->username ?: null)
             ],
-            'updated_at:date',
-            // 'updated_by',
+            'created_at:date',
             [
                 'label' => 'Updated By',
-                'value' => \common\models\User::findOne(['id' => $model->updated_by])->username
+                'value' => (\common\models\User::findOne(['id' => $model->created_by])->username ?: null)
             ],
+            'updated_at:date',
             // 'deleted_at',
             //[
             //    'label' => 'updated_by',

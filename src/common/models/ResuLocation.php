@@ -64,6 +64,7 @@ class ResuLocation extends \resutoran\common\models\ResuBase
             [['resu_franchise_id'], 'exist', 'skipOnError' => true, 'targetClass' => ResuFranchise::className(), 'targetAttribute' => ['resu_franchise_id' => 'id']],
             [['resu_map_id'], 'exist', 'skipOnError' => true, 'targetClass' => ResuMap::className(), 'targetAttribute' => ['resu_map_id' => 'id']],
             [['resu_price_option_id'], 'exist', 'skipOnError' => true, 'targetClass' => ResuPriceOption::className(), 'targetAttribute' => ['resu_price_option_id' => 'id']],
+            [['value'], 'unique']
         ];
     }
 
@@ -74,7 +75,7 @@ class ResuLocation extends \resutoran\common\models\ResuBase
     {
         return [
             'id' => Yii::t('resutoran', 'ID'),
-            'value' => Yii::t('resutoran', 'NAme'),
+            'value' => Yii::t('resutoran', 'Name'),
             'resu_franchise_id' => Yii::t('resutoran', 'Franchise'),
             'resu_contact_id' => Yii::t('resutoran', 'Contact'),
             'resu_price_option_id' => Yii::t('resutoran', 'Price Option'),

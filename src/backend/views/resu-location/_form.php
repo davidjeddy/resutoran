@@ -16,7 +16,10 @@ use yii\helpers\Html;
 
     <?php echo $form->errorSummary($model); ?>
 
-    <?php echo $form->field($model, 'value')->textInput(['maxlength' => true]) ?>
+    <?php echo $form->field($model, 'value')->textInput([
+        'placeholder'   => 'Name of Location',
+        'maxlength'     => true
+    ]) ?>
 
     <?php // echo $form->field($model, 'resu_franchise_id')->textInput() ?>
     <?php echo $form->field($model, 'resu_franchise_id')->widget(Select2::className(), [
@@ -88,12 +91,12 @@ use yii\helpers\Html;
         ],
     ])->label('Ambiance'); ?>
 
-    <?php // echo $form->field($model, 'resu_map_id')->textInput() ?>
+    <?php // echo $form->field($model, 'resu_map_id')->textInput(['placeholder' => 'Map URL to location'])->label('Map URL'); ?>
     <?php echo $form->field($model, 'resu_map_id')->widget(Select2::className(), [
         'data'      => ArrayHelper::map(\resutoran\common\models\ResuMap::find()->all(), 'id', 'value'),
         'options'   => [
             'class'       => 'form-control',
-            'placeholder' => 'Choose Map...',
+            'placeholder' => 'Map URL...',
             'multiple'    => false,
             //'required'    => $model->isAttributeRequired('resu_franchise_id'),
         ],
