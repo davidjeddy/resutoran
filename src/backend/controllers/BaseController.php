@@ -118,7 +118,7 @@ class BaseController extends Controller
      * Finds the ResuAmbianceOption model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return ResuAmbianceOption the loaded model
+     * @return Resu*Option the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)

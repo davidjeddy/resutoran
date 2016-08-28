@@ -18,7 +18,7 @@ use Yii;
  * @property ResuLocation $resuLocation
  * @property ResuPaymentOption $resuPaymentOption
  */
-class ResuLocationPayment extends \yii\db\ActiveRecord
+class ResuLocationPayment extends \resutoran\common\models\ResuBase
 {
     /**
      * @inheritdoc

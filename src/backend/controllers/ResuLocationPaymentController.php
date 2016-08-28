@@ -14,4 +14,8 @@ use yii\filters\VerbFilter;
  */
 class ResuLocationPaymentController extends \resutoran\backend\controllers\BaseController
 {
+    /**
+     * @var string
+     */
+    protected $model = '\resutoran\common\models\ResuLocationPayment';
 }
