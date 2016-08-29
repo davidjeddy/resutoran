@@ -5,6 +5,21 @@ use yii\bootstrap\ActiveForm;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 
+//echo '<PRE>';
+//print_r( $model );
+//print_r( $model->resuLocationDressCodes );
+//print_r( ArrayHelper::map(\resutoran\common\models\ResuLocationDressCode::find()->select(['resu_dress_code_option_id'])->asArray()->all(), 'id', 'value'));
+//$tmp = $model->resuLocationDressCodes;
+/*$tmp = \resutoran\common\models\ResuDressCodeOption::find()
+    ->select(['value'])
+    ->andwhere(['IN', 'id', $model->resuLocaitonDressCode])
+    ->all();*/
+
+$tmp = null;
+foreach ($model->resuLocationDressCodes as $key => $value) {
+    $tmp[] = \resutoran\common\models\ResuDressCodeOption::findOne(['id' => $value->resu_dress_code_option_id])->value;
+}
+
 /* @var $this yii\web\View */
 /* @var $model \resutoran\common\models\ResuLocation */
 /* @var $form yii\bootstrap\ActiveForm */
@@ -109,12 +124,32 @@ use yii\helpers\Html;
     <?php // Multiple select without model ?>
 
     <?php
+    echo '<label class="control-label">Testing Tag Multiple</label>';
+    echo Select2::widget([
+        'name'          => 'testing',
+        'value'         => ['teal', 'green', 'red'], // initial value (will be ordered accordingly and pushed to the top)
+        'data'          => ['teal', 'orange', 'blue',' yellow', 'green', 'red'],
+        'maintainOrder' => true,
+        'options'       => [
+            'placeholder'   => 'Select a color ...',
+            'multiple'      => true
+        ],
+        'pluginOptions' => [
+            'tags'              => true,
+            'maximumInputLength'=> 10
+        ],
+    ]);
+    ?>
+
+
+    <?php
     echo Html::label('Dress Option');
     echo Select2::widget([
-        'name'      => 'ResuLocation[location_options][resu_location_dress_code][]',
-        'value'     => null,
-        'data'      => ArrayHelper::map(\resutoran\common\models\ResuDressCodeOption::find()->all(), 'id', 'value'),
-        'options'   => [
+        'name'          => 'ResuLocation[location_options][resu_location_dress_code][]',
+        'value'         => $tmp,
+        'maintainOrder' => true,
+        'data'          => ArrayHelper::map(\resutoran\common\models\ResuDressCodeOption::find()->all(), 'id', 'value'),
+        'options'       => [
             'multiple'      => true,
             'placeholder'   => 'Select Dress Code Options ...'
         ]
