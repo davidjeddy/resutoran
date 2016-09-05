@@ -24,15 +24,15 @@ use yii\bootstrap\ActiveForm;
 
     <?php echo $form->field($model, 'phone3')->textInput() ?>
 
-    <?php echo $form->field($model, 'address1')->textarea(['rows' => 6]) ?>
+    <?php echo $form->field($model, 'address1')->textInput(['rows' => 6]) ?>
 
-    <?php echo $form->field($model, 'address2')->textarea(['rows' => 6]) ?>
+    <?php echo $form->field($model, 'address2')->textInput(['rows' => 6]) ?>
 
-    <?php echo $form->field($model, 'address3')->textarea(['rows' => 6]) ?>
+    <?php echo $form->field($model, 'address3')->textInput(['rows' => 6]) ?>
 
-    <?php echo $form->field($model, 'country')->textarea(['rows' => 6]) ?>
+    <?php echo $form->field($model, 'country')->textInput(['rows' => 6]) ?>
 
-    <?php echo $form->field($model, 'city')->textarea(['rows' => 6]) ?>
+    <?php echo $form->field($model, 'city')->textInput(['rows' => 6]) ?>
 
     <?php echo $form->field($model, 'prov')->textInput(['maxlength' => true]) ?>
 

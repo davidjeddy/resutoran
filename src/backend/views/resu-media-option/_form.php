@@ -14,7 +14,7 @@ use yii\bootstrap\ActiveForm;
 
     <?php echo $form->errorSummary($model); ?>
 
-    <?php echo $form->field($model, 'value')->textarea(['rows' => 6]) ?>
+    <?php echo $form->field($model, 'value')->textInput(['rows' => 6]) ?>
 
     <?php // echo $form->field($model, 'created_at')->textInput() ?>
 
