@@ -1,9 +1,10 @@
 <?php
 
-use kartik\select2\Select2;
 use yii\bootstrap\ActiveForm;
-use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
+
+use yii\helpers\ArrayHelper;
+use kartik\select2\Select2;
 
 //echo '<PRE>';
 //print_r( $model );
@@ -32,93 +33,75 @@ foreach ($model->resuLocationDressCodes as $key => $value) {
     <?php echo $form->errorSummary($model); ?>
 
     <?php echo $form->field($model, 'value')->textInput([
-        'placeholder'   => 'Name of Location',
-        'maxlength'     => true
+        'placeholder' => 'Name of Location',
+        'maxlength'   => true
     ]) ?>
 
     <?php // echo $form->field($model, 'resu_franchise_id')->textInput() ?>
-    <?php echo $form->field($model, 'resu_franchise_id')->widget(Select2::className(), [
-        'data'      => ArrayHelper::map(\resutoran\common\models\ResuFranchise::find()->all(), 'id', 'value'),
-        'options'   => [
-            'class'       => 'form-control',
-            'placeholder' => 'Choose Franchise...',
-            'multiple'    => false,
-            //'required'    => $model->isAttributeRequired('resu_franchise_id'),
-        ],
-        'pluginOptions' => [
-            'allowClear' => true
-        ],
-    ])->label('Franchise'); ?>
+    <?php echo $this->render('../partials/Select2', [
+        'options' => [
+            'clear'     => true,
+            'form'      => $form,
+            'label'     => 'Franchise',
+            'model'     => $model,
+            'required'  => true,
+        ]
+    ]); ?>
 
     <?php // echo $form->field($model, 'resu_contact_id')->textInput() ?>
-    <?php echo $form->field($model, 'resu_contact_id')->widget(Select2::className(), [
-        'data'      => ArrayHelper::map(\resutoran\common\models\ResuContact::find()->all(), 'id', 'value'),
-        'options'   => [
-            'class'       => 'form-control',
-            'placeholder' => 'Choose Contact...',
-            'multiple'    => false,
-            //'required'    => $model->isAttributeRequired('resu_franchise_id'),
-        ],
-        'pluginOptions' => [
-            'allowClear' => true
-        ],
-    ])->label('Contact'); ?>
+    <?php echo $this->render('../partials/Select2', [
+        'options' => [
+            'clear'     => true,
+            'form'      => $form,
+            'label'     => 'Contact',
+            'model'     => $model,
+            'required'  => true,
+        ]
+    ]); ?>
 
     <?php // echo $form->field($model, 'resu_price_option_id')->textInput() ?>
-    <?php echo $form->field($model, 'resu_price_option_id')->widget(Select2::className(), [
-        'data'      => ArrayHelper::map(\resutoran\common\models\ResuPriceOption::find()->all(), 'id', 'value'),
-        'options'   => [
-            'class'       => 'form-control',
-            'placeholder' => 'Choose Price Option(s)...',
-            'multiple'    => false,
-            //'required'    => $model->isAttributeRequired('resu_franchise_id'),
-        ],
-        'pluginOptions' => [
-            'allowClear' => true
-        ],
-    ])->label('Pricing'); ?>
+    <?php echo $this->render('../partials/Select2', [
+        'options' => [
+            'clear'     => true,
+            'form'      => $form,
+            'label'     => 'PriceOption',
+            'model'     => $model,
+            'required'  => true,
+        ]
+    ]); ?>
 
     <?php // echo $form->field($model, 'resu_decor_option_id')->textInput() ?>
-    <?php echo $form->field($model, 'resu_decor_option_id')->widget(Select2::className(), [
-        'data'      => ArrayHelper::map(\resutoran\common\models\ResuDecorOption::find()->all(), 'id', 'value'),
-        'options'   => [
-            'class'       => 'form-control',
-            'placeholder' => 'Choose Decor Option(s)...',
-            'multiple'    => false,
-            //'required'    => $model->isAttributeRequired('resu_franchise_id'),
-        ],
-        'pluginOptions' => [
-            'allowClear' => true
-        ],
-    ])->label('Decor'); ?>
+    <?php echo $this->render('../partials/Select2', [
+        'options' => [
+            'clear'     => true,
+            'form'      => $form,
+            'label'     => 'DecorOption',
+            'model'     => $model,
+            'required'  => true,
+        ]
+    ]); ?>
 
     <?php // echo $form->field($model, 'resu_ambiance_option_id')->textInput() ?>
-    <?php echo $form->field($model, 'resu_ambiance_option_id')->widget(Select2::className(), [
-        'data'      => ArrayHelper::map(\resutoran\common\models\ResuAmbianceOption::find()->all(), 'id', 'value'),
-        'options'   => [
-            'class'       => 'form-control',
-            'placeholder' => 'Choose Ambiance...',
-            'multiple'    => false,
-            //'required'    => $model->isAttributeRequired('resu_franchise_id'),
-        ],
-        'pluginOptions' => [
-            'allowClear' => true
-        ],
-    ])->label('Ambiance'); ?>
+    <?php echo $this->render('../partials/Select2', [
+        'options' => [
+            'clear'     => true,
+            'form'      => $form,
+            'label'     => 'AmbianceOption',
+            'model'     => $model,
+            'required'  => true,
+        ]
+    ]); ?>
 
     <?php // echo $form->field($model, 'resu_map_id')->textInput(['placeholder' => 'Map URL to location'])->label('Map URL'); ?>
-    <?php echo $form->field($model, 'resu_map_id')->widget(Select2::className(), [
-        'data'      => ArrayHelper::map(\resutoran\common\models\ResuMap::find()->all(), 'id', 'value'),
-        'options'   => [
-            'class'       => 'form-control',
-            'placeholder' => 'Map URL...',
-            'multiple'    => false,
-            //'required'    => $model->isAttributeRequired('resu_franchise_id'),
-        ],
-        'pluginOptions' => [
-            'allowClear' => true
-        ],
-    ])->label('Map'); ?>
+    <?php echo $this->render('../partials/Select2', [
+        'options' => [
+            'clear'     => true,
+            'form'      => $form,
+            'label'     => 'Map',
+            'model'     => $model,
+            'required'  => true,
+        ]
+    ]); ?>
 
     <hr>
     <?php // Multiple select without model ?>
