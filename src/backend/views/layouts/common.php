@@ -29,13 +29,9 @@ echo Menu::widget([
         [
             'icon'      => '<i class="fa fa-bars"></i>',
             'label'     => \Yii::t('resutoran', 'Location'),
+            'options'   => ['class' => 'active'],
             'url'       => ['#'],
             'items'     => [
-                [
-                    'icon'      => '<i class="fa fa-bars"></i>',
-                    'label'     => \Yii::t('resutoran', 'Contact'),
-                    'url'       => ['/resutoran/resu-contact'],
-                ],
                 [
                     'icon'      => '<i class="fa fa-bars"></i>',
                     'label'     => \Yii::t('resutoran', 'Contact'),
@@ -119,7 +115,7 @@ echo Menu::widget([
                         ],
                         [
                             'icon'  => '<i class="fa fa-angle-double-right"></i>',
-                            'label' => \Yii::t('resutoran', 'service'),
+                            'label' => \Yii::t('resutoran', 'Service'),
                             'url'   => ['/resutoran/resu-service-option/'],
                         ],
                     ]
