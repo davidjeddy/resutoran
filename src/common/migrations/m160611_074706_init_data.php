@@ -16,9 +16,6 @@ class m160611_074706_init_data extends Migration
             -- -----------------------------------------------------
             -- Table `resu_media_option`
             -- -----------------------------------------------------
-            ALTER TABLE `resu_media_option` 
-            ADD COLUMN `value` VARCHAR(64) NOT NULL AFTER `deleted_at`;
-
             INSERT INTO `resu_media_option`(`id`,`created_at`,`created_by`,`value`) VALUES (1, 0, 0, 'audio');
             INSERT INTO `resu_media_option`(`id`,`created_at`,`created_by`,`value`) VALUES (2, 0, 0, 'image');
             INSERT INTO `resu_media_option`(`id`,`created_at`,`created_by`,`value`) VALUES (3, 0, 0, 'video');
@@ -29,9 +26,6 @@ class m160611_074706_init_data extends Migration
             -- -----------------------------------------------------
             -- Table `resu_menu_option`
             -- -----------------------------------------------------
-            ALTER TABLE `resu_menu_option` 
-            ADD COLUMN `value` VARCHAR(64) NOT NULL AFTER `deleted_at`;
-            
             INSERT INTO `resu_menu_option`(`id`,`created_at`,`created_by`,`value`) VALUES (1, 0, 0, 'child');
             INSERT INTO `resu_menu_option`(`id`,`created_at`,`created_by`,`value`) VALUES (2, 0, 0, 'vegan');
             INSERT INTO `resu_menu_option`(`id`,`created_at`,`created_by`,`value`) VALUES (3, 0, 0, 'gluten free');
@@ -42,9 +36,6 @@ class m160611_074706_init_data extends Migration
             -- -----------------------------------------------------
             -- Table `resu_services_option`
             -- -----------------------------------------------------
-            ALTER TABLE `resu_services_option` 
-            ADD COLUMN `value` VARCHAR(64) NOT NULL AFTER `deleted_at`;
-            
             INSERT INTO `resu_services_option`(`id`,`created_at`,`created_by`,`value`) VALUES (1, 0, 0, 'alcohol');
             INSERT INTO `resu_services_option`(`id`,`created_at`,`created_by`,`value`) VALUES (2, 0, 0, 'wifi');
             INSERT INTO `resu_services_option`(`id`,`created_at`,`created_by`,`value`) VALUES (3, 0, 0, 'delivery');
@@ -57,7 +48,6 @@ class m160611_074706_init_data extends Migration
             -- Table `resu_map`
             -- ----------------------------------------------------- 
             ALTER TABLE `resu_map` 
-            ADD COLUMN `value` VARCHAR(64) NOT NULL AFTER `deleted_at`,
             ADD COLUMN `provider` TEXT NOT NULL AFTER `value`;
 
             INSERT INTO `resu_map`(`id`,`created_at`,`created_by`,`value`, `provider`) VALUES (1, 0, 0, 'qwer', 'google');

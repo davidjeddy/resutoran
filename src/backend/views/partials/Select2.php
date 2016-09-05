@@ -9,10 +9,7 @@ use yii\helpers\Inflector;
 $classPath= '\resutoran\common\models\Resu' . $options['label'];
 $modelClass = new $classPath();
 
-echo $options['form']->field(
-        $options['model'],
-        'resu_' . Inflector::underscore( $options['label'] ) . '_id'
-    )->widget(Select2::className(), [
+echo $options['form']->field($options['model'], 'resu_' . Inflector::underscore( $options['label'] ) . '_id')->widget(Select2::className(), [
     'data'      => ArrayHelper::map($modelClass::find()->all(), 'id', 'value'),
     'options'   => [
         'class'       => 'form-control',
@@ -23,4 +20,4 @@ echo $options['form']->field(
     'pluginOptions' => [
         'allowClear' => (!empty($options['clear']) ? $options['clear'] : false),
     ],
-])->label($options['label']);
+])->label( Inflector::camel2words( $options['label']) );
