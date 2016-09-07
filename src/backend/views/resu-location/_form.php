@@ -1,25 +1,9 @@
 <?php
 
 use yii\bootstrap\ActiveForm;
-use yii\helpers\Html;
-
 use yii\helpers\ArrayHelper;
+use yii\helpers\Html;
 use kartik\select2\Select2;
-
-//echo '<PRE>';
-//print_r( $model );
-//print_r( $model->resuLocationDressCodes );
-//print_r( ArrayHelper::map(\resutoran\common\models\ResuLocationDressCode::find()->select(['resu_dress_code_option_id'])->asArray()->all(), 'id', 'value'));
-//$tmp = $model->resuLocationDressCodes;
-/*$tmp = \resutoran\common\models\ResuDressCodeOption::find()
-    ->select(['value'])
-    ->andwhere(['IN', 'id', $model->resuLocaitonDressCode])
-    ->all();*/
-
-$tmp = null;
-foreach ($model->resuLocationDressCodes as $key => $value) {
-    $tmp[] = \resutoran\common\models\ResuDressCodeOption::findOne(['id' => $value->resu_dress_code_option_id])->value;
-}
 
 /* @var $this yii\web\View */
 /* @var $model \resutoran\common\models\ResuLocation */
@@ -31,6 +15,7 @@ foreach ($model->resuLocationDressCodes as $key => $value) {
     <?php $form = ActiveForm::begin(); ?>
 
     <?php echo $form->errorSummary($model); ?>
+
 
     <?php echo $form->field($model, 'value')->textInput([
         'placeholder' => 'Name of Location',
@@ -92,7 +77,7 @@ foreach ($model->resuLocationDressCodes as $key => $value) {
         ]
     ]); ?>
 
-    <?php // echo $form->field($model, 'resu_map_id')->textInput(['placeholder' => 'Map URL to location'])->label('Map URL'); ?>
+    <?php // echo $form->field($model, 'resu_map_id')->textInput(); ?>
     <?php echo $this->render('../partials/Select2', [
         'options' => [
             'clear'     => true,
@@ -104,32 +89,12 @@ foreach ($model->resuLocationDressCodes as $key => $value) {
     ]); ?>
 
     <hr>
-    <?php // Multiple select without model ?>
-
-    <?php
-    echo '<label class="control-label">Testing Tag Multiple</label>';
-    echo Select2::widget([
-        'name'          => 'testing',
-        'value'         => ['teal', 'green', 'red'], // initial value (will be ordered accordingly and pushed to the top)
-        'data'          => ['teal', 'orange', 'blue',' yellow', 'green', 'red'],
-        'maintainOrder' => true,
-        'options'       => [
-            'placeholder'   => 'Select a color ...',
-            'multiple'      => true
-        ],
-        'pluginOptions' => [
-            'tags'              => true,
-            'maximumInputLength'=> 10
-        ],
-    ]);
-    ?>
-
 
     <?php
     echo Html::label('Dress Option');
     echo Select2::widget([
         'name'          => 'ResuLocation[location_options][resu_location_dress_code][]',
-        'value'         => $tmp,
+        'value'         => ArrayHelper::map($model->getResuLocationDressCodes()->asArray()->all(), 'id', 'id'),
         'maintainOrder' => true,
         'data'          => ArrayHelper::map(\resutoran\common\models\ResuDressCodeOption::find()->all(), 'id', 'value'),
         'options'       => [
@@ -142,7 +107,8 @@ foreach ($model->resuLocationDressCodes as $key => $value) {
     echo Html::label('Service Option');
     echo Select2::widget([
         'name'      => 'ResuLocation[location_options][resu_location_service][]',
-        'value'     => null,
+        //'value'     => null,
+        'value'         => ArrayHelper::map($model->getResuLocationService()->asArray()->all(), 'id', 'id'),
         'data'      => ArrayHelper::map(\resutoran\common\models\ResuServiceOption::find()->all(), 'id', 'value'),
         'options'   => [
             'multiple'      => true,
@@ -245,7 +211,10 @@ foreach ($model->resuLocationDressCodes as $key => $value) {
     <?php // echo $form->field($model, 'deleted_at')->textInput() ?>
 
     <div class="form-group">
-        <?php echo Html::submitButton($model->isNewRecord ? Yii::t('backend', 'Create') : Yii::t('backend', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?php echo Html::submitButton($model->isNewRecord
+            ? Yii::t('backend', 'Create')
+            : Yii::t('backend', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']);
+        ?>
     </div>
 
     <?php ActiveForm::end(); ?>

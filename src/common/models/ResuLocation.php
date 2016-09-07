@@ -159,7 +159,9 @@ class ResuLocation extends \resutoran\common\models\ResuBase
      */
     public function getResuLocationDressCodes()
     {
-        return $this->hasMany(ResuLocationDressCode::className(), ['resu_location_id' => 'id']);
+        //return $this->hasMany(ResuLocationDressCode::className(), ['resu_location_id' => 'id']);
+        return $this->hasMany(ResuDressCodeOption::className(), ['id' => 'resu_dress_code_option_id'])
+            ->viaTable('resu_location_dress_code', ['resu_location_id' => 'id']);
     }
 
     /**
@@ -205,7 +207,7 @@ class ResuLocation extends \resutoran\common\models\ResuBase
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getResuLocationSeatings()
+    public function getResuLocationSeating()
     {
         return $this->hasMany(ResuLocationSeating::className(), ['resu_location_id' => 'id']);
     }
@@ -213,8 +215,10 @@ class ResuLocation extends \resutoran\common\models\ResuBase
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getResuLocationservice()
+    public function getResuLocationService()
     {
-        return $this->hasMany(ResuLocationService::className(), ['resu_location_id' => 'id']);
+        //return $this->hasMany(ResuServiceDressCode::className(), ['resu_service_id' => 'id']);
+        return $this->hasMany(ResuServiceOption::className(), ['id' => 'resu_service_option_id'])
+            ->viaTable('resu_location_service', ['resu_location_id' => 'id']);
     }
 }
