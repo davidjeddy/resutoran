@@ -108,7 +108,7 @@ use kartik\select2\Select2;
     echo Select2::widget([
         'name'      => 'ResuLocation[location_options][resu_location_service][]',
         //'value'     => null,
-        'value'         => ArrayHelper::map($model->getResuLocationService()->asArray()->all(), 'id', 'id'),
+        'value'     => ArrayHelper::map($model->getResuLocationService()->asArray()->all(), 'id', 'id'),
         'data'      => ArrayHelper::map(\resutoran\common\models\ResuServiceOption::find()->all(), 'id', 'value'),
         'options'   => [
             'multiple'      => true,
