@@ -43,9 +43,9 @@
   },
   "autoload": {
     "psr-4": {
-      "resutoran\\backend": "src\\backend",
-      "resutoran\\frontend":"src\\frontend",
-      "resutoran\\common":  "src\\common"
+      "resutoran\\backend\\": "src\\backend",
+      "resutoran\\frontend\\":"src\\frontend",
+      "resutoran\\common\\":  "src\\common"
     }
   }
 }
