@@ -1,0 +1,34 @@
+<?php
+
+namespace resutoran\common\models\query;
+
+/**
+ * This is the ActiveQuery class for [[ResuSpecialityMenulOption]].
+ *
+ * @see ResuSpecialityMenulOption
+ */
+class ResuSpecialityMenuOptionQuery extends \yii\db\ActiveQuery
+{
+    /*public function active()
+    {
+        return $this->andWhere('[[status]]=1');
+    }*/
+
+    /**
+     * @inheritdoc
+     * @return ResuSpecialityMenulOption[]|array
+     */
+    public function all($db = null)
+    {
+        return parent::all($db);
+    }
+
+    /**
+     * @inheritdoc
+     * @return ResuSpecialityMenulOption|array|null
+     */
+    public function one($db = null)
+    {
+        return parent::one($db);
+    }
+}

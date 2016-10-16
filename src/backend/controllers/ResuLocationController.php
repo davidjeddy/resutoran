@@ -79,6 +79,10 @@ class ResuLocationController extends \resutoran\backend\controllers\BaseControll
                     }
                 }
             } else {
+                echo '<pre>';
+                echo \yii\helpers\VarDumper::dump($optionMDL, 10, true);
+                echo '</pre>';
+                exit(1);
                 throw new Exception('Unable to find related model for optional data.');
             }
         }
