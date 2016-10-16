@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "{{%resu_days_option}}".
  *
  * @property integer $id
- * @property string $value
+ * @property string $open
  * @property integer $created_at
  * @property integer $created_by
  * @property integer $updated_at
@@ -32,8 +32,8 @@ class ResuDaysOption extends \resutoran\common\models\ResuBase
     {
         return [
             // [['created_by', 'created_at'], 'required'], populated via behavior
-            [['value'], 'required'],
-            [['value'], 'string'],
+            [['open', 'close'], 'required'],
+            [['open', 'close'], 'string'],
             [['created_at', 'created_by', 'updated_at', 'updated_by', 'deleted_at'], 'integer'],
         ];
     }
@@ -45,7 +45,8 @@ class ResuDaysOption extends \resutoran\common\models\ResuBase
     {
         return [
             'id' => Yii::t('resutoran', 'ID'),
-            'value' => Yii::t('resutoran', 'Value'),
+            'open' => Yii::t('resutoran', 'Open'),
+            'close' => Yii::t('resutoran', 'Close'),
             'created_at' => Yii::t('resutoran', 'Created At'),
             'created_by' => Yii::t('resutoran', 'Created By'),
             'updated_at' => Yii::t('resutoran', 'Updated At'),

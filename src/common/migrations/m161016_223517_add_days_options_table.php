@@ -14,10 +14,10 @@ class m161016_223517_add_days_options_table extends Migration
             SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
             -- -----------------------------------------------------
-            -- CREATE resu_days_options table
+            -- CREATE resu_days_option table
             -- -----------------------------------------------------
             
-            CREATE TABLE IF NOT EXISTS `resu_days_options` (
+            CREATE TABLE IF NOT EXISTS `resu_days_option` (
             `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
               `value` TEXT NOT NULL,
               `created_at` INT(11) NULL DEFAULT NULL,
@@ -35,11 +35,11 @@ class m161016_223517_add_days_options_table extends Migration
             -- -----------------------------------------------------
             
             ALTER TABLE `resu_location_hours` (
-            ADD COLUMN `resu_days_options_id` INT(11) UNSIGNED NOT NULL AFTER `resu_hours_option_id`;
+            ADD COLUMN `resu_days_option_id` INT(11) UNSIGNED NOT NULL AFTER `resu_hours_option_id`;
             ALTER TABLE `resu_location_hours`
-              ADD CONSTRAINT `fk_resu_location_hours_resu_days_options1`
-              FOREIGN KEY (`resu_days_options_id`)
-                REFERENCES `zeroforksgiven`.`resu_days_options` (`id`)
+              ADD CONSTRAINT `fk_resu_location_hours_resu_days_option1`
+              FOREIGN KEY (`resu_days_option_id`)
+                REFERENCES `zeroforksgiven`.`resu_days_option` (`id`)
                 ON DELETE NO ACTION
                 ON UPDATE NO ACTION;
               
@@ -62,10 +62,10 @@ class m161016_223517_add_days_options_table extends Migration
             SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
             -- -----------------------------------------------------
-            -- DROP resu_days_options table
+            -- DROP resu_days_option table
             -- -----------------------------------------------------
             
-            DROP TABLE resu_days_options;
+            DROP TABLE resu_days_option;
 
 
             -- -----------------------------------------------------
@@ -73,7 +73,7 @@ class m161016_223517_add_days_options_table extends Migration
             -- -----------------------------------------------------
             
             ALTER TABLE `resu_location_hours`
-              DROP FOREIGN KEY `resu_days_options_id`;
+              DROP FOREIGN KEY `resu_days_option_id`;
             
             
             SET SQL_MODE=@OLD_SQL_MODE;

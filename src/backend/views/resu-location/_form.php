@@ -90,6 +90,20 @@ use kartik\select2\Select2;
 
     <hr>
 
+    <h1>asdf</h1>
+    <?php // hours and days of operation based on ZFG-15
+    foreach (\resutoran\common\models\ResuDaysOption::find()->select(['id', 'value'])->asArray()->all() as $key => $day) {
+        echo '<pre>';
+        echo \yii\helpers\VarDumper::dump($day, 10, true);
+        echo '</pre>';
+
+
+
+
+    }
+    ?>
+    <hr>
+
     <?php
     echo Html::label('Dress Option');
     echo Select2::widget([
@@ -137,18 +151,6 @@ use kartik\select2\Select2;
         'options'   => [
             'multiple'      => true,
             'placeholder'   => 'Select Reservation Options ...'
-        ]
-    ]); ?>
-
-    <?php
-    echo Html::label('Hours Option');
-    echo Select2::widget([
-        'name'      => 'ResuLocation[location_options][resu_location_hours][]',
-        'value'     => null,
-        'data'      => ArrayHelper::map(\resutoran\common\models\ResuHoursOption::find()->all(), 'id', 'value'),
-        'options'   => [
-            'multiple'      => true,
-            'placeholder'   => 'Select Hours Options ...'
         ]
     ]); ?>
 

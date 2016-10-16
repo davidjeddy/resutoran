@@ -36,9 +36,9 @@ class ResuLocationHours extends \resutoran\common\models\ResuBase
     {
         return [
             // [['created_by', 'created_at'], 'required'], populated via behavior
-            [['resu_location_id', 'resu_hours_option_id', 'resu_days_options_id'], 'required'],
-            [['resu_location_id', 'resu_hours_option_id', 'resu_days_options_id', 'created_at', 'created_by', 'updated_at', 'updated_by', 'deleted_at'], 'integer'],
-            [['resu_days_options_id'], 'exist', 'skipOnError' => true, 'targetClass' => ResuDaysOption::className(), 'targetAttribute' => ['resu_days_option_id' => 'id']],
+            [['resu_location_id', 'resu_hours_option_id', 'resu_days_option_id'], 'required'],
+            [['resu_location_id', 'resu_hours_option_id', 'resu_days_option_id', 'created_at', 'created_by', 'updated_at', 'updated_by', 'deleted_at'], 'integer'],
+            [['resu_days_option_id'], 'exist', 'skipOnError' => true, 'targetClass' => ResuDaysOption::className(), 'targetAttribute' => ['resu_days_option_id' => 'id']],
             [['resu_hours_option_id'], 'exist', 'skipOnError' => true, 'targetClass' => ResuHoursOption::className(), 'targetAttribute' => ['resu_hours_option_id' => 'id']],
             [['resu_location_id'], 'exist', 'skipOnError' => true, 'targetClass' => ResuLocation::className(), 'targetAttribute' => ['resu_location_id' => 'id']],
         ];
@@ -52,7 +52,7 @@ class ResuLocationHours extends \resutoran\common\models\ResuBase
         return [
             'resu_location_id' => Yii::t('resutoran', 'Resu Location ID'),
             'resu_hours_option_id' => Yii::t('resutoran', 'Resu Hours Option ID'),
-            'resu_days_options_id' => Yii::t('resutoran', 'Resu Days Option ID'),
+            'resu_days_option_id' => Yii::t('resutoran', 'Resu Days Option ID'),
             'created_at' => Yii::t('resutoran', 'Created At'),
             'created_by' => Yii::t('resutoran', 'Created By'),
             'updated_at' => Yii::t('resutoran', 'Updated At'),
