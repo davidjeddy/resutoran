@@ -13,9 +13,10 @@ class m161016_220949_update_menu_option_adding_high_low_price_fields extends Mig
             SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
             SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
-            -- -----
+            -- -----------------------------------------------------
             -- ALTER menu_option table
-            -- -----
+            -- -----------------------------------------------------
+
             ALTER TABLE `resu_menu_option` 
             ADD COLUMN `high_price` DECIMAL(4,2) NOT NULL AFTER `value`,
             ADD COLUMN `low_price` DECIMAL(4,2) NOT NULL AFTER `high_price`;           
@@ -38,9 +39,10 @@ class m161016_220949_update_menu_option_adding_high_low_price_fields extends Mig
             SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
             SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
-            -- -----
+            -- -----------------------------------------------------
             -- ALTER menu_option table
-            -- -----
+            -- -----------------------------------------------------
+
             ALTER TABLE `resu_menu_option` 
             DROP COLUMN `high_price`,
             DROP COLUMN `low_price`;
