@@ -75,9 +75,9 @@ class m161016_153923_add_alcohol_and_speciality_menu_option_tables extends Migra
 
 
             -- -----------------------------------------------------
-            -- Table `resu_location_speciality`
+            -- Table `resu_location_speciality_menu`
             -- -----------------------------------------------------
-            CREATE TABLE IF NOT EXISTS `resu_location_speciality` (
+            CREATE TABLE IF NOT EXISTS `resu_location_speciality_menu` (
               `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
               `resu_location_id` INT(10) UNSIGNED NOT NULL,
               `resu_speciality_menu_option_id` INT(11) UNSIGNED NOT NULL,
@@ -87,17 +87,24 @@ class m161016_153923_add_alcohol_and_speciality_menu_option_tables extends Migra
               `updated_by` INT(11) NULL DEFAULT NULL,
               `deleted_at` INT(11) NULL DEFAULT NULL,
               PRIMARY KEY (`id`),
-              CONSTRAINT `fk_resu_location_speciality_resu_speciality_menu_option1`
-                FOREIGN KEY (`resu_speciality_option_id`)
-                REFERENCES `resu_speciality_option` (`id`)
+              CONSTRAINT `fk_resu_location_speciality_menu_resu_specialty_menu_option1`
+                FOREIGN KEY (`resu_speciality_menu_option_id`)
+                REFERENCES `resu_speciality_menu_option` (`id`)
                 ON DELETE NO ACTION
                 ON UPDATE NO ACTION,
-              CONSTRAINT `fk_resu_location_speciality_resu_location1`
+              CONSTRAINT `fk_resu_location_speciality_menu_resu_location1`
                 FOREIGN KEY (`resu_location_id`)
                 REFERENCES `resu_location` (`id`)
                 ON DELETE NO ACTION
                 ON UPDATE NO ACTION)
             ENGINE = InnoDB;
+            
+            CREATE UNIQUE INDEX `id_UNIQUE` ON `resu_location_speciality_menu` (`id` ASC);
+            
+            CREATE INDEX `fk_resu_location_speciality_menu_resu_specialty_menu_option_idx` ON `resu_location_speciality_menu` (`resu_speciality_menu_option_id` ASC);
+            
+            CREATE INDEX `fk_resu_location_speciality_menu_resu_location1_idx` ON `resu_location_speciality_menu` (`resu_location_id` ASC);
+
             
             SET SQL_MODE=@OLD_SQL_MODE;
             SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
@@ -120,7 +127,7 @@ class m161016_153923_add_alcohol_and_speciality_menu_option_tables extends Migra
             DROP TABLE resu_alcohol_option;
             DROP TABLE resu_speciality_menu_option;
             DROP TABLE resu_location_alcohol;
-            DROP TABLE resu_location_speciality;
+            DROP TABLE resu_location_speciality_menu;
             
             SET SQL_MODE=@OLD_SQL_MODE;
             SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

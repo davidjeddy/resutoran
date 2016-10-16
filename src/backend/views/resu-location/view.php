@@ -143,6 +143,24 @@ $this->params['breadcrumbs'][] = $this->title;
                 )
             ],
             [
+                'label' => 'Alcohol',
+                'value' => \Yii::$app->controller->renderPartial('../partials/multiItemList',
+                    [
+                        'model' => $model,
+                        'option'=> 'alcohol'
+                    ]
+                )
+            ],
+            [
+                'label' => 'Speciality Menu',
+                'value' => \Yii::$app->controller->renderPartial('../partials/multiItemList',
+                    [
+                        'model' => $model,
+                        'option'=> 'speciality_menu'
+                    ]
+                )
+            ],
+            [
                 'label' => 'Created By',
                 'value' => (\common\models\User::findOne(['id' => $model->created_by])->username ?: null)
             ],

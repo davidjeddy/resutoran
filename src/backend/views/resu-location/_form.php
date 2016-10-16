@@ -200,6 +200,30 @@ use kartik\select2\Select2;
         ]
     ]); ?>
 
+    <?php
+    echo Html::label('Alcohol Option');
+    echo Select2::widget([
+        'name'      => 'ResuLocation[location_options][resu_location_alcohol][]',
+        'value'     => null,
+        'data'      => ArrayHelper::map(\resutoran\common\models\ResuAlcoholOption::find()->all(), 'id', 'value'),
+        'options'   => [
+            'multiple'      => false,
+            'placeholder'   => 'Select Alcohol Options ...'
+        ]
+    ]); ?>
+
+    <?php
+    echo Html::label('Speciality Menu Option');
+    echo Select2::widget([
+        'name'      => 'ResuLocation[location_options][resu_location_speciality_menu][]',
+        'value'     => null,
+        'data'      => ArrayHelper::map(\resutoran\common\models\ResuSpecialityMenuOption::find()->all(), 'id', 'value'),
+        'options'   => [
+            'multiple'      => true,
+            'placeholder'   => 'Select Speciality Menu Options ...'
+        ]
+    ]); ?>
+
     <?php // echo $form->field($model, 'created_at')->textInput() ?>
 
     <?php // echo $form->field($model, 'created_by')->textInput() ?>
