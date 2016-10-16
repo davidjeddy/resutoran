@@ -10,6 +10,8 @@ use yii\bootstrap\ActiveForm;
 
 <div class="resu-menu-option-form">
 
+    <h3>Remember that menus are specific to each `Location` due to pricing be attached to the menu.</h3>
+
     <?php $form = ActiveForm::begin(); ?>
 
     <?php echo $form->errorSummary($model); ?>
