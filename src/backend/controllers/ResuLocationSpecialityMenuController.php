@@ -3,7 +3,7 @@
 namespace resutoran\backend\controllers;
 
 /**
- * ResuLocationSpecialityMenuController implements the CRUD actions for ResuSpecialityMenu model.
+ * ResuLocationSpecialityMenuController implements the CRUD actions for ResuLocationSpecialityMenu model.
  */
 class ResuLocationSpecialityMenuController extends \resutoran\backend\controllers\BaseController
 {
@@ -12,3 +12,4 @@ class ResuLocationSpecialityMenuController extends \resutoran\backend\controller
      */
     protected $model = '\resutoran\common\models\ResuLocationSpecialityMenu';
 }
+x

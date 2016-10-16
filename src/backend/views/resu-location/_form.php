@@ -213,6 +213,18 @@ use kartik\select2\Select2;
     ]); ?>
 
     <?php
+    echo Html::label('Menu Option');
+    echo Select2::widget([
+        'name'      => 'ResuLocation[location_options][resu_location_menu][]',
+        'value'     => null,
+        'data'      => ArrayHelper::map(\resutoran\common\models\ResuMenuOption::find()->all(), 'id', 'value'),
+        'options'   => [
+            'multiple'      => true,
+            'placeholder'   => 'Select Menu Options ...'
+        ]
+    ]); ?>
+
+    <?php
     echo Html::label('Speciality Menu Option');
     echo Select2::widget([
         'name'      => 'ResuLocation[location_options][resu_location_speciality_menu][]',

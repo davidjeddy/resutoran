@@ -10,11 +10,17 @@ use yii\bootstrap\ActiveForm;
 
 <div class="resu-menu-option-form">
 
+    <h3>Remember that menus are specific to each `Location` due to pricing be attached to the menu.</h3>
+
     <?php $form = ActiveForm::begin(); ?>
 
     <?php echo $form->errorSummary($model); ?>
 
     <?php echo $form->field($model, 'value')->textInput(['rows' => 6]) ?>
+
+    <?php echo $form->field($model, 'low_price')->textInput() ?>
+
+    <?php echo $form->field($model, 'high_price')->textInput() ?>
 
     <?php // echo $form->field($model, 'created_at')->textInput() ?>
 
