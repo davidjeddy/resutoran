@@ -1,13 +1,13 @@
 <?php
 
-namespace common\models\query;
+namespace resutoran\common\models\query;
 
 /**
  * This is the ActiveQuery class for [[ResuSpecialityMenulOption]].
  *
  * @see ResuSpecialityMenulOption
  */
-class ResuSpecialityMenulOptionQuery extends \yii\db\ActiveQuery
+class ResuSpecialityMenuOptionQuery extends \yii\db\ActiveQuery
 {
     /*public function active()
     {

@@ -118,6 +118,16 @@ echo Menu::widget([
                             'label' => \Yii::t('resutoran', 'Service'),
                             'url'   => ['/resutoran/resu-service-option/'],
                         ],
+                        [
+                            'icon'  => '<i class="fa fa-angle-double-right"></i>',
+                            'label' => \Yii::t('resutoran', 'Alcohol'),
+                            'url'   => ['/resutoran/resu-alcohol-option/'],
+                        ],
+                        [
+                            'icon'  => '<i class="fa fa-angle-double-right"></i>',
+                            'label' => \Yii::t('resutoran', 'Speciality Menu'),
+                            'url'   => ['/resutoran/resu-speciality-menu-option/'],
+                        ],
                     ]
                 ]
             ]

@@ -7,10 +7,10 @@ use yii\widgets\DetailView;
 /* @var $model resutoran\common\models\Resu[location_options][resu_AlcoholOption */
 
 $this->title = $model->value;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('resutoran', ' Alcohol Options'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('resutoran', 'Speciality Menu Options'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="resu-alcohol-option-view">
+<div class="resu-speciality-menu-option-view">
 
     <p>
         <?php echo Html::a(Yii::t('backend', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>

@@ -1,6 +1,6 @@
 <?php
 
-namespace common\models;
+namespace resutoran\common\models;
 
 use Yii;
 
@@ -33,7 +33,7 @@ class ResuAlcoholOption extends \resutoran\common\models\ResuBase
     public function rules()
     {
         return [
-            [['value', 'created_by'], 'required'],
+            [['value'], 'required'],
             [['value'], 'string'],
             [['created_at', 'created_by', 'updated_at', 'updated_by', 'deleted_at'], 'integer'],
         ];
@@ -61,14 +61,5 @@ class ResuAlcoholOption extends \resutoran\common\models\ResuBase
     public function getResuLocationAlcohols()
     {
         return $this->hasMany(ResuLocationAlcohol::className(), ['resu_alcohol_option_id' => 'id']);
-    }
-
-    /**
-     * @inheritdoc
-     * @return ResuAlcoholOptionQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new return new \resutoran\common\models\query\ResuAlcoholOptionQuery(get_called_class());
     }
 }

@@ -6,15 +6,15 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('resutoran', ' Alcohol Options');
+$this->title = Yii::t('resutoran', 'Speciality Menu');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="resu-alcohol-option-index">
+<div class="resu-speciality-menu-option-index">
 
 
     <p>
         <?php echo Html::a(Yii::t('backend', 'Create {modelClass}', [
-    'modelClass' => 'Alcohol Option',
+    'modelClass' => 'Speciality Menu Option',
 ]), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 

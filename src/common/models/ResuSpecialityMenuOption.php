@@ -1,6 +1,6 @@
 <?php
 
-namespace common\models;
+namespace resutoran\common\models;
 
 use Yii;
 
@@ -14,6 +14,8 @@ use Yii;
  * @property integer $updated_at
  * @property integer $updated_by
  * @property integer $deleted_at
+ *
+ * @property ResuLocationSpecialityMenu[] $resuLocationAlcohols
  */
 class ResuSpecialityMenuOption extends \resutoran\common\models\ResuBase
 {
@@ -31,7 +33,7 @@ class ResuSpecialityMenuOption extends \resutoran\common\models\ResuBase
     public function rules()
     {
         return [
-            [['value', 'created_by'], 'required'],
+            [['value'], 'required'],
             [['value'], 'string'],
             [['created_at', 'created_by', 'updated_at', 'updated_by', 'deleted_at'], 'integer'],
         ];
@@ -52,13 +54,11 @@ class ResuSpecialityMenuOption extends \resutoran\common\models\ResuBase
             'deleted_at' => Yii::t('resutoran', 'Deleted At'),
         ];
     }
-
     /**
-     * @inheritdoc
-     * @return ResuSpecialityMenulOptionQuery the active query used by this AR class.
+     * @return \yii\db\ActiveQuery
      */
-    public static function find()
+    public function getResuLocationSpecialityMenus()
     {
-        return new \resutoran\common\models\query\ResuSpecialityMenulOptionQuery(get_called_class());
+        return $this->hasMany(ResuLocationSpecialityMenu::className(), ['resu_speciality_menu_option_id' => 'id']);
     }
 }

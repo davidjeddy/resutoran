@@ -1,6 +1,6 @@
 <?php
 
-namespace common\models\query;
+namespace resutoran\common\models\query;
 
 /**
  * This is the ActiveQuery class for [[ResuAlcoholOption]].

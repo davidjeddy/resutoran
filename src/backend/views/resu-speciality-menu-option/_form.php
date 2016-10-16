@@ -8,7 +8,7 @@ use yii\bootstrap\ActiveForm;
 /* @var $form yii\bootstrap\ActiveForm */
 ?>
 
-<div class="resu-alcohol-option-form">
+<div class="resu-speciality-menu-option-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
