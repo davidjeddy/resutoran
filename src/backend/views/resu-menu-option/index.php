@@ -25,6 +25,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'value:ntext',
+            'low_price:currency',
+            'high_price:currency',
             'created_at:date',
             'created_by',
             'updated_at:date',

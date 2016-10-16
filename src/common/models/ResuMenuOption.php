@@ -9,6 +9,8 @@ use Yii;
  *
  * @property integer $id
  * @property string $value
+ * @property decimal $low_price
+ * @property decimal $high_price
  * @property integer $created_at
  * @property integer $created_by
  * @property integer $updated_at
@@ -34,9 +36,11 @@ class ResuMenuOption extends \resutoran\common\models\ResuBase
     {
         return [
             // [['created_by', 'created_at'], 'required'], populated via behavior
-            [['value'], 'required'],
+            [['value', 'low_price', 'high_price'], 'required'],
             [['value'], 'string'],
             [['created_at', 'created_by', 'updated_at', 'updated_by', 'deleted_at'], 'integer'],
+            [['low_price', 'high_price'], 'number', 'numberPattern' => '/^\s*[-+]?[0-9]*[.,]?[0-9]+([eE][-+]?[0-9]+)?\s*$/',
+                'message' => 'Must be currency format.'],
         ];
     }
 
@@ -48,6 +52,8 @@ class ResuMenuOption extends \resutoran\common\models\ResuBase
         return [
             'id' => Yii::t('resutoran', 'ID'),
             'value' => Yii::t('resutoran', 'Value'),
+            'low_price' => Yii::t('resutoran', 'Low Price'),
+            'high_price' => Yii::t('resutoran', 'High Price'),
             'created_at' => Yii::t('resutoran', 'Created At'),
             'created_by' => Yii::t('resutoran', 'Created By'),
             'updated_at' => Yii::t('resutoran', 'Updated At'),
