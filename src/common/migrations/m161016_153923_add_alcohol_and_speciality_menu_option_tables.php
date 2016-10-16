@@ -129,3 +129,4 @@ class m161016_153923_add_alcohol_and_speciality_menu_option_tables extends Migra
 
         return $this->execute($command);
     }
+}
