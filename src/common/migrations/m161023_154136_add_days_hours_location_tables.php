@@ -15,6 +15,7 @@ class m161023_154136_add_days_hours_location_tables extends Migration
 
 
             DROP TABLE IF EXISTS `resu_location_hours`;
+            DROP TABLE IF EXISTS `resu_hours_option`;
             
             -- -----------------------------------------------------
             -- Table `resu_day_option`
