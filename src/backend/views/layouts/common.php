@@ -80,11 +80,6 @@ echo Menu::widget([
                         ],
                         [
                             'icon'  => '<i class="fa fa-angle-double-right"></i>',
-                            'label' => \Yii::t('resutoran', 'Hours'),
-                            'url'   => ['/resutoran/resu-hours-option/'],
-                        ],
-                        [
-                            'icon'  => '<i class="fa fa-angle-double-right"></i>',
                             'label' => \Yii::t('resutoran', 'Media'),
                             'url'   => ['/resutoran/resu-media-option/'],
                         ],
