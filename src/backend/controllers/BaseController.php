@@ -19,6 +19,15 @@ class BaseController extends Controller
     protected $model = null;
 
     /**
+     * Attempt to autoload model class, no point in having empty classes if all it does is set $this->model
+     */
+    public function init()
+    {
+        $classname = explode('\\', substr($this::className(),0, -10));
+        $this->model = '\resutoran\common\models\\' . end($classname);
+    }
+
+    /**
      * @return array
      */
     public function behaviors()
