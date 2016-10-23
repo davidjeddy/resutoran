@@ -12,4 +12,3 @@ class ResuLocationSpecialityMenuController extends \resutoran\backend\controller
      */
     protected $model = '\resutoran\common\models\ResuLocationSpecialityMenu';
 }
-x
