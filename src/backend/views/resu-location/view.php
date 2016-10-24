@@ -41,16 +41,20 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => (\resutoran\common\models\ResuPriceOption::findOne(['id' => $model->resu_price_option_id])->value ?: null)
             ],
             [
-                'label' => 'Price Range',
+                'label' => 'Decor',
                 'value' => (\resutoran\common\models\ResuDecorOption::findOne(['id' => $model->resu_decor_option_id])->value ?: null)
             ],
             [
-                'label' => 'Price Range',
+                'label' => 'Ambiance',
                 'value' => (\resutoran\common\models\ResuAmbianceOption::findOne(['id' => $model->resu_ambiance_option_id])->value ?: null)
             ],
             [
-                'label' => 'Price Range',
+                'label' => 'Map',
                 'value' => (\resutoran\common\models\ResuMap::findOne(['id' => $model->resu_map_id])->value ?: null)
+            ],
+            [
+                'label' => 'Hours of Operation',
+                'value' => '', //(\resutoran\common\models\ResuMap::findOne(['id' => $model->resu_map_id])->value ?: null)
             ],
             [
                 'label' => 'Boolean Values',
@@ -76,15 +80,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'model' => $model,
                         'option'=> 'dress_code'
-                    ]
-                )
-            ],
-            [
-                'label' => 'Hours',
-                'value' => \Yii::$app->controller->renderPartial('../partials/multiItemList',
-                    [
-                        'model' => $model,
-                        'option'=> 'hours'
                     ]
                 )
             ],

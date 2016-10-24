@@ -33,7 +33,8 @@ class ResuHourValue extends \resutoran\common\models\ResuBase
     public function rules()
     {
         return [
-            [['value', 'created_by'], 'required'],
+            //[['value', 'created_by'], 'required'],
+            [['value'], 'required'],
             [['value'], 'string'],
             [['created_at', 'created_by', 'updated_at', 'updated_by', 'deleted_at'], 'integer'],
         ];

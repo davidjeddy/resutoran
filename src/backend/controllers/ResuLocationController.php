@@ -29,6 +29,11 @@ class ResuLocationController extends \resutoran\backend\controllers\BaseControll
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
 
+            // go save resu_location_* day and hours data
+            if (!empty(Yii::$app->request->post()['ResuLocation']['hour_value'])) {
+                $this->saveHoursValues($model, Yii::$app->request->post()['ResuLocation']['hour_value']);
+            }
+
             // go save the resu_location_* optional data
             if (!empty(Yii::$app->request->post()['ResuLocation']['location_options'])) {
                 $this->saveLocationOptions($model, Yii::$app->request->post()['ResuLocation']['location_options']);
@@ -79,11 +84,47 @@ class ResuLocationController extends \resutoran\backend\controllers\BaseControll
                     }
                 }
             } else {
-                echo '<pre>';
-                echo \yii\helpers\VarDumper::dump($optionMDL, 10, true);
-                echo '</pre>';
-                exit(1);
                 throw new Exception('Unable to find related model for optional data.');
+            }
+        }
+
+        return $returnData;
+    }
+
+    /**
+     * @TODO this smells funny, can we factor this out to something like an event?
+     *
+     * @param $model
+     * @param $optionMDLArray
+     *
+     * @return bool
+     * @throws Exception
+     */
+    private function saveHoursValues($model, $data)
+    {
+        $returnData = false;
+
+        foreach ($data as $key => $dayValue) {
+
+            // save the hour value to the resu_hour_value
+            $hourValueMDL = new \resutoran\common\models\ResuHourValue([
+                'value' => $dayValue[0]
+            ]);
+
+            // save hour AR to data store, or return error if present
+            if (!$hourValueMDL->save()) {
+                $returnData = $hourValueMDL->getErrors();
+            } else {
+
+                $locationDay = new \resutoran\common\models\ResuLocationDay([
+                    'resu_day_option_id'=> $key,
+                    'resu_location_id'  => $model->id,
+                    'resu_hour_value_id'=> $hourValueMDL->id
+                ]);
+
+                if (!$locationDay->save()) {
+                    $returnData = $locationDay->getErrors();
+                }
             }
         }
 

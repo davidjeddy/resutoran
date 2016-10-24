@@ -37,7 +37,8 @@ class ResuLocationDay extends \resutoran\common\models\ResuBase
     public function rules()
     {
         return [
-            [['resu_day_option_id', 'resu_location_id', 'resu_hour_value_id', 'created_by'], 'required'],
+            //[['resu_day_option_id', 'resu_location_id', 'resu_hour_value_id', 'created_by'], 'required'],
+            [['resu_day_option_id', 'resu_location_id', 'resu_hour_value_id'], 'required'],
             [['resu_day_option_id', 'resu_location_id', 'resu_hour_value_id', 'created_at', 'created_by', 'updated_at', 'updated_by', 'deleted_at'], 'integer'],
             [['resu_day_option_id'], 'exist', 'skipOnError' => true, 'targetClass' => ResuDayOption::className(), 'targetAttribute' => ['resu_day_option_id' => 'id']],
             [['resu_hour_value_id'], 'exist', 'skipOnError' => true, 'targetClass' => ResuHourValue::className(), 'targetAttribute' => ['resu_hour_value_id' => 'id']],

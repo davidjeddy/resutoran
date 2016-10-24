@@ -16,7 +16,6 @@ use kartik\select2\Select2;
 
     <?php echo $form->errorSummary($model); ?>
 
-
     <?php echo $form->field($model, 'value')->textInput([
         'placeholder' => 'Name of Location',
         'maxlength'   => true
@@ -91,6 +90,36 @@ use kartik\select2\Select2;
     <hr>
 
     <?php
+    $days = \resutoran\common\models\ResuDayOption::find()->select(['id', 'value', 'abbr'])->asArray()->all();
+    foreach ($days as $key => $value) {
+    ?>
+        <div class="form-group field-resulocation-value required">
+            <?php
+            $fieldName = 'ResuLocation[hour_value]['.$value['id'].'][]';
+
+            echo \yii\bootstrap\BaseHtml::label(
+                $value['value'],
+                $fieldName
+            );
+
+            echo \yii\bootstrap\BaseHtml::textInput(
+                $fieldName,
+                null,
+                [
+                    'maxlength'     => 12,
+                    'placeholder'   => 'Open-Close hours in 24h format. Exp: 07-13, 15-22',
+                    'class'         => 'form-control'
+                ]
+            ); ?>
+
+            <p class="help-block help-block-error"></p>
+        </div>
+
+    <?php }; ?>
+
+    <hr>
+
+    <?php /*
     echo Html::label('Dress Option');
     echo Select2::widget([
         'name'          => 'ResuLocation[location_options][resu_location_dress_code][]',
@@ -232,7 +261,7 @@ use kartik\select2\Select2;
 
     <?php // echo $form->field($model, 'updated_by')->textInput() ?>
 
-    <?php // echo $form->field($model, 'deleted_at')->textInput() ?>
+    <?php // echo $form->field($model, 'deleted_at')->textInput() */?>
 
     <div class="form-group">
         <?php echo Html::submitButton($model->isNewRecord
