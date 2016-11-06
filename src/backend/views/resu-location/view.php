@@ -52,10 +52,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => 'Map',
                 'value' => (\resutoran\common\models\ResuMap::findOne(['id' => $model->resu_map_id])->value ?: null)
             ],
+
             [
                 'label' => 'Hours of Operation',
-                'value' => '', //(\resutoran\common\models\ResuMap::findOne(['id' => $model->resu_map_id])->value ?: null)
+                'value' => $this->render('../partials/DaysAndHours', [
+                    'model' => $model
+                ])
             ],
+
             [
                 'label' => 'Boolean Values',
                 'value' => \Yii::$app->controller->renderPartial('../partials/multiItemList',
