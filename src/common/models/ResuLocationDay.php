@@ -87,13 +87,4 @@ class ResuLocationDay extends \resutoran\common\models\ResuBase
     {
         return $this->hasOne(ResuLocation::className(), ['id' => 'resu_location_id']);
     }
-
-    /**
-     * @inheritdoc
-     * @return \common\models\query\ResuLocationDayQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new \resutoran\common\models\query\ResuLocationDayQuery(get_called_class());
-    }
 }

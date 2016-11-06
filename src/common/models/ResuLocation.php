@@ -221,4 +221,12 @@ class ResuLocation extends \resutoran\common\models\ResuBase
         return $this->hasMany(ResuServiceOption::className(), ['id' => 'resu_service_option_id'])
             ->viaTable('resu_location_service', ['resu_location_id' => 'id']);
     }
+
+    /**
+     * @return $this
+     */
+    public function getResuLocationDay()
+    {
+        return $this->hasMany(ResuLocationDay::className(), ['resu_location_id' => 'id']);
+    }
 }

@@ -102,13 +102,26 @@ use kartik\select2\Select2;
                 $fieldName
             );
 
+            // TODO make this a AR data retrieval, not a SQL request
+            $hours = \resutoran\common\models\ResuLocationDay::find()
+                ->select('resu_hour_value.value as hour')
+                ->andWhere([
+                    'resu_location_id' => $model->id,
+                    'resu_day_option_id' => $value['id']
+                ])
+                ->leftJoin('resu_day_option', '`resu_day_option`.`id` = `resu_location_day`.`resu_day_option_id`')
+                ->leftJoin('resu_hour_value', '`resu_hour_value`.`id` = `resu_location_day`.`resu_hour_value_id`')
+                ->asArray()
+                ->all();
+
             echo \yii\bootstrap\BaseHtml::textInput(
                 $fieldName,
-                null,
+                !empty($hours[0]['hour']) ? $hours[0]['hour'] : null,
                 [
                     'maxlength'     => 12,
                     'placeholder'   => 'Open-Close hours in 24h format. Exp: 07-13, 15-22',
-                    'class'         => 'form-control'
+                    'class'         => 'form-control',
+
                 ]
             ); ?>
 
