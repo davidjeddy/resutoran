@@ -16,7 +16,6 @@ use kartik\select2\Select2;
 
     <?php echo $form->errorSummary($model); ?>
 
-
     <?php echo $form->field($model, 'value')->textInput([
         'placeholder' => 'Name of Location',
         'maxlength'   => true
@@ -91,6 +90,49 @@ use kartik\select2\Select2;
     <hr>
 
     <?php
+    $days = \resutoran\common\models\ResuDayOption::find()->select(['id', 'value', 'abbr'])->asArray()->all();
+    foreach ($days as $key => $value) {
+    ?>
+        <div class="form-group field-resulocation-value required">
+            <?php
+            $fieldName = 'ResuLocation[hour_value]['.$value['id'].'][]';
+
+            echo \yii\bootstrap\BaseHtml::label(
+                $value['value'],
+                $fieldName
+            );
+
+            // TODO make this a AR data retrieval, not a SQL request
+            $hours = \resutoran\common\models\ResuLocationDay::find()
+                ->select('resu_hour_value.value as hour')
+                ->andWhere([
+                    'resu_location_id' => $model->id,
+                    'resu_day_option_id' => $value['id']
+                ])
+                ->leftJoin('resu_day_option', '`resu_day_option`.`id` = `resu_location_day`.`resu_day_option_id`')
+                ->leftJoin('resu_hour_value', '`resu_hour_value`.`id` = `resu_location_day`.`resu_hour_value_id`')
+                ->asArray()
+                ->all();
+
+            echo \yii\bootstrap\BaseHtml::textInput(
+                $fieldName,
+                !empty($hours[0]['hour']) ? $hours[0]['hour'] : null,
+                [
+                    'maxlength'     => 12,
+                    'placeholder'   => 'Open-Close hours in 24h format. Exp: 07-13, 15-22',
+                    'class'         => 'form-control',
+
+                ]
+            ); ?>
+
+            <p class="help-block help-block-error"></p>
+        </div>
+
+    <?php }; ?>
+
+    <hr>
+
+    <?php /*
     echo Html::label('Dress Option');
     echo Select2::widget([
         'name'          => 'ResuLocation[location_options][resu_location_dress_code][]',
@@ -137,18 +179,6 @@ use kartik\select2\Select2;
         'options'   => [
             'multiple'      => true,
             'placeholder'   => 'Select Reservation Options ...'
-        ]
-    ]); ?>
-
-    <?php
-    echo Html::label('Hours Option');
-    echo Select2::widget([
-        'name'      => 'ResuLocation[location_options][resu_location_hours][]',
-        'value'     => null,
-        'data'      => ArrayHelper::map(\resutoran\common\models\ResuHoursOption::find()->all(), 'id', 'value'),
-        'options'   => [
-            'multiple'      => true,
-            'placeholder'   => 'Select Hours Options ...'
         ]
     ]); ?>
 
@@ -244,7 +274,7 @@ use kartik\select2\Select2;
 
     <?php // echo $form->field($model, 'updated_by')->textInput() ?>
 
-    <?php // echo $form->field($model, 'deleted_at')->textInput() ?>
+    <?php // echo $form->field($model, 'deleted_at')->textInput() */?>
 
     <div class="form-group">
         <?php echo Html::submitButton($model->isNewRecord

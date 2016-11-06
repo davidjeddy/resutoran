@@ -70,6 +70,11 @@ echo Menu::widget([
                         ],
                         [
                             'icon'  => '<i class="fa fa-angle-double-right"></i>',
+                            'label' => \Yii::t('resutoran', 'Day'),
+                            'url'   => ['/resutoran/resu-day-option/'],
+                        ],
+                        [
+                            'icon'  => '<i class="fa fa-angle-double-right"></i>',
                             'label' => \Yii::t('resutoran', 'Decor'),
                             'url'   => ['/resutoran/resu-decor-option/'],
                         ],
@@ -77,11 +82,6 @@ echo Menu::widget([
                             'icon'  => '<i class="fa fa-angle-double-right"></i>',
                             'label' => \Yii::t('resutoran', 'Dress Code'),
                             'url'   => ['/resutoran/resu-dress-code-option/'],
-                        ],
-                        [
-                            'icon'  => '<i class="fa fa-angle-double-right"></i>',
-                            'label' => \Yii::t('resutoran', 'Hours'),
-                            'url'   => ['/resutoran/resu-hours-option/'],
                         ],
                         [
                             'icon'  => '<i class="fa fa-angle-double-right"></i>',
