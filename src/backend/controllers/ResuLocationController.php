@@ -30,9 +30,9 @@ class ResuLocationController extends \resutoran\backend\controllers\BaseControll
         if ($model->load(Yii::$app->request->post())  && $model->save()) {
 
             // go save resu_location_* day and hours data
-            /*if (!empty(Yii::$app->request->post()['ResuLocation']['hour_value'])) {
+            if (!empty(Yii::$app->request->post()['ResuLocation']['hour_value'])) {
                 $this->saveHoursValues($model, Yii::$app->request->post()['ResuLocation']['hour_value']);
-            }*/
+            }
 
             // go save resu_location_menu and amount data
             if (!empty(Yii::$app->request->post()['ResuLocation']['resu_location_menu'])) {
