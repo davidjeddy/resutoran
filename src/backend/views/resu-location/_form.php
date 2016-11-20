@@ -88,7 +88,7 @@ use yii\helpers\Html;
 
     <hr>
 
-    <?php /*
+    <?php
     $days = \resutoran\common\models\ResuDayOption::find()->select(['id', 'value', 'abbr'])->asArray()->all();
     foreach ($days as $key => $value) {
     ?>
@@ -127,7 +127,7 @@ use yii\helpers\Html;
             <p class="help-block help-block-error"></p>
         </div>
 
-    <?php }; */ ?>
+    <?php }; ?>
 
     <hr>
 
@@ -144,7 +144,7 @@ use yii\helpers\Html;
             'inline' => false,
             'item'   => function($index, $label, $name, $checked, $value) use ($form, $model) {
 
-                $return  = '<label>'.$label;
+                $return  = '<div class="form-group field-resulocation-resu_location_menu"><label>'.$label;
                 $return .= '    <div class="regular-radio-button"></div>';
 
                 $return .= \yii\bootstrap\BaseHtml::textInput(
@@ -167,7 +167,7 @@ use yii\helpers\Html;
                     ]
                 );
 
-                $return .= '</label>';
+                $return .= '</label></div>';
                 $return .= '<br />';
 
                 return $return;
