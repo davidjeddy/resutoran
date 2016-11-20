@@ -175,7 +175,7 @@ use yii\helpers\Html;
         ]
     ); ?>
 
-    <?php /*
+    <?php
     echo Html::label('Dress Option');
     echo Select2::widget([
         'name'          => 'ResuLocation[location_options][resu_location_dress_code][]',
@@ -317,7 +317,7 @@ use yii\helpers\Html;
 
     <?php // echo $form->field($model, 'updated_by')->textInput() ?>
 
-    <?php // echo $form->field($model, 'deleted_at')->textInput() */?>
+    <?php // echo $form->field($model, 'deleted_at')->textInput() ?>
 
     <div class="form-group">
         <?php echo Html::submitButton($model->isNewRecord
