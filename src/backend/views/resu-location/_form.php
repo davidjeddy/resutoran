@@ -88,7 +88,7 @@ use yii\helpers\Html;
 
     <hr>
 
-    <?php
+    <?php /*
     $days = \resutoran\common\models\ResuDayOption::find()->select(['id', 'value', 'abbr'])->asArray()->all();
     foreach ($days as $key => $value) {
     ?>
@@ -127,7 +127,7 @@ use yii\helpers\Html;
             <p class="help-block help-block-error"></p>
         </div>
 
-    <?php }; ?>
+    <?php }; */ ?>
 
     <hr>
 

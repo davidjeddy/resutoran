@@ -43,8 +43,12 @@ class ResuLocationMenu extends \resutoran\common\models\ResuBase
                 ['low_price', 'high_price'],
                 'number',
                 'numberPattern' => '/^\s*[-+]?[0-9]*[.,]?[0-9]+([eE][-+]?[0-9]+)?\s*$/',
-                'message' => 'Must be currency format.'
+                'message' => 'Must be currency (123.45) format.'
             ],
+            [
+                ['low_price', 'high_price'],
+                'ifOneThanBoth'
+            ]
         ];
     }
 
@@ -80,5 +84,24 @@ class ResuLocationMenu extends \resutoran\common\models\ResuBase
     public function getResuMenuOption()
     {
         return $this->hasOne(ResuMenuOption::className(), ['id' => 'resu_menu_option_id']);
+    }
+
+    /**
+     * @param $attribute_name
+     *
+     * @return bool
+     */
+    public function ifOneThanBoth($attribute_name)
+    {
+        if (
+            (empty($this->low_price) && !empty($this->high_price))
+            || (!empty($this->low_price) && empty($this->high_price))
+        ) {
+            $this->addError($attribute_name, Yii::t('resutoran', 'If one price is set, both must be provided.'));
+
+            return false;
+        }
+
+        return true;
     }
 }
