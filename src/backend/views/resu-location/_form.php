@@ -3,7 +3,6 @@
 use yii\bootstrap\ActiveForm;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
-use kartik\select2\Select2;
 
 /* @var $this yii\web\View */
 /* @var $model \resutoran\common\models\ResuLocation */
@@ -131,6 +130,50 @@ use kartik\select2\Select2;
     <?php }; ?>
 
     <hr>
+
+    <?php
+    echo \yii\bootstrap\BaseHtml::checkboxList(
+        'resu_location_menu',
+        null,
+        ArrayHelper::map(
+            \resutoran\common\models\ResuMenuOption::find()->all(),
+            'id',
+            'value'
+        ),
+        [
+            'inline' => false,
+            'item'   => function($index, $label, $name, $checked, $value) use ($form, $model) {
+
+                $return  = '<label>'.$label;
+                $return .= '    <div class="regular-radio-button"></div>';
+
+                $return .= \yii\bootstrap\BaseHtml::textInput(
+                    'ResuLocation[resu_location_menu]['.$value.'][high_price]',
+                    null,
+                    [
+                        'maxlength'     => 7,
+                        'placeholder'   => 'High price',
+                        'class'         => 'form-control',
+                    ]
+                );
+
+                $return .= \yii\bootstrap\BaseHtml::textInput(
+                    'ResuLocation[resu_location_menu]['.$value.'][low_price]',
+                    null,
+                    [
+                        'maxlength'     => 7,
+                        'placeholder'   => 'Low price',
+                        'class'         => 'form-control',
+                    ]
+                );
+
+                $return .= '</label>';
+                $return .= '<br />';
+
+                return $return;
+            }
+        ]
+    ); ?>
 
     <?php /*
     echo Html::label('Dress Option');
