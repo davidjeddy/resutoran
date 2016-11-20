@@ -3,6 +3,7 @@
 use yii\bootstrap\ActiveForm;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
+use kartik\widgets\Select2;
 
 /* @var $this yii\web\View */
 /* @var $model \resutoran\common\models\ResuLocation */
