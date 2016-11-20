@@ -55,9 +55,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
             [
                 'label' => 'Hours of Operation',
-                'value' => $this->render('../partials/DaysAndHours', [
-                    'model' => $model
-                ])
+                'value' => \Yii::$app->controller->renderPartial('../partials/DaysAndHours',
+                    [
+                        'model' => $model
+                    ]
+                )
             ],
 
             [
@@ -96,15 +98,16 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]
                 )
             ],
+
             [
-                'label' => 'Menu',
-                'value' => \Yii::$app->controller->renderPartial('../partials/multiItemList',
+                'label' => 'Menu(s) Price Range',
+                'value' =>  \Yii::$app->controller->renderPartial('../partials/MenuAmount',
                     [
-                        'model' => $model,
-                        'option'=> 'menu'
+                        'model' => $model
                     ]
                 )
             ],
+
             [
                 'label' => 'Payment',
                 'value' => \Yii::$app->controller->renderPartial('../partials/multiItemList',
@@ -147,15 +150,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'model' => $model,
                         'option'=> 'alcohol'
-                    ]
-                )
-            ],
-            [
-                'label' => 'Speciality Menu',
-                'value' => \Yii::$app->controller->renderPartial('../partials/multiItemList',
-                    [
-                        'model' => $model,
-                        'option'=> 'speciality_menu'
                     ]
                 )
             ],

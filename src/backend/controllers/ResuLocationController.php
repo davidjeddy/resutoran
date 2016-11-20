@@ -27,16 +27,16 @@ class ResuLocationController extends \resutoran\backend\controllers\BaseControll
     {
         $model = new $this->model();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())  && $model->save()) {
 
             // go save resu_location_* day and hours data
-            if (!empty(Yii::$app->request->post()['ResuLocation']['hour_value'])) {
+            /*if (!empty(Yii::$app->request->post()['ResuLocation']['hour_value'])) {
                 $this->saveHoursValues($model, Yii::$app->request->post()['ResuLocation']['hour_value']);
-            }
+            }*/
 
-            // go save the resu_location_* optional data
-            if (!empty(Yii::$app->request->post()['ResuLocation']['location_options'])) {
-                $this->saveLocationOptions($model, Yii::$app->request->post()['ResuLocation']['location_options']);
+            // go save resu_location_menu and amount data
+            if (!empty(Yii::$app->request->post()['ResuLocation']['resu_location_menu'])) {
+                $this->saveMenuAmountValues($model, Yii::$app->request->post()['ResuLocation']['resu_location_menu']);
             }
 
             return $this->redirect(['view', 'id' => $model->id]);
@@ -125,6 +125,36 @@ class ResuLocationController extends \resutoran\backend\controllers\BaseControll
                 if (!$locationDay->save()) {
                     $returnData = $locationDay->getErrors();
                 }
+            }
+        }
+
+        return $returnData;
+    }
+
+    /**
+     * @param $model \resutoran\common\models\ResuLocation
+     * @param $data \array
+     */
+    private function saveMenuAmountValues($model, $data)
+    {
+        $returnData = false;
+
+        foreach ($data as $key => $menuAmountValue) {
+            if (!empty($menuAmountValue['high_price']) && !empty($menuAmountValue['low_price'])) {
+                $resuLocMenuMDL = new \resutoran\common\models\ResuLocationMenu([
+                    'resu_location_id'    => $model->id,
+                    'resu_menu_option_id' => $key,
+                    'high_price'          => $menuAmountValue['high_price'] ?: null,
+                    'low_price'           => $menuAmountValue['low_price'] ?: null,
+                ]);
+
+                if (!$resuLocMenuMDL->save()) {
+                    $returnData = $resuLocMenuMDL->getErrors();
+                } else {
+                    $returnData = true;
+                }
+            } else {
+                // TODO return with failed model validation
             }
         }
 
