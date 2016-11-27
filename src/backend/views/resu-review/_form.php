@@ -25,7 +25,19 @@ use yii\widgets\ActiveForm;
         ]
     ]); ?>
 
-    <?php echo $form->field($model, 'value')->textarea(['rows' => 6]) ?>
+    <?php //echo $form->field($model, 'value')->textarea(['rows' => 6]) ?>
+    <?php echo $form->field($model, 'value')->widget(
+        \yii\imperavi\Widget::className(),
+        [
+            'plugins'   => ['fullscreen', 'fontcolor', 'video'],
+            'options'   => [
+                'minHeight'     => 400,
+                'maxHeight'     => 400,
+                'buttonSource'  => true,
+                'imageUpload'   => \Yii::$app->urlManager->createUrl(['/file-storage/upload-imperavi'])
+            ]
+        ]
+    )->label('Review Content'); ?>
 
     <?php //echo $form->field($model, 'created_at')->textInput() ?>
 

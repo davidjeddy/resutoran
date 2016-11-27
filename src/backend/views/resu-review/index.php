@@ -1,26 +1,35 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ListView;
+use yii\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('resutoran', 'Resu Reviews');
+$this->title = Yii::t('resutoran', 'Reviews');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="resu-review-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
-        <?= Html::a(Yii::t('resutoran', 'Create Resu Review'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?php echo Html::a(Yii::t('resutoran', 'Create Review'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-    <?= ListView::widget([
+
+    <?php echo GridView::widget([
         'dataProvider' => $dataProvider,
-        'itemOptions' => ['class' => 'item'],
-        'itemView' => function ($model, $key, $index, $widget) {
-            return Html::a(Html::encode($model->id), ['view', 'id' => $model->id]);
-        },
-    ]) ?>
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+
+            'id',
+            'user_id',
+            'value:html',
+            'created_at:date',
+            'created_by',
+            'updated_at:date',
+            // 'updated_by',
+            // 'deleted_at:date',
+
+            ['class' => 'yii\grid\ActionColumn'],
+        ],
+    ]); ?>
 </div>

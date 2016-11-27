@@ -22,10 +22,11 @@
     "source": "https://github.com/davidjeddy/yii2-resutoran"
   },
   "require": {
-    "yiisoft/yii2":            "^2.0.8",
-    "yii2tech/ar-softdelete":  "^1.0",
-    "kartik-v/yii2-widgets":   "^3.4",
-    "kartik-v/yii2-checkbox-x":"^1.0"
+    "yiisoft/yii2":                   "^2.0.8",
+    "yii2tech/ar-softdelete":         "^1.0",
+    "kartik-v/yii2-widgets":          "^3.4",
+    "kartik-v/yii2-checkbox-x":       "^1.0",
+    "asofter/yii2-imperavi-redactor": "0.0.3",
   },
   "require-dev": {
     "codeception/codeception":  "^2.0",
