@@ -17,21 +17,16 @@ echo Menu::widget([
             'options'   => ['class' => 'header']
         ],
         [
-            'icon'      => '<i class="fa fa-star"></i>',
-            'label'     => \Yii::t('resutoran', 'New Review'),
-            'url'       => ['/resutoran/resu-location/create'],
-        ],
-        [
-            'icon'      => '<i class="fa fa-star-o"></i>',
-            'label'     => \Yii::t('resutoran', 'Past Review'),
-            'url'       => ['/resutoran/resu-location/index'],
-        ],
-        [
             'icon'      => '<i class="fa fa-bars"></i>',
-            'label'     => \Yii::t('resutoran', 'Location'),
+            'label'     => \Yii::t('resutoran', 'Location Data'),
             'options'   => ['class' => 'active'],
             'url'       => ['#'],
             'items'     => [
+                [
+                    'icon'      => '<i class="fa fa-bars"></i>',
+                    'label'     => \Yii::t('resutoran', 'Locations'),
+                    'url'       => ['/resutoran/resu-location/create'],
+                ],
                 [
                     'icon'      => '<i class="fa fa-bars"></i>',
                     'label'     => \Yii::t('resutoran', 'Contact'),
@@ -49,62 +44,55 @@ echo Menu::widget([
                     'url'       => ['/resutoran/resu-map'],
                 ],
                 [
-                    'icon'      => '<i class="fa fa-bars"></i>',
-                    'label'     => \Yii::t('resutoran', 'Options'),
-                    'url'       => ['#'],
-                    'items'     => [
-                        [
-                            'icon'  => '<i class="fa fa-angle-double-right"></i>',
-                            'label' => \Yii::t('resutoran', 'Ambiance'),
-                            'url'   => ['/resutoran/resu-ambiance-option/'],
-                        ],
-                        [
-                            'icon'  => '<i class="fa fa-angle-double-right"></i>',
-                            'label' => \Yii::t('resutoran', 'Boolean'),
-                            'url'   => ['/resutoran/resu-boolean-option/'],
-                        ],
-                        [
-                            'icon'  => '<i class="fa fa-angle-double-right"></i>',
-                            'label' => \Yii::t('resutoran', 'Cuisine'),
-                            'url'   => ['/resutoran/resu-cuisine-option/'],
-                        ],
-                        [
-                            'icon'  => '<i class="fa fa-angle-double-right"></i>',
-                            'label' => \Yii::t('resutoran', 'Day'),
-                            'url'   => ['/resutoran/resu-day-option/'],
-                        ],
-                        [
-                            'icon'  => '<i class="fa fa-angle-double-right"></i>',
-                            'label' => \Yii::t('resutoran', 'Decor'),
-                            'url'   => ['/resutoran/resu-decor-option/'],
-                        ],
-                        [
-                            'icon'  => '<i class="fa fa-angle-double-right"></i>',
-                            'label' => \Yii::t('resutoran', 'Dress Code'),
-                            'url'   => ['/resutoran/resu-dress-code-option/'],
-                        ],
-                        [
-                            'icon'  => '<i class="fa fa-angle-double-right"></i>',
-                            'label' => \Yii::t('resutoran', 'Media'),
-                            'url'   => ['/resutoran/resu-media-option/'],
-                        ],
-                        [
-                            'icon'  => '<i class="fa fa-angle-double-right"></i>',
-                            'label' => \Yii::t('resutoran', 'Menu'),
-                            'url'   => ['/resutoran/resu-menu-option/'],
-                        ],
-                        [
-                            'icon'  => '<i class="fa fa-angle-double-right"></i>',
-                            'label' => \Yii::t('resutoran', 'Payment'),
-                            'url'   => ['/resutoran/resu-payment-option/'],
-                        ],
-                        [
-                            'icon'  => '<i class="fa fa-angle-double-right"></i>',
-                            'label' => \Yii::t('resutoran', 'Seating'),
-                            'url'   => ['/resutoran/resu-seating-option/'],
-                        ],
-                    ]
-                ]
+                    'icon'  => '<i class="fa fa-bars"></i>',
+                    'label' => \Yii::t('resutoran', 'Ambiance'),
+                    'url'   => ['/resutoran/resu-ambiance-option/'],
+                ],
+                [
+                    'icon'  => '<i class="fa fa-bars"></i>',
+                    'label' => \Yii::t('resutoran', 'Features'),
+                    'url'   => ['/resutoran/resu-boolean-option/'],
+                ],
+                [
+                    'icon'  => '<i class="fa fa-bars"></i>',
+                    'label' => \Yii::t('resutoran', 'Cuisine'),
+                    'url'   => ['/resutoran/resu-cuisine-option/'],
+                ],
+                [
+                    'icon'  => '<i class="fa fa-bars"></i>',
+                    'label' => \Yii::t('resutoran', 'Day'),
+                    'url'   => ['/resutoran/resu-day-option/'],
+                ],
+                [
+                    'icon'  => '<i class="fa fa-bars"></i>',
+                    'label' => \Yii::t('resutoran', 'Decor'),
+                    'url'   => ['/resutoran/resu-decor-option/'],
+                ],
+                [
+                    'icon'  => '<i class="fa fa-bars"></i>',
+                    'label' => \Yii::t('resutoran', 'Dress Code'),
+                    'url'   => ['/resutoran/resu-dress-code-option/'],
+                ],
+                [
+                    'icon'  => '<i class="fa fa-bars"></i>',
+                    'label' => \Yii::t('resutoran', 'Media'),
+                    'url'   => ['/resutoran/resu-media-option/'],
+                ],
+                [
+                    'icon'  => '<i class="fa fa-bars"></i>',
+                    'label' => \Yii::t('resutoran', 'Menu'),
+                    'url'   => ['/resutoran/resu-menu-option/'],
+                ],
+                [
+                    'icon'  => '<i class="fa fa-bars"></i>',
+                    'label' => \Yii::t('resutoran', 'Payment'),
+                    'url'   => ['/resutoran/resu-payment-option/'],
+                ],
+                [
+                    'icon'  => '<i class="fa fa-bars"></i>',
+                    'label' => \Yii::t('resutoran', 'Seating'),
+                    'url'   => ['/resutoran/resu-seating-option/'],
+                ],
             ]
         ]
     ]

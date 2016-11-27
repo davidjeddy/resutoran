@@ -59,7 +59,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
 
             [
-                'label' => 'Boolean Values',
+                'label' => 'Features Values',
                 'value' => \Yii::$app->controller->renderPartial('../partials/multiItemList',
                     [
                         'model' => $model,
