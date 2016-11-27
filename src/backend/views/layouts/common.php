@@ -17,9 +17,13 @@ echo Menu::widget([
             'options'   => ['class' => 'header']
         ],
         [
+            'icon'      => '<i class="fa fa-star"></i>',
+            'label'     => \Yii::t('resutoran', 'Reviews'),
+            'url'       => ['/resutoran/resu-review/index'],
+        ],
+        [
             'icon'      => '<i class="fa fa-bars"></i>',
             'label'     => \Yii::t('resutoran', 'Location Data'),
-            'options'   => ['class' => 'active'],
             'url'       => ['#'],
             'items'     => [
                 [
