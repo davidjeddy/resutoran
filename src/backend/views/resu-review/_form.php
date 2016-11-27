@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use dosamigos\ckeditor\CKEditor;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\ResuReview */
@@ -26,18 +27,12 @@ use yii\widgets\ActiveForm;
     ]); ?>
 
     <?php //echo $form->field($model, 'value')->textarea(['rows' => 6]) ?>
-    <?php echo $form->field($model, 'value')->widget(
-        \yii\imperavi\Widget::className(),
-        [
-            'plugins'   => ['fullscreen', 'fontcolor', 'video'],
-            'options'   => [
-                'minHeight'     => 400,
-                'maxHeight'     => 400,
-                'buttonSource'  => true,
-                'imageUpload'   => \Yii::$app->urlManager->createUrl(['/file-storage/upload-imperavi'])
-            ]
-        ]
-    )->label('Review Content'); ?>
+    <?php echo $form->field($model, 'value')->widget(CKEditor::className(), [
+        'options' => [
+            'rows' => 6
+        ],
+        'preset' => 'basic'
+    ])->label('Review Content'); ?>
 
     <?php //echo $form->field($model, 'created_at')->textInput() ?>
 
