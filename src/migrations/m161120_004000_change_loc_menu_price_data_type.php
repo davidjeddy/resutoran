@@ -17,6 +17,12 @@ class m161120_004000_change_loc_menu_price_data_type extends Migration
             CHANGE COLUMN `high_price` `high_price` VARCHAR(6) NULL DEFAULT NULL ,
             CHANGE COLUMN `low_price` `low_price` VARCHAR(6) NULL DEFAULT NULL ;
                 
+            ALTER TABLE `resu_location` 
+            DROP FOREIGN KEY `fk_resu_location_resu_price_option1`;
+            ALTER TABLE `resu_location` 
+            DROP COLUMN `resu_price_option_id`,
+            DROP INDEX `fk_resu_location_resu_price_option1_idx` ;
+
             SET SQL_MODE=@OLD_SQL_MODE;
             SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
             SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

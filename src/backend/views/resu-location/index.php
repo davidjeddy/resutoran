@@ -29,7 +29,6 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'resu_contact_id',
             'resuContact.value:text:Contact',
             // 'resu_price_option_id',
-            'resuPriceOption.value:text:Price',
             // 'resu_decor_option_id',
             'resuDecorOption.value:text:Decor',
             // 'resu_ambiance_option_id',

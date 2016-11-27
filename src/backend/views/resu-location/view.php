@@ -37,10 +37,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => (\resutoran\common\models\ResuContact::findOne(['id' => $model->resu_contact_id])->value ?: null)
             ],
             [
-                'label' => 'Price Range',
-                'value' => (\resutoran\common\models\ResuPriceOption::findOne(['id' => $model->resu_price_option_id])->value ?: null)
-            ],
-            [
                 'label' => 'Decor',
                 'value' => (\resutoran\common\models\ResuDecorOption::findOne(['id' => $model->resu_decor_option_id])->value ?: null)
             ],
@@ -63,7 +59,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
 
             [
-                'label' => 'Boolean Values',
+                'label' => 'Features Values',
                 'value' => \Yii::$app->controller->renderPartial('../partials/multiItemList',
                     [
                         'model' => $model,
@@ -118,38 +114,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 )
             ],
             [
-                'label' => 'Reservation',
-                'value' => \Yii::$app->controller->renderPartial('../partials/multiItemList',
-                    [
-                        'model' => $model,
-                        'option'=> 'reservation'
-                    ]
-                )
-            ],
-            [
                 'label' => 'Seating',
                 'value' => \Yii::$app->controller->renderPartial('../partials/multiItemList',
                     [
                         'model' => $model,
                         'option'=> 'seating'
-                    ]
-                )
-            ],
-            [
-                'label' => 'Service',
-                'value' => \Yii::$app->controller->renderPartial('../partials/multiItemList',
-                    [
-                        'model' => $model,
-                        'option'=> 'service'
-                    ]
-                )
-            ],
-            [
-                'label' => 'Alcohol',
-                'value' => \Yii::$app->controller->renderPartial('../partials/multiItemList',
-                    [
-                        'model' => $model,
-                        'option'=> 'alcohol'
                     ]
                 )
             ],

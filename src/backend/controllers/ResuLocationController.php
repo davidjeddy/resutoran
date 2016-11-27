@@ -27,16 +27,21 @@ class ResuLocationController extends \resutoran\backend\controllers\BaseControll
     {
         $model = new $this->model();
 
-        if ($model->load(Yii::$app->request->post())  && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
 
             // go save resu_location_* day and hours data
-            /*if (!empty(Yii::$app->request->post()['ResuLocation']['hour_value'])) {
+            if (!empty(Yii::$app->request->post()['ResuLocation']['hour_value'])) {
                 $this->saveHoursValues($model, Yii::$app->request->post()['ResuLocation']['hour_value']);
-            }*/
+            }
 
             // go save resu_location_menu and amount data
             if (!empty(Yii::$app->request->post()['ResuLocation']['resu_location_menu'])) {
                 $this->saveMenuAmountValues($model, Yii::$app->request->post()['ResuLocation']['resu_location_menu']);
+            }
+
+            // go save resu_location_boolean options
+            if (!empty(Yii::$app->request->post()['ResuLocation']['resu_location_boolean'])) {
+                $this->saveBooleanOptionValues($model, Yii::$app->request->post()['ResuLocation']['resu_location_boolean']);
             }
 
             return $this->redirect(['view', 'id' => $model->id]);
@@ -134,6 +139,8 @@ class ResuLocationController extends \resutoran\backend\controllers\BaseControll
     /**
      * @param $model \resutoran\common\models\ResuLocation
      * @param $data \array
+     *
+     * @return boolean
      */
     private function saveMenuAmountValues($model, $data)
     {
@@ -154,7 +161,40 @@ class ResuLocationController extends \resutoran\backend\controllers\BaseControll
                     $returnData = true;
                 }
             } else {
-                // TODO return with failed model validation
+
+            }
+        }
+
+        return $returnData;
+    }
+
+    /**
+     * @param $model \resutoran\common\models\ResuLocation
+     * @param $data \array
+     *
+     * @return boolean
+     */
+    private function saveBooleanOptionValues($model, $data)
+    {
+        $returnData = false;
+
+        foreach ($data as $key => $value) {
+            // TODO why is the view widget returning 1 for un-checked checkboxes?
+            if ($value === '1') {
+                continue;
+            }
+
+            $resuLocOptionMDL = new \resutoran\common\models\ResuLocationBoolean([
+                'resu_location_id'      => $model->id,
+                'resu_boolean_option_id'=> \resutoran\common\models\ResuBooleanOption::findOne([
+                    'value' => $value
+                ])->id
+            ]);
+
+            if (!$resuLocOptionMDL->save()) {
+                $returnData = $resuLocOptionMDL->getErrors();
+            } else {
+                $returnData = true;
             }
         }
 

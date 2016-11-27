@@ -4,6 +4,7 @@ use yii\bootstrap\ActiveForm;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use kartik\widgets\Select2;
+use kartik\checkbox\CheckboxX;
 
 /* @var $this yii\web\View */
 /* @var $model \resutoran\common\models\ResuLocation */
@@ -38,17 +39,6 @@ use kartik\widgets\Select2;
             'clear'     => true,
             'form'      => $form,
             'label'     => 'Contact',
-            'model'     => $model,
-            'required'  => true,
-        ]
-    ]); ?>
-
-    <?php // echo $form->field($model, 'resu_price_option_id')->textInput() ?>
-    <?php echo $this->render('../partials/Select2', [
-        'options' => [
-            'clear'     => true,
-            'form'      => $form,
-            'label'     => 'PriceOption',
             'model'     => $model,
             'required'  => true,
         ]
@@ -174,43 +164,6 @@ use kartik\widgets\Select2;
     ]); ?>
 
     <?php
-    echo Html::label('Service Option');
-    echo Select2::widget([
-        'name'      => 'ResuLocation[location_options][resu_location_service][]',
-        //'value'     => null,
-        'value'     => ArrayHelper::map($model->getResuLocationService()->asArray()->all(), 'id', 'id'),
-        'data'      => ArrayHelper::map(\resutoran\common\models\ResuServiceOption::find()->all(), 'id', 'value'),
-        'options'   => [
-            'multiple'      => true,
-            'placeholder'   => 'Select service Options ...'
-        ]
-    ]); ?>
-
-    <?php
-    echo Html::label('Special Option');
-    echo Select2::widget([
-        'name'      => 'ResuLocation[location_options][resu_location_boolean][]',
-        'value'     => null,
-        'data'      => ArrayHelper::map(\resutoran\common\models\ResuBooleanOption::find()->all(), 'id', 'value'),
-        'options'   => [
-            'multiple'      => true,
-            'placeholder'   => 'Select Boolean Options ...'
-        ]
-    ]); ?>
-
-    <?php
-    echo Html::label('Reservation Option');
-    echo Select2::widget([
-        'name'      => 'ResuLocation[location_options][resu_location_reservation][]',
-        'value'     => null,
-        'data'      => ArrayHelper::map(\resutoran\common\models\ResuReservationOption::find()->all(), 'id', 'value'),
-        'options'   => [
-            'multiple'      => true,
-            'placeholder'   => 'Select Reservation Options ...'
-        ]
-    ]); ?>
-
-    <?php
     echo Html::label('Seating Option');
     echo Select2::widget([
         'name'      => 'ResuLocation[location_options][resu_location_seating][]',
@@ -258,41 +211,36 @@ use kartik\widgets\Select2;
         ]
     ]); ?>
 
-    <?php
-    echo Html::label('Alcohol Option');
-    echo Select2::widget([
-        'name'      => 'ResuLocation[location_options][resu_location_alcohol][]',
-        'value'     => null,
-        'data'      => ArrayHelper::map(\resutoran\common\models\ResuAlcoholOption::find()->all(), 'id', 'value'),
-        'options'   => [
-            'multiple'      => false,
-            'placeholder'   => 'Select Alcohol Options ...'
-        ]
-    ]); ?>
+    <hr />
+
+    <?php echo Html::label('Features'); ?><br />
 
     <?php
-    echo Html::label('Menu Option');
-    echo Select2::widget([
-        'name'      => 'ResuLocation[location_options][resu_location_menu][]',
-        'value'     => null,
-        'data'      => ArrayHelper::map(\resutoran\common\models\ResuMenuOption::find()->all(), 'id', 'value'),
-        'options'   => [
-            'multiple'      => true,
-            'placeholder'   => 'Select Menu Options ...'
-        ]
-    ]); ?>
+    echo \yii\bootstrap\BaseHtml::checkboxList(
+        'resu_location_boolean',
+        null,
+        ArrayHelper::map(
+            \resutoran\common\models\ResuBooleanOption::find()->all(),
+            'id',
+            'value'
+        ),
+        [
+            'inline' => false,
+            'item'   => function($index, $label, $name, $checked, $value) {
 
-    <?php
-    echo Html::label('Speciality Menu Option');
-    echo Select2::widget([
-        'name'      => 'ResuLocation[location_options][resu_location_speciality_menu][]',
-        'value'     => null,
-        'data'      => ArrayHelper::map(\resutoran\common\models\ResuSpecialityMenuOption::find()->all(), 'id', 'value'),
-        'options'   => [
-            'multiple'      => true,
-            'placeholder'   => 'Select Speciality Menu Options ...'
+                $name = 'ResuLocation[resu_location_boolean]['.$index.']';
+
+                echo '<label class="cbx-label" for="'.$name.'">'.$label.'</label>';
+                echo CheckboxX::widget([
+                    'name'          => $name,
+                    'value'         => $label,
+                    'pluginOptions' => [
+                        'threeState' => false
+                    ]
+                ]);
+            }
         ]
-    ]); ?>
+    ); ?>
 
     <?php // echo $form->field($model, 'created_at')->textInput() ?>
 
