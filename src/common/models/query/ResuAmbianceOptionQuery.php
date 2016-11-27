@@ -7,28 +7,6 @@ namespace resutoran\common\models\query;
  *
  * @see \common\models\ResuAmbianceOption
  */
-class ResuAmbianceOptionQuery extends \yii\db\ActiveQuery
+class ResuAmbianceOptionQuery extends \resutoran\common\models\query\BaseQuery
 {
-    /*public function active()
-    {
-        return $this->andWhere('[[status]]=1');
-    }*/
-
-    /**
-     * @inheritdoc
-     * @return \common\models\ResuAmbianceOption[]|array
-     */
-    public function all($db = null)
-    {
-        return parent::all($db);
-    }
-
-    /**
-     * @inheritdoc
-     * @return \common\models\ResuAmbianceOption|array|null
-     */
-    public function one($db = null)
-    {
-        return parent::one($db);
-    }
 }

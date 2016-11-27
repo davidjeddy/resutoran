@@ -7,7 +7,6 @@ namespace resutoran\common\models\query;
  *
  * @see \common\models\ResuSeatingOption
  */
-class ResuSeatingOptionQuery extends \yii\db\ActiveQuery
+class ResuSeatingOptionQuery extends \resutoran\common\models\query\BaseQuery
 {
-
 }

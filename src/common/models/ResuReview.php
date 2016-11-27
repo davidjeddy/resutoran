@@ -17,7 +17,7 @@ use Yii;
  * @property integer $updated_by
  * @property integer $deleted_at
  *
- * @property ResuLocation $resuLocation
+ * @property \resutoran\common\models\ResuLocation $resuLocation
  */
 class ResuReview extends \resutoran\common\models\ResuBase
 {
@@ -48,15 +48,15 @@ class ResuReview extends \resutoran\common\models\ResuBase
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('resutoran', 'ID'),
-            'user_id' => Yii::t('resutoran', 'User ID'),
+            'id'               => Yii::t('resutoran', 'ID'),
+            'user_id'          => Yii::t('resutoran', 'User ID'),
             'resu_location_id' => Yii::t('resutoran', 'Resu Location ID'),
-            'value' => Yii::t('resutoran', 'Value'),
-            'created_at' => Yii::t('resutoran', 'Created At'),
-            'created_by' => Yii::t('resutoran', 'Created By'),
-            'updated_at' => Yii::t('resutoran', 'Updated At'),
-            'updated_by' => Yii::t('resutoran', 'Updated By'),
-            'deleted_at' => Yii::t('resutoran', 'Deleted At'),
+            'value'            => Yii::t('resutoran', 'Value'),
+            'created_at'       => Yii::t('resutoran', 'Created At'),
+            'created_by'       => Yii::t('resutoran', 'Created By'),
+            'updated_at'       => Yii::t('resutoran', 'Updated At'),
+            'updated_by'       => Yii::t('resutoran', 'Updated By'),
+            'deleted_at'       => Yii::t('resutoran', 'Deleted At'),
         ];
     }
 
@@ -65,7 +65,7 @@ class ResuReview extends \resutoran\common\models\ResuBase
      */
     public function getResuLocation()
     {
-        return $this->hasOne(ResuLocation::className(), ['id' => 'resu_location_id']);
+        return $this->hasOne(\resutoran\common\models\ResuLocation::className(), ['id' => 'resu_location_id']);
     }
 
     /**
@@ -74,6 +74,6 @@ class ResuReview extends \resutoran\common\models\ResuBase
      */
     public static function find()
     {
-        return new ResuReviewQuery(get_called_class());
+        return new \resutoran\common\models\query\ResuReviewQuery(get_called_class());
     }
 }

@@ -7,7 +7,6 @@ namespace resutoran\common\models\query;
  *
  * @see \common\models\ResuLocationService
  */
-class ResuLocationServiceQuery extends \yii\db\ActiveQuery
+class ResuLocationServiceQuery extends \resutoran\common\models\query\BaseQuery
 {
-
 }

@@ -7,7 +7,6 @@ namespace resutoran\common\models\query;
  *
  * @see \common\models\ResuPaymentOption
  */
-class ResuPaymentOptionQuery extends \yii\db\ActiveQuery
+class ResuPaymentOptionQuery extends \resutoran\common\models\query\BaseQuery
 {
-
 }
