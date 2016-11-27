@@ -4,6 +4,7 @@ use yii\bootstrap\ActiveForm;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use kartik\widgets\Select2;
+use kartik\checkbox\CheckboxX;
 
 /* @var $this yii\web\View */
 /* @var $model \resutoran\common\models\ResuLocation */
@@ -225,6 +226,37 @@ use kartik\widgets\Select2;
             'placeholder'   => 'Select Payment Options ...'
         ]
     ]); ?>
+
+    <hr />
+
+    <?php echo Html::label('Features'); ?>
+
+    <?php
+    echo \yii\bootstrap\BaseHtml::checkboxList(
+        'resu_location_boolean',
+        null,
+        ArrayHelper::map(
+            \resutoran\common\models\ResuBooleanOption::find()->all(),
+            'id',
+            'value'
+        ),
+        [
+            'inline' => false,
+            'item'   => function($index, $label, $name, $checked, $value) {
+
+                echo '<pre>';
+                echo \yii\helpers\VarDumper::dump($label, 10, true);
+                echo '</pre>';
+
+                echo CheckboxX::widget([
+                    'name'=>'s_1',
+                    'options'=>['id'=>'s_1'],
+                    'pluginOptions'=>['threeState'=>false]
+                ]);
+
+            }
+        ]
+    ); ?>
 
     <?php // echo $form->field($model, 'created_at')->textInput() ?>
 
