@@ -33,7 +33,10 @@ class m161127_051333_create_review_crud extends Migration
                 ON DELETE NO ACTION
                 ON UPDATE NO ACTION)
             ENGINE = InnoDB;
-                
+          
+            ALTER TABLE `zeroforksgiven`.`resu_review` 
+                CHANGE COLUMN `user_id` `user_id` INT(11) NOT NULL ;
+
                 
             SET SQL_MODE=@OLD_SQL_MODE;
             SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

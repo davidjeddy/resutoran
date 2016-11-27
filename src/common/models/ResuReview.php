@@ -1,6 +1,6 @@
 <?php
 
-namespace common\models;
+namespace resutoran\common\models;
 
 use Yii;
 
@@ -36,7 +36,7 @@ class ResuReview extends \resutoran\common\models\ResuBase
     {
         return [
             [['user_id', 'resu_location_id', 'created_at', 'created_by', 'updated_at', 'updated_by', 'deleted_at'], 'integer'],
-            [['resu_location_id', 'value', 'created_by'], 'required'],
+            [['user_id', 'resu_location_id',], 'required'],
             [['value'], 'string'],
             /*[['resu_location_id'], 'exist', 'skipOnError' => true, 'targetClass' => ResuLocation::className(), 'targetAttribute' => ['resu_location_id' => 'id']],*/
         ];
