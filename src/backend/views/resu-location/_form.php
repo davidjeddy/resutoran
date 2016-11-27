@@ -229,7 +229,7 @@ use kartik\checkbox\CheckboxX;
 
     <hr />
 
-    <?php echo Html::label('Features'); ?>
+    <?php echo Html::label('Features'); ?><br />
 
     <?php
     echo \yii\bootstrap\BaseHtml::checkboxList(
@@ -244,16 +244,16 @@ use kartik\checkbox\CheckboxX;
             'inline' => false,
             'item'   => function($index, $label, $name, $checked, $value) {
 
-                echo '<pre>';
-                echo \yii\helpers\VarDumper::dump($label, 10, true);
-                echo '</pre>';
+                $name = 'ResuLocation[resu_location_boolean]['.$index.']';
 
+                echo '<label class="cbx-label" for="'.$name.'">'.$label.'</label>';
                 echo CheckboxX::widget([
-                    'name'=>'s_1',
-                    'options'=>['id'=>'s_1'],
-                    'pluginOptions'=>['threeState'=>false]
+                    'name'          => $name,
+                    'value'         => $label,
+                    'pluginOptions' => [
+                        'threeState' => false
+                    ]
                 ]);
-
             }
         ]
     ); ?>

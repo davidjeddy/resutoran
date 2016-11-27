@@ -114,38 +114,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 )
             ],
             [
-                'label' => 'Reservation',
-                'value' => \Yii::$app->controller->renderPartial('../partials/multiItemList',
-                    [
-                        'model' => $model,
-                        'option'=> 'reservation'
-                    ]
-                )
-            ],
-            [
                 'label' => 'Seating',
                 'value' => \Yii::$app->controller->renderPartial('../partials/multiItemList',
                     [
                         'model' => $model,
                         'option'=> 'seating'
-                    ]
-                )
-            ],
-            [
-                'label' => 'Service',
-                'value' => \Yii::$app->controller->renderPartial('../partials/multiItemList',
-                    [
-                        'model' => $model,
-                        'option'=> 'service'
-                    ]
-                )
-            ],
-            [
-                'label' => 'Alcohol',
-                'value' => \Yii::$app->controller->renderPartial('../partials/multiItemList',
-                    [
-                        'model' => $model,
-                        'option'=> 'alcohol'
                     ]
                 )
             ],
