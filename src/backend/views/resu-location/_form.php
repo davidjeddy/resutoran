@@ -133,6 +133,7 @@ use kartik\widgets\Select2;
     <hr>
 
     <?php
+    // pricing options
     echo \yii\bootstrap\BaseHtml::checkboxList(
         'resu_location_menu',
         null,
@@ -145,37 +146,20 @@ use kartik\widgets\Select2;
             'inline' => false,
             'item'   => function($index, $label, $name, $checked, $value) use ($form, $model) {
 
-                $return  = '<div class="form-group field-resulocation-resu_location_menu"><label>'.$label;
-                $return .= '    <div class="regular-radio-button"></div>';
-
-                $return .= \yii\bootstrap\BaseHtml::textInput(
-                    'ResuLocation[resu_location_menu]['.$value.'][high_price]',
-                    null,
-                    [
-                        'maxlength'     => 7,
-                        'placeholder'   => 'High price',
-                        'class'         => 'form-control',
-                    ]
-                );
-
-                $return .= \yii\bootstrap\BaseHtml::textInput(
-                    'ResuLocation[resu_location_menu]['.$value.'][low_price]',
-                    null,
-                    [
-                        'maxlength'     => 7,
-                        'placeholder'   => 'Low price',
-                        'class'         => 'form-control',
-                    ]
-                );
-
-                $return .= '</label></div>';
-                $return .= '<br />';
+                $return = '<div class="form-group field-resulocation-resu_location_menu required">
+                    <label for="ResuLocation[resu_location_menu]['.$value.'][high_price]">'.$label.'</label>
+                    <input type="text" class="form-control" name="ResuLocation[resu_location_menu]['.$value.'][low_price]" maxlength="6" placeholder="Low Price (XXX.YY)">
+                    <input type="text" class="form-control" name="ResuLocation[resu_location_menu]['.$value.'][high_price]" maxlength="6" placeholder="High Price  (XXX.YY)">
+                    <p class="help-block help-block-error"></p>
+                </div>';
 
                 return $return;
             }
         ]
     ); ?>
 
+    <hr />
+    
     <?php
     echo Html::label('Dress Option');
     echo Select2::widget([
