@@ -7,7 +7,6 @@ namespace resutoran\common\models\query;
  *
  * @see \common\models\ResuLocationSpecialityMenu
  */
-class ResuLocationSpecialityMenuQuery extends \yii\db\ActiveQuery
+class ResuLocationSpecialityMenuQuery extends \resutoran\common\models\query\BaseQuery
 {
-
 }

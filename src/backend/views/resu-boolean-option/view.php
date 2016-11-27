@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model resutoran\common\models\Resu[location_options][resu_BooleanOption */
 
 $this->title = $model->value;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('resutoran', ' Boolean Options'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('resutoran', ' Feature Options'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="resu-boolean-option-view">

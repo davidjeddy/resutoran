@@ -7,7 +7,6 @@ namespace resutoran\common\models\query;
  *
  * @see \common\models\ResuMediaOption
  */
-class ResuMediaOptionQuery extends \yii\db\ActiveQuery
+class ResuMediaOptionQuery extends \resutoran\common\models\query\BaseQuery
 {
-
 }

@@ -7,7 +7,6 @@ namespace resutoran\common\models\query;
  *
  * @see \common\models\ResuMap
  */
-class ResuMapQuery extends \yii\db\ActiveQuery
+class ResuMapQuery extends \resutoran\common\models\query\BaseQuery
 {
-
 }

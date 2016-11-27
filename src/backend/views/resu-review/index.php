@@ -6,16 +6,13 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('resutoran', ' Feature Options');
+$this->title = Yii::t('resutoran', 'Reviews');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="resu-boolean-option-index">
-
+<div class="resu-review-index">
 
     <p>
-        <?php echo Html::a(Yii::t('backend', 'Create {modelClass}', [
-    'modelClass' => 'Feature Option',
-]), ['create'], ['class' => 'btn btn-success']) ?>
+        <?php echo Html::a(Yii::t('resutoran', 'Create Review'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php echo GridView::widget([
@@ -24,7 +21,8 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'value:ntext',
+            'user_id',
+            'value:html',
             'created_at:date',
             'created_by',
             'updated_at:date',
@@ -34,5 +32,4 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
-
 </div>

@@ -72,6 +72,11 @@ class BaseController extends Controller
     {
         $model = new $this->model();
 
+        // set user_id if the model has it and it is not set
+        if ($model->hasAttribute('user_id') && empty($model->user_id)) {
+            $model->user_id = \Yii::$app->user->getId();
+        }
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
 
             // return $this->redirect(['view', 'id' => $model->id]);

@@ -23,7 +23,7 @@ echo $options['form']->field($options['model'], 'resu_' . Inflector::underscore(
     'options'   => array_merge(
         [
             'class'       => 'form-control',
-            'placeholder' => 'Choose Franchise...',
+            'placeholder' => 'Choose Option...',
             'multiple'    => (!empty($options['multiple']) ? $options['multiple'] : false),
 
         ],
