@@ -10,7 +10,6 @@ use Yii;
  * @property integer $id
  * @property string $name
  * @property integer $resu_franchise_id
- * @property integer $resu_contact_id
 
  * @property integer $resu_decor_option_id
  * @property integer $resu_ambiance_option_id
@@ -22,7 +21,6 @@ use Yii;
  * @property integer $deleted_at
  *
  * @property ResuAmbianceOption $resuAmbianceOption
- * @property ResuContact $resuContact
  * @property ResuDecorOption $resuDecorOption
  * @property ResuFranchise $resuFranchise
  * @property ResuMap $resuMap
@@ -51,11 +49,10 @@ class ResuLocation extends \resutoran\common\models\ResuBase
     {
         return [
             // [['created_by', 'created_at'], 'required'], populated via behavior
-            [['value', 'resu_franchise_id', 'resu_contact_id', 'resu_decor_option_id', 'resu_ambiance_option_id', 'resu_map_id'], 'required'],
-            [['resu_franchise_id', 'resu_contact_id', 'resu_decor_option_id', 'resu_ambiance_option_id', 'resu_map_id', 'created_at', 'created_by', 'updated_at', 'updated_by', 'deleted_at'], 'integer'],
+            [['value', 'resu_franchise_id', 'resu_decor_option_id', 'resu_ambiance_option_id', 'resu_map_id'], 'required'],
+            [['resu_franchise_id', 'resu_decor_option_id', 'resu_ambiance_option_id', 'resu_map_id', 'created_at', 'created_by', 'updated_at', 'updated_by', 'deleted_at'], 'integer'],
             [['value'], 'string', 'max' => 64],
             [['resu_ambiance_option_id'], 'exist', 'skipOnError' => true, 'targetClass' => ResuAmbianceOption::className(), 'targetAttribute' => ['resu_ambiance_option_id' => 'id']],
-            [['resu_contact_id'], 'exist', 'skipOnError' => true, 'targetClass' => ResuContact::className(), 'targetAttribute' => ['resu_contact_id' => 'id']],
             [['resu_decor_option_id'], 'exist', 'skipOnError' => true, 'targetClass' => ResuDecorOption::className(), 'targetAttribute' => ['resu_decor_option_id' => 'id']],
             [['resu_franchise_id'], 'exist', 'skipOnError' => true, 'targetClass' => ResuFranchise::className(), 'targetAttribute' => ['resu_franchise_id' => 'id']],
             [['resu_map_id'], 'exist', 'skipOnError' => true, 'targetClass' => ResuMap::className(), 'targetAttribute' => ['resu_map_id' => 'id']],
@@ -72,7 +69,6 @@ class ResuLocation extends \resutoran\common\models\ResuBase
             'id' => Yii::t('resutoran', 'ID'),
             'value' => Yii::t('resutoran', 'Name'),
             'resu_franchise_id' => Yii::t('resutoran', 'Franchise'),
-            'resu_contact_id' => Yii::t('resutoran', 'Contact'),
             'resu_decor_option_id' => Yii::t('resutoran', 'Decor Option'),
             'resu_ambiance_option_id' => Yii::t('resutoran', 'Ambiance Option'),
             'resu_map_id' => Yii::t('resutoran', 'Map'),
@@ -90,14 +86,6 @@ class ResuLocation extends \resutoran\common\models\ResuBase
     public function getResuAmbianceOption()
     {
         return $this->hasOne(ResuAmbianceOption::className(), ['id' => 'resu_ambiance_option_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getResuContact()
-    {
-        return $this->hasOne(ResuContact::className(), ['id' => 'resu_contact_id']);
     }
 
     /**

@@ -33,10 +33,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => (\resutoran\common\models\ResuFranchise::findOne(['id' => $model->resu_franchise_id])->value ?: null)
             ],
             [
-                'label' => 'Contact',
-                'value' => (\resutoran\common\models\ResuContact::findOne(['id' => $model->resu_contact_id])->value ?: null)
-            ],
-            [
                 'label' => 'Decor',
                 'value' => (\resutoran\common\models\ResuDecorOption::findOne(['id' => $model->resu_decor_option_id])->value ?: null)
             ],

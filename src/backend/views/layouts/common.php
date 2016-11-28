@@ -33,11 +33,6 @@ echo Menu::widget([
                 ],
                 [
                     'icon'      => '<i class="fa fa-bars"></i>',
-                    'label'     => \Yii::t('resutoran', 'Contact'),
-                    'url'       => ['/resutoran/resu-contact'],
-                ],
-                [
-                    'icon'      => '<i class="fa fa-bars"></i>',
                     'label'     => \Yii::t('resutoran', 'Franchise'),
                     'url'       => ['/resutoran/resu-franchise'],
                 ],

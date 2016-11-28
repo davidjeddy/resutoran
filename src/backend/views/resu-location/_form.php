@@ -33,17 +33,6 @@ use kartik\checkbox\CheckboxX;
         ]
     ]); ?>
 
-    <?php // echo $form->field($model, 'resu_contact_id')->textInput() ?>
-    <?php echo $this->render('../partials/Select2', [
-        'options' => [
-            'clear'     => true,
-            'form'      => $form,
-            'label'     => 'Contact',
-            'model'     => $model,
-            'required'  => true,
-        ]
-    ]); ?>
-
     <?php // echo $form->field($model, 'resu_decor_option_id')->textInput() ?>
     <?php echo $this->render('../partials/Select2', [
         'options' => [
@@ -149,7 +138,7 @@ use kartik\checkbox\CheckboxX;
     ); ?>
 
     <hr />
-    
+
     <?php
     echo Html::label('Dress Option');
     echo Select2::widget([
