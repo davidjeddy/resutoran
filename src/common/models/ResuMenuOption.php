@@ -9,8 +9,6 @@ use Yii;
  *
  * @property integer $id
  * @property string $value
- * @property decimal $low_price
- * @property decimal $high_price
  * @property integer $created_at
  * @property integer $created_by
  * @property integer $updated_at
