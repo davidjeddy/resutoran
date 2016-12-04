@@ -17,8 +17,7 @@ use Yii;
  *
  * @property string  address_1
  * @property string  address_2
- * @property integer province_id
- * @property integer country_id
+ * @property integer resu_state_id
  * @property string  phone
  * @property string  email
  *
@@ -57,8 +56,8 @@ class ResuLocation extends \resutoran\common\models\ResuBase
     {
         return [
             // [['created_by', 'created_at'], 'required'], populated via behavior
-            [['value', 'resu_franchise_id', 'resu_decor_option_id', 'resu_ambiance_option_id', 'resu_map_id'], 'required'],
-            [['resu_franchise_id', 'resu_decor_option_id', 'resu_ambiance_option_id', 'resu_map_id', 'country_id', 'province_id', 'created_at', 'created_by', 'updated_at', 'updated_by', 'deleted_at'], 'integer'],
+            [['value'], 'required'],
+            [['resu_franchise_id', 'resu_decor_option_id', 'resu_ambiance_option_id', 'resu_map_id', 'resu_state_id', 'created_at', 'created_by', 'updated_at', 'updated_by', 'deleted_at'], 'integer'],
             [['value', 'phone', 'email'], 'string', 'max' => 64],
             [['value'], 'unique'],
 
@@ -82,8 +81,7 @@ class ResuLocation extends \resutoran\common\models\ResuBase
             'resu_ambiance_option_id' => Yii::t('resutoran', 'Ambiance Option'),
             'address_1'               => Yii::t('resutoran', 'Address 1'),
             'address_2'               => Yii::t('resutoran', 'Address 2'),
-            'province_id'             => Yii::t('resutoran', 'Prov/State'),
-            'country_id'              => Yii::t('resutoran', 'Country'),
+            'resu_state_id'           => Yii::t('resutoran', 'State'),
             'phone'                   => Yii::t('resutoran', 'Phone'),
             'email'                   => Yii::t('resutoran', 'Email'),
             'resu_map_id'             => Yii::t('resutoran', 'Map'),

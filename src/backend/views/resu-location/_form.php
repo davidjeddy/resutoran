@@ -10,15 +10,6 @@ use kartik\checkbox\CheckboxX;
 /* @var $model \resutoran\common\models\ResuLocation */
 /* @var $form yii\bootstrap\ActiveForm */
 
-// get country list
-$countriesMDL = (new League\ISO3166\ISO3166);
-$countriesArray = [];
-// remove leading zeros, Would use ArrayHelper::map() but does not remove leading zeros
-foreach ($countriesMDL as $key => $value) {
-    $countriesArray[(int)$value['numeric']] = $value['name'];
-}
-
-// ISO3166-2 (region/prov/state) data access is not yet available, leaving as a manual field for now
 ?>
 
 <div class="resu-location-form">
@@ -42,16 +33,15 @@ foreach ($countriesMDL as $key => $value) {
         'maxlength'   => true
     ]) ?>
 
-    <?php echo $form->field($model, 'province_id')->textInput([
-        'placeholder' => 'Prov/State',
-        'maxlength'   => true
-    ]) ?>
-
-    <?php // $countriesArray ?>
-    <?php echo $form->field($model, 'country_id')->textInput([
-        'placeholder' => 'Country',
-        'maxlength'   => true
-    ]) ?>
+    <?php // echo $form->field($model, 'resu_state_id')->textInput() ?>
+    <?php //. why the fuck wont our ./partial/Select2 work for this? ?>
+    <?php echo $form->field($model, 'resu_state_id')->dropDownList(
+        ArrayHelper::map(
+            \resutoran\common\models\ResuState::find()->asArray()->all(),
+            'id',
+            'name'
+        )
+    ); ?>
 
     <?php echo $form->field($model, 'phone')->textInput([
         'placeholder' => 'Phone',
@@ -69,8 +59,7 @@ foreach ($countriesMDL as $key => $value) {
             'clear'     => true,
             'form'      => $form,
             'label'     => 'Franchise',
-            'model'     => $model,
-            'required'  => true,
+            'model'     => $model
         ]
     ]); ?>
 
@@ -80,8 +69,7 @@ foreach ($countriesMDL as $key => $value) {
             'clear'     => true,
             'form'      => $form,
             'label'     => 'DecorOption',
-            'model'     => $model,
-            'required'  => true,
+            'model'     => $model
         ]
     ]); ?>
 
@@ -91,8 +79,7 @@ foreach ($countriesMDL as $key => $value) {
             'clear'     => true,
             'form'      => $form,
             'label'     => 'AmbianceOption',
-            'model'     => $model,
-            'required'  => true,
+            'model'     => $model
         ]
     ]); ?>
 
@@ -102,8 +89,7 @@ foreach ($countriesMDL as $key => $value) {
             'clear'     => true,
             'form'      => $form,
             'label'     => 'Map',
-            'model'     => $model,
-            'required'  => true,
+            'model'     => $model
         ]
     ]); ?>
 

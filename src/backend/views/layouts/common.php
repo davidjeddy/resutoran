@@ -25,6 +25,7 @@ echo Menu::widget([
             'icon'      => '<i class="fa fa-bars"></i>',
             'label'     => \Yii::t('resutoran', 'Location Data'),
             'url'       => ['#'],
+            'options'   => ['class' => 'active'],
             'items'     => [
                 [
                     'icon'      => '<i class="fa fa-bars"></i>',
