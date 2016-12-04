@@ -9,6 +9,16 @@ use kartik\checkbox\CheckboxX;
 /* @var $this yii\web\View */
 /* @var $model \resutoran\common\models\ResuLocation */
 /* @var $form yii\bootstrap\ActiveForm */
+
+// get country list
+$countriesMDL = (new League\ISO3166\ISO3166);
+$countriesArray = [];
+// remove leading zeros, Would use ArrayHelper::map() but does not remove leading zeros
+foreach ($countriesMDL as $key => $value) {
+    $countriesArray[(int)$value['numeric']] = $value['name'];
+}
+
+// ISO3166-2 (region/prov/state) data access is not yet available, leaving as a manual field for now
 ?>
 
 <div class="resu-location-form">
@@ -37,6 +47,7 @@ use kartik\checkbox\CheckboxX;
         'maxlength'   => true
     ]) ?>
 
+    <?php // $countriesArray ?>
     <?php echo $form->field($model, 'country_id')->textInput([
         'placeholder' => 'Country',
         'maxlength'   => true
