@@ -30,23 +30,31 @@ $this->params['breadcrumbs'][] = $this->title;
             'value',
             [
                 'label' => 'Franchise',
-                'value' => (\resutoran\common\models\ResuFranchise::findOne(['id' => $model->resu_franchise_id])->value ?: null)
-            ],
-            [
-                'label' => 'Contact',
-                'value' => (\resutoran\common\models\ResuContact::findOne(['id' => $model->resu_contact_id])->value ?: null)
+                'value' => ($model->resu_franchise_id !== null
+                    ? $franchise['value'] = \resutoran\common\models\ResuFranchise::findOne(['id' => $model->resu_franchise_id])->value
+                    : null
+                )
             ],
             [
                 'label' => 'Decor',
-                'value' => (\resutoran\common\models\ResuDecorOption::findOne(['id' => $model->resu_decor_option_id])->value ?: null)
+                'value' => ($model->resu_decor_option_id !== null
+                    ? $franchise['value'] = \resutoran\common\models\ResuDecorOption::findOne(['id' => $model->resu_decor_option_id])->value
+                    : null
+                )
             ],
             [
                 'label' => 'Ambiance',
-                'value' => (\resutoran\common\models\ResuAmbianceOption::findOne(['id' => $model->resu_ambiance_option_id])->value ?: null)
+                'value' => ($model->resu_ambiance_option_id !== null
+                    ? $franchise['value'] = \resutoran\common\models\ResuAmbianceOption::findOne(['id' => $model->resu_ambiance_option_id])->value
+                    : null
+                )
             ],
             [
                 'label' => 'Map',
-                'value' => (\resutoran\common\models\ResuMap::findOne(['id' => $model->resu_map_id])->value ?: null)
+                'value' => ($model->resu_map_id !== null
+                    ? $franchise['value'] = \resutoran\common\models\ResuMap::findOne(['id' => $model->resu_map_id])->value
+                    : null
+                )
             ],
 
             [

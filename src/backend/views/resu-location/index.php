@@ -26,7 +26,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'value:text:Location Name',
             // 'resu_franchise_id',
             'resuFranchise.value:text:Franchise',
-            // 'resu_contact_id',
             'resuContact.value:text:Contact',
             // 'resu_price_option_id',
             // 'resu_decor_option_id',

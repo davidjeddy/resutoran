@@ -9,6 +9,7 @@ use kartik\checkbox\CheckboxX;
 /* @var $this yii\web\View */
 /* @var $model \resutoran\common\models\ResuLocation */
 /* @var $form yii\bootstrap\ActiveForm */
+
 ?>
 
 <div class="resu-location-form">
@@ -22,25 +23,43 @@ use kartik\checkbox\CheckboxX;
         'maxlength'   => true
     ]) ?>
 
+    <?php echo $form->field($model, 'address_1')->textInput([
+        'placeholder' => 'Address 1',
+        'maxlength'   => true
+    ]) ?>
+
+    <?php echo $form->field($model, 'address_2')->textInput([
+        'placeholder' => 'Address 2',
+        'maxlength'   => true
+    ]) ?>
+
+    <?php // echo $form->field($model, 'resu_state_id')->textInput() ?>
+    <?php //. why the fuck wont our ./partial/Select2 work for this? ?>
+    <?php echo $form->field($model, 'resu_state_id')->dropDownList(
+        ArrayHelper::map(
+            \resutoran\common\models\ResuState::find()->asArray()->all(),
+            'id',
+            'name'
+        )
+    ); ?>
+
+    <?php echo $form->field($model, 'phone')->textInput([
+        'placeholder' => 'Phone',
+        'maxlength'   => true
+    ]) ?>
+
+    <?php echo $form->field($model, 'email')->textInput([
+        'placeholder' => 'Email',
+        'maxlength'   => true
+    ]) ?>
+
     <?php // echo $form->field($model, 'resu_franchise_id')->textInput() ?>
     <?php echo $this->render('../partials/Select2', [
         'options' => [
             'clear'     => true,
             'form'      => $form,
             'label'     => 'Franchise',
-            'model'     => $model,
-            'required'  => true,
-        ]
-    ]); ?>
-
-    <?php // echo $form->field($model, 'resu_contact_id')->textInput() ?>
-    <?php echo $this->render('../partials/Select2', [
-        'options' => [
-            'clear'     => true,
-            'form'      => $form,
-            'label'     => 'Contact',
-            'model'     => $model,
-            'required'  => true,
+            'model'     => $model
         ]
     ]); ?>
 
@@ -50,8 +69,7 @@ use kartik\checkbox\CheckboxX;
             'clear'     => true,
             'form'      => $form,
             'label'     => 'DecorOption',
-            'model'     => $model,
-            'required'  => true,
+            'model'     => $model
         ]
     ]); ?>
 
@@ -61,8 +79,7 @@ use kartik\checkbox\CheckboxX;
             'clear'     => true,
             'form'      => $form,
             'label'     => 'AmbianceOption',
-            'model'     => $model,
-            'required'  => true,
+            'model'     => $model
         ]
     ]); ?>
 
@@ -72,8 +89,7 @@ use kartik\checkbox\CheckboxX;
             'clear'     => true,
             'form'      => $form,
             'label'     => 'Map',
-            'model'     => $model,
-            'required'  => true,
+            'model'     => $model
         ]
     ]); ?>
 
@@ -149,7 +165,7 @@ use kartik\checkbox\CheckboxX;
     ); ?>
 
     <hr />
-    
+
     <?php
     echo Html::label('Dress Option');
     echo Select2::widget([

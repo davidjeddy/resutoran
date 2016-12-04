@@ -25,16 +25,12 @@ echo Menu::widget([
             'icon'      => '<i class="fa fa-bars"></i>',
             'label'     => \Yii::t('resutoran', 'Location Data'),
             'url'       => ['#'],
+            'options'   => ['class' => 'active'],
             'items'     => [
                 [
                     'icon'      => '<i class="fa fa-bars"></i>',
                     'label'     => \Yii::t('resutoran', 'Locations'),
                     'url'       => ['/resutoran/resu-location/create'],
-                ],
-                [
-                    'icon'      => '<i class="fa fa-bars"></i>',
-                    'label'     => \Yii::t('resutoran', 'Contact'),
-                    'url'       => ['/resutoran/resu-contact'],
                 ],
                 [
                     'icon'      => '<i class="fa fa-bars"></i>',
