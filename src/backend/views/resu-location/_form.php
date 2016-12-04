@@ -22,6 +22,36 @@ use kartik\checkbox\CheckboxX;
         'maxlength'   => true
     ]) ?>
 
+    <?php echo $form->field($model, 'address_1')->textInput([
+        'placeholder' => 'Address 1',
+        'maxlength'   => true
+    ]) ?>
+
+    <?php echo $form->field($model, 'address_2')->textInput([
+        'placeholder' => 'Address 2',
+        'maxlength'   => true
+    ]) ?>
+
+    <?php echo $form->field($model, 'province_id')->textInput([
+        'placeholder' => 'Prov/State',
+        'maxlength'   => true
+    ]) ?>
+
+    <?php echo $form->field($model, 'country_id')->textInput([
+        'placeholder' => 'Country',
+        'maxlength'   => true
+    ]) ?>
+
+    <?php echo $form->field($model, 'phone')->textInput([
+        'placeholder' => 'Phone',
+        'maxlength'   => true
+    ]) ?>
+
+    <?php echo $form->field($model, 'email')->textInput([
+        'placeholder' => 'Email',
+        'maxlength'   => true
+    ]) ?>
+
     <?php // echo $form->field($model, 'resu_franchise_id')->textInput() ?>
     <?php echo $this->render('../partials/Select2', [
         'options' => [

@@ -2,7 +2,7 @@
 
 use yii\db\Migration;
 
-class m161127_193330_remove_contact_table_and_related extends Migration
+class m161127_193330_modified_resu_location_table_add_location_fields extends Migration
 {
     public function safeUp()
     {

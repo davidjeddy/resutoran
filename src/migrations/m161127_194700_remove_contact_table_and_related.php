@@ -18,8 +18,8 @@ class m161127_194700_remove_contact_table_and_related extends Migration
                 ADD COLUMN `address_2` TEXT NULL AFTER `address_1`,
                 ADD COLUMN `province_id` INT(11) NULL AFTER `address_2`,
                 ADD COLUMN `country_id` INT(11) NULL AFTER `province_id`,
-                ADD COLUMN `phone` INT(11) NULL AFTER `country_id`,
-                ADD COLUMN `email` VARCHAR(128) NULL AFTER `phone`;
+                ADD COLUMN `phone` VARCHAR(64) NULL AFTER `country_id`,
+                ADD COLUMN `email` VARCHAR(64) NULL AFTER `phone`;
 
                 
             SET SQL_MODE=@OLD_SQL_MODE;

@@ -14,6 +14,14 @@ use Yii;
  * @property integer $resu_decor_option_id
  * @property integer $resu_ambiance_option_id
  * @property integer $resu_map_id
+ *
+ * @property string  address_1
+ * @property string  address_2
+ * @property integer province_id
+ * @property integer country_id
+ * @property string  phone
+ * @property string  email
+ *
  * @property integer $created_at
  * @property integer $created_by
  * @property integer $updated_at
@@ -50,13 +58,14 @@ class ResuLocation extends \resutoran\common\models\ResuBase
         return [
             // [['created_by', 'created_at'], 'required'], populated via behavior
             [['value', 'resu_franchise_id', 'resu_decor_option_id', 'resu_ambiance_option_id', 'resu_map_id'], 'required'],
-            [['resu_franchise_id', 'resu_decor_option_id', 'resu_ambiance_option_id', 'resu_map_id', 'created_at', 'created_by', 'updated_at', 'updated_by', 'deleted_at'], 'integer'],
-            [['value'], 'string', 'max' => 64],
+            [['resu_franchise_id', 'resu_decor_option_id', 'resu_ambiance_option_id', 'resu_map_id', 'country_id', 'province_id', 'created_at', 'created_by', 'updated_at', 'updated_by', 'deleted_at'], 'integer'],
+            [['value', 'phone', 'email'], 'string', 'max' => 64],
+            [['value'], 'unique'],
+
             [['resu_ambiance_option_id'], 'exist', 'skipOnError' => true, 'targetClass' => ResuAmbianceOption::className(), 'targetAttribute' => ['resu_ambiance_option_id' => 'id']],
             [['resu_decor_option_id'], 'exist', 'skipOnError' => true, 'targetClass' => ResuDecorOption::className(), 'targetAttribute' => ['resu_decor_option_id' => 'id']],
             [['resu_franchise_id'], 'exist', 'skipOnError' => true, 'targetClass' => ResuFranchise::className(), 'targetAttribute' => ['resu_franchise_id' => 'id']],
             [['resu_map_id'], 'exist', 'skipOnError' => true, 'targetClass' => ResuMap::className(), 'targetAttribute' => ['resu_map_id' => 'id']],
-            [['value'], 'unique']
         ];
     }
 
@@ -66,17 +75,23 @@ class ResuLocation extends \resutoran\common\models\ResuBase
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('resutoran', 'ID'),
-            'value' => Yii::t('resutoran', 'Name'),
-            'resu_franchise_id' => Yii::t('resutoran', 'Franchise'),
-            'resu_decor_option_id' => Yii::t('resutoran', 'Decor Option'),
+            'id'                      => Yii::t('resutoran', 'ID'),
+            'value'                   => Yii::t('resutoran', 'Name'),
+            'resu_franchise_id'       => Yii::t('resutoran', 'Franchise'),
+            'resu_decor_option_id'    => Yii::t('resutoran', 'Decor Option'),
             'resu_ambiance_option_id' => Yii::t('resutoran', 'Ambiance Option'),
-            'resu_map_id' => Yii::t('resutoran', 'Map'),
-            'created_at' => Yii::t('resutoran', 'Created At'),
-            'created_by' => Yii::t('resutoran', 'Created By'),
-            'updated_at' => Yii::t('resutoran', 'Updated At'),
-            'updated_by' => Yii::t('resutoran', 'Updated By'),
-            'deleted_at' => Yii::t('resutoran', 'Deleted At'),
+            'address_1'               => Yii::t('resutoran', 'Address 1'),
+            'address_2'               => Yii::t('resutoran', 'Address 2'),
+            'province_id'             => Yii::t('resutoran', 'Prov/State'),
+            'country_id'              => Yii::t('resutoran', 'Country'),
+            'phone'                   => Yii::t('resutoran', 'Phone'),
+            'email'                   => Yii::t('resutoran', 'Email'),
+            'resu_map_id'             => Yii::t('resutoran', 'Map'),
+            'created_at'              => Yii::t('resutoran', 'Created At'),
+            'created_by'              => Yii::t('resutoran', 'Created By'),
+            'updated_at'              => Yii::t('resutoran', 'Updated At'),
+            'updated_by'              => Yii::t('resutoran', 'Updated By'),
+            'deleted_at'              => Yii::t('resutoran', 'Deleted At'),
         ];
     }
 
