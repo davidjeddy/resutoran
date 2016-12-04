@@ -53,19 +53,24 @@ class ResuBase extends \yii\db\ActiveRecord
      * @inheritdoc
      * @return \resutoran\common\models\query\*Query the active query used by this AR class.
      */
+
+
+    /**
+     * @return mixed
+     */
     public static function find()
     {
-        // cnPathArray = className path as an array
-        $cnPathArray = explode('\\', self::className());
-        $cnPathCount = count($cnPathArray);
+        $queryClassName = explode('\\', self::className());
+        array_splice($queryClassName, 4, 0, 'query');
+        $queryClassName = implode('\\', $queryClassName) . 'Query';
 
-        // source http://stackoverflow.com/questions/3353745/how-to-insert-element-into-arrays-at-specific-position
-        $modelClass = array_slice($cnPathArray, 0, $cnPathCount - 1, true)
-            + [$cnPathCount => 'query']
-            + array_slice($cnPathArray, 0, $cnPathCount + 1, true);
+        if (class_exists($queryClassName)) {
+            // ref: http://stackoverflow.com/questions/3797239/insert-new-item-in-array-on-any-position-in-php
+            return new $queryClassName(get_called_class());
+        }
 
-        $modelClass = '\\' . implode('\\', $modelClass) . 'Query';
-
-        return new $modelClass(get_called_class());
+        return parent::find()->andWhere([
+            self::tableName().'.deleted_at' => null
+        ]);
     }
 }

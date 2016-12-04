@@ -16,7 +16,7 @@ class BaseQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \common\models\ResuAmbianceOption[]|array
+     * @return \common\models\Resu*]|array
      */
     public function all($db = null)
     {
@@ -25,7 +25,7 @@ class BaseQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \common\models\ResuAmbianceOption|array|null
+     * @return \common\models\Resu*n|array|null
      */
     public function one($db = null)
     {
