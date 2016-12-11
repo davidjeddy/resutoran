@@ -14,7 +14,7 @@ class m161204_131721_edit_resu_location_1st_level_relations extends Migration
             SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
             SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
-            ALTER TABLE `zeroforksgiven`.`resu_location` 
+            ALTER TABLE `resu_location` 
                 CHANGE COLUMN `resu_franchise_id` `resu_franchise_id` INT(10) NULL DEFAULT NULL ,
                 CHANGE COLUMN `resu_decor_option_id` `resu_decor_option_id` INT(10) NULL DEFAULT NULL ,
                 CHANGE COLUMN `resu_ambiance_option_id` `resu_ambiance_option_id` INT(10) NULL DEFAULT NULL ,
@@ -38,7 +38,7 @@ class m161204_131721_edit_resu_location_1st_level_relations extends Migration
             SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
             SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
-            ALTER TABLE `zeroforksgiven`.`resu_location` 
+            ALTER TABLE `resu_location` 
                 CHANGE COLUMN `resu_franchise_id` `resu_franchise_id` INT(10) NOT NULL,
                 CHANGE COLUMN `resu_decor_option_id` `resu_decor_option_id` INT(10) NOT NULL,
                 CHANGE COLUMN `resu_ambiance_option_id` `resu_ambiance_option_id` INT(10) NOT NULL,

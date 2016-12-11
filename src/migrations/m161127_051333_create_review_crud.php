@@ -34,7 +34,7 @@ class m161127_051333_create_review_crud extends Migration
                 ON UPDATE NO ACTION)
             ENGINE = InnoDB;
           
-            ALTER TABLE `zeroforksgiven`.`resu_review` 
+            ALTER TABLE `resu_review` 
                 CHANGE COLUMN `user_id` `user_id` INT(11) NOT NULL ;
 
                 

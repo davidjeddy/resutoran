@@ -13,9 +13,9 @@ class m161127_193330_modified_resu_location_table_add_location_fields extends Mi
             SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
             SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
-            ALTER TABLE `zeroforksgiven`.`resu_location` 
+            ALTER TABLE `resu_location` 
                 DROP FOREIGN KEY `fk_resu_location_resu_contact1`;
-            ALTER TABLE `zeroforksgiven`.`resu_location` 
+            ALTER TABLE `resu_location` 
                 DROP COLUMN `resu_contact_id`,
                 DROP INDEX `fk_resu_location_resu_contact1_idx` ;
 
