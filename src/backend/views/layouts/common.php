@@ -19,7 +19,7 @@ echo Menu::widget([
         [
             'icon'      => '<i class="fa fa-star"></i>',
             'label'     => \Yii::t('resutoran', 'Reviews'),
-            'url'       => ['/resutoran/resu-review/index'],
+            'url'       => ['/resutoran/resu-review'],
         ],
         [
             'icon'      => '<i class="fa fa-bars"></i>',
@@ -30,7 +30,7 @@ echo Menu::widget([
                 [
                     'icon'      => '<i class="fa fa-bars"></i>',
                     'label'     => \Yii::t('resutoran', 'Locations'),
-                    'url'       => ['/resutoran/resu-location/create'],
+                    'url'       => ['/resutoran/resu-location'],
                 ],
                 [
                     'icon'      => '<i class="fa fa-bars"></i>',
