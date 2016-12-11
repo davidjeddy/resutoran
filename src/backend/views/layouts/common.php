@@ -73,11 +73,12 @@ echo Menu::widget([
                     'label' => \Yii::t('resutoran', 'Media'),
                     'url'   => ['/resutoran/resu-media-option/'],
                 ],
-                [
-                    'icon'  => '<i class="fa fa-bars"></i>',
-                    'label' => \Yii::t('resutoran', 'Menu'),
-                    'url'   => ['/resutoran/resu-menu-option/'],
-                ],
+// PEr user req. hiding this menu item until future needs require it.
+//                [
+//                    'icon'  => '<i class="fa fa-bars"></i>',
+//                    'label' => \Yii::t('resutoran', 'Menu'),
+//                    'url'   => ['/resutoran/resu-menu-option/'],
+//                ],
                 [
                     'icon'  => '<i class="fa fa-bars"></i>',
                     'label' => \Yii::t('resutoran', 'Payment'),
