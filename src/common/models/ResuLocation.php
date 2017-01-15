@@ -62,8 +62,8 @@ class ResuLocation extends \resutoran\common\models\ResuBase
             [['value'], 'required'],
             [['resu_franchise_id', 'resu_decor_option_id', 'resu_ambiance_option_id', 'resu_map_id', 'resu_state_id', 'created_at', 'created_by', 'updated_at', 'updated_by', 'deleted_at'], 'integer'],
             [['value', 'email', 'business_email'], 'string', 'max' => 64],
-            [['phone', 'business_phone'], 'string', 16],
-            [['business_contact_name'], 'string'],
+            [['phone', 'business_phone'], 'string', 'max' => 16],
+            [['business_contact_name'], 'string', 'max' => 2048],
 
             [['value'], 'unique'],
 

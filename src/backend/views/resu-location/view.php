@@ -28,6 +28,9 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             // 'id',
             'value',
+            'business_contact_name',
+            'business_email',
+            'business_phone',
             [
                 'label' => 'Franchise',
                 'value' => ($model->resu_franchise_id !== null
