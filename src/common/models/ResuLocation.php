@@ -18,6 +18,9 @@ use Yii;
  * @property string  address_1
  * @property string  address_2
  * @property integer resu_state_id
+ * @property string business_contact_name
+ * @property string business_email
+ * @property string business_phone
  * @property string  phone
  * @property string  email
  *
@@ -58,7 +61,10 @@ class ResuLocation extends \resutoran\common\models\ResuBase
             // [['created_by', 'created_at'], 'required'], populated via behavior
             [['value'], 'required'],
             [['resu_franchise_id', 'resu_decor_option_id', 'resu_ambiance_option_id', 'resu_map_id', 'resu_state_id', 'created_at', 'created_by', 'updated_at', 'updated_by', 'deleted_at'], 'integer'],
-            [['value', 'phone', 'email'], 'string', 'max' => 64],
+            [['value', 'email', 'business_email'], 'string', 'max' => 64],
+            [['phone', 'business_phone'], 'string', 16],
+            [['business_contact_name'], 'string'],
+
             [['value'], 'unique'],
 
             [['resu_ambiance_option_id'], 'exist', 'skipOnError' => true, 'targetClass' => ResuAmbianceOption::className(), 'targetAttribute' => ['resu_ambiance_option_id' => 'id']],
@@ -82,6 +88,9 @@ class ResuLocation extends \resutoran\common\models\ResuBase
             'address_1'               => Yii::t('resutoran', 'Address 1'),
             'address_2'               => Yii::t('resutoran', 'Address 2'),
             'resu_state_id'           => Yii::t('resutoran', 'State'),
+            'business_contact_name'   => Yii::t('resutoran', 'Business Contact Name'),
+            'business_email'          => Yii::t('resutoran', 'Busienss Email'),
+            'business_phone'          => Yii::t('resutoran', 'Business Phone'),
             'phone'                   => Yii::t('resutoran', 'Phone'),
             'email'                   => Yii::t('resutoran', 'Email'),
             'resu_map_id'             => Yii::t('resutoran', 'Map'),

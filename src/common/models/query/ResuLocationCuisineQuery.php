@@ -7,28 +7,6 @@ namespace resutoran\common\models\query;
  *
  * @see \common\models\ResuLocationCuisine
  */
-class ResuLocationCuisineQuery extends \yii\db\ActiveQuery
+class ResuLocationCuisineQuery extends \resutoran\common\models\query\BaseQuery
 {
-    /*public function active()
-    {
-        return $this->andWhere('[[status]]=1');
-    }*/
-
-    /**
-     * @inheritdoc
-     * @return \common\models\ResuLocationCuisine[]|array
-     */
-    public function all($db = null)
-    {
-        return parent::all($db);
-    }
-
-    /**
-     * @inheritdoc
-     * @return \common\models\ResuLocationCuisine|array|null
-     */
-    public function one($db = null)
-    {
-        return parent::one($db);
-    }
 }

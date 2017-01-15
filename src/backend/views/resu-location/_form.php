@@ -43,6 +43,21 @@ use kartik\checkbox\CheckboxX;
         )
     ); ?>
 
+    <!-- business contact fields -->
+    <?php echo $form->field($model, 'business_contact_name')->textInput([
+        'placeholder' => 'Business Contact Name',
+        'maxlength'   => true
+    ]) ?>
+    <?php echo $form->field($model, 'business_email')->textInput([
+        'placeholder' => 'Business Email',
+        'maxlength'   => true
+    ]) ?>
+    <?php echo $form->field($model, 'business_phone')->textInput([
+        'placeholder' => 'Business Phone',
+        'maxlength'   => true
+    ]) ?>
+
+
     <?php echo $form->field($model, 'phone')->textInput([
         'placeholder' => 'Phone',
         'maxlength'   => true
