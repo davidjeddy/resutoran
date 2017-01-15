@@ -89,7 +89,7 @@ class ResuLocation extends \resutoran\common\models\ResuBase
             'address_2'               => Yii::t('resutoran', 'Address 2'),
             'resu_state_id'           => Yii::t('resutoran', 'State'),
             'business_contact_name'   => Yii::t('resutoran', 'Business Contact Name'),
-            'business_email'          => Yii::t('resutoran', 'Busienss Email'),
+            'business_email'          => Yii::t('resutoran', 'Business Email'),
             'business_phone'          => Yii::t('resutoran', 'Business Phone'),
             'phone'                   => Yii::t('resutoran', 'Phone'),
             'email'                   => Yii::t('resutoran', 'Email'),
