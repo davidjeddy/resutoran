@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use dosamigos\ckeditor\CKEditor;
+use kartik\rating\StarRating;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\ResuReview */
@@ -33,6 +34,10 @@ use dosamigos\ckeditor\CKEditor;
         ],
         'preset' => 'basic'
     ])->label('Review Content'); ?>
+
+    <?php echo $form->field($model, 'rating')->widget(StarRating::classname(), [
+        'pluginOptions' => ['size'=>'lg']
+    ]); ?>
 
     <?php //echo $form->field($model, 'created_at')->textInput() ?>
 
