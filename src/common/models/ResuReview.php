@@ -11,6 +11,7 @@ use Yii;
  * @property integer $user_id
  * @property integer $resu_location_id
  * @property string $value
+ * @property number rating
  * @property integer $created_at
  * @property integer $created_by
  * @property integer $updated_at
@@ -38,7 +39,8 @@ class ResuReview extends \resutoran\common\models\ResuBase
             [['user_id', 'resu_location_id', 'created_at', 'created_by', 'updated_at', 'updated_by', 'deleted_at'], 'integer'],
             [['user_id', 'resu_location_id',], 'required'],
             [['value'], 'string'],
-            /*[['resu_location_id'], 'exist', 'skipOnError' => true, 'targetClass' => ResuLocation::className(), 'targetAttribute' => ['resu_location_id' => 'id']],*/
+            ['rating', 'number'],
+            [['resu_location_id'], 'exist', 'skipOnError' => true, 'targetClass' => ResuLocation::className(), 'targetAttribute' => ['resu_location_id' => 'id']],
         ];
     }
 
@@ -52,6 +54,7 @@ class ResuReview extends \resutoran\common\models\ResuBase
             'user_id'          => Yii::t('resutoran', 'User ID'),
             'resu_location_id' => Yii::t('resutoran', 'Resu Location ID'),
             'value'            => Yii::t('resutoran', 'Value'),
+            'rating'           => Yii::t('resutoran', 'Rating'),
             'created_at'       => Yii::t('resutoran', 'Created At'),
             'created_by'       => Yii::t('resutoran', 'Created By'),
             'updated_at'       => Yii::t('resutoran', 'Updated At'),
@@ -70,7 +73,7 @@ class ResuReview extends \resutoran\common\models\ResuBase
 
     /**
      * @inheritdoc
-     * @return ResuReviewQuery the active query used by this AR class.
+     * @return \resutoran\common\models\query\ResuReviewQuery the active query used by this AR class.
      */
     public static function find()
     {
