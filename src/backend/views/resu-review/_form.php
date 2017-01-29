@@ -2,10 +2,15 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+
 use dosamigos\ckeditor\CKEditor;
+use kartik\widgets\StarRating;
+
+use  resutoran\backend\assets\ResuReviewBundle;
+ResuReviewBundle::register($this);
 
 /* @var $this yii\web\View */
-/* @var $model common\models\ResuReview */
+/* @var $model resutoran\common\models\ResuReview */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
@@ -33,6 +38,25 @@ use dosamigos\ckeditor\CKEditor;
         ],
         'preset' => 'basic'
     ])->label('Review Content'); ?>
+
+    <?php
+    echo $form->field($model, 'rating')->widget(StarRating::classname(), [
+        'name' => 'rating',
+        'pluginOptions'     => [
+            'stars'         => 1,
+            'size'          => 'xl',
+            'min'           => 0.0,
+            'max'           => 1,
+            'step'          => 0.1,
+            'defaultCaption'=> '{rating} fork',
+        ]
+    ]);
+    ?>
+    <?php
+//    echo $form->field($model, 'rating')->widget(StarRating::classname(), [
+//        'pluginOptions' => ['size'=>'lg']
+//    ]);
+    ?>
 
     <?php //echo $form->field($model, 'created_at')->textInput() ?>
 
