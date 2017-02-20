@@ -3,8 +3,8 @@
 use yii\bootstrap\ActiveForm;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
-use kartik\widgets\Select2;
 use kartik\checkbox\CheckboxX;
+use kartik\select2\Select2;
 
 /* @var $this yii\web\View */
 /* @var $model \resutoran\common\models\ResuLocation */
@@ -108,50 +108,9 @@ use kartik\checkbox\CheckboxX;
         ]
     ]); ?>
 
-    <hr>
-
-    <?php
-    $days = \resutoran\common\models\ResuDayOption::find()->select(['id', 'value', 'abbr'])->asArray()->all();
-    foreach ($days as $key => $value) {
-    ?>
-        <div class="form-group field-resulocation-value required">
-            <?php
-            $fieldName = 'ResuLocation[hour_value]['.$value['id'].'][]';
-
-            echo \yii\bootstrap\BaseHtml::label(
-                $value['value'],
-                $fieldName
-            );
-
-            // TODO make this a AR data retrieval, not a SQL request
-            $hours = \resutoran\common\models\ResuLocationDay::find()
-                ->select('resu_hour_value.value as hour')
-                ->andWhere([
-                    'resu_location_id' => $model->id,
-                    'resu_day_option_id' => $value['id']
-                ])
-                ->leftJoin('resu_day_option', '`resu_day_option`.`id` = `resu_location_day`.`resu_day_option_id`')
-                ->leftJoin('resu_hour_value', '`resu_hour_value`.`id` = `resu_location_day`.`resu_hour_value_id`')
-                ->asArray()
-                ->all();
-
-            echo \yii\bootstrap\BaseHtml::textInput(
-                $fieldName,
-                !empty($hours[0]['hour']) ? $hours[0]['hour'] : null,
-                [
-                    'maxlength'     => 12,
-                    'placeholder'   => 'Open-Close hours in 24h format. Exp: 07-13, 15-22',
-                    'class'         => 'form-control',
-
-                ]
-            ); ?>
-
-            <p class="help-block help-block-error"></p>
-        </div>
-
-    <?php }; ?>
 
     <hr>
+    <?php echo Html::label('Menu Pricing'); ?><br />
 
     <?php
     // pricing options
@@ -180,6 +139,7 @@ use kartik\checkbox\CheckboxX;
     ); ?>
 
     <hr />
+    <?php echo Html::label('Options'); ?><br />
 
     <?php
     echo Html::label('Dress Option');
@@ -293,3 +253,4 @@ use kartik\checkbox\CheckboxX;
     <?php ActiveForm::end(); ?>
 
 </div>
+

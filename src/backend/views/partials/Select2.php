@@ -25,7 +25,6 @@ echo $options['form']->field($options['model'], 'resu_' . Inflector::underscore(
             'class'       => 'form-control',
             'placeholder' => 'Choose Option...',
             'multiple'    => (!empty($options['multiple']) ? $options['multiple'] : false),
-
         ],
         $required
     ),

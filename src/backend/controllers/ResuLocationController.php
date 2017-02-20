@@ -113,7 +113,8 @@ class ResuLocationController extends \resutoran\backend\controllers\BaseControll
 
             // save the hour value to the resu_hour_value
             $hourValueMDL = new \resutoran\common\models\ResuHourValue([
-                'value' => $dayValue[0]
+                'open' => $dayValue[0],
+                'close' => $dayValue[1]
             ]);
 
             // save hour AR to data store, or return error if present
