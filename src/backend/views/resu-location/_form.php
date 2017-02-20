@@ -3,6 +3,8 @@
 use yii\bootstrap\ActiveForm;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
+use kartik\checkbox\CheckboxX;
+use kartik\select2\Select2;
 
 /* @var $this yii\web\View */
 /* @var $model \resutoran\common\models\ResuLocation */
@@ -112,7 +114,7 @@ use yii\helpers\Html;
 
     <?php
     // pricing options
-    /*echo \yii\bootstrap\BaseHtml::checkboxList(
+    echo \yii\bootstrap\BaseHtml::checkboxList(
         'resu_location_menu',
         null,
         ArrayHelper::map(
@@ -134,13 +136,13 @@ use yii\helpers\Html;
                 return $return;
             }
         ]
-    );*/ ?>
+    ); ?>
 
     <hr />
     <?php echo Html::label('Options'); ?><br />
 
     <?php
-    /*echo Html::label('Dress Option');
+    echo Html::label('Dress Option');
     echo Select2::widget([
         'name'          => 'ResuLocation[location_options][resu_location_dress_code][]',
         'value'         => ArrayHelper::map($model->getResuLocationDressCodes()->asArray()->all(), 'id', 'id'),
@@ -150,10 +152,10 @@ use yii\helpers\Html;
             'multiple'      => true,
             'placeholder'   => 'Select Dress Code Options ...'
         ]
-    ]);*/ ?>
+    ]); ?>
 
     <?php
-    /*echo Html::label('Seating Option');
+    echo Html::label('Seating Option');
     echo Select2::widget([
         'name'      => 'ResuLocation[location_options][resu_location_seating][]',
         'value'     => null,
@@ -162,10 +164,10 @@ use yii\helpers\Html;
             'multiple'      => true,
             'placeholder'   => 'Select Seating Options ...'
         ]
-    ]);*/ ?>
+    ]); ?>
 
     <?php
-    /*echo Html::label('Cuisine Option');
+    echo Html::label('Cuisine Option');
     echo Select2::widget([
         'name'      => 'ResuLocation[location_options][resu_location_cuisine][]',
         'value'     => null,
@@ -174,10 +176,10 @@ use yii\helpers\Html;
             'multiple'      => true,
             'placeholder'   => 'Select Cuisine Options ...'
         ]
-    ]);*/ ?>
+    ]); ?>
 
     <?php
-    /*echo Html::label('Media Option');
+    echo Html::label('Media Option');
     echo Select2::widget([
         'name'      => 'ResuLocation[location_options][resu_location_media][]',
         'value'     => null,
@@ -186,10 +188,10 @@ use yii\helpers\Html;
             'multiple'      => true,
             'placeholder'   => 'Select Media Options ...'
         ]
-    ]);*/ ?>
+    ]); ?>
 
     <?php
-    /*echo Html::label('Payment Option');
+    echo Html::label('Payment Option');
     echo Select2::widget([
         'name'      => 'ResuLocation[location_options][resu_location_payment][]',
         'value'     => null,
@@ -198,14 +200,14 @@ use yii\helpers\Html;
             'multiple'      => true,
             'placeholder'   => 'Select Payment Options ...'
         ]
-    ]);*/ ?>
+    ]); ?>
 
     <hr />
 
     <?php echo Html::label('Features'); ?><br />
 
     <?php
-    /*echo \yii\bootstrap\BaseHtml::checkboxList(
+    echo \yii\bootstrap\BaseHtml::checkboxList(
         'resu_location_boolean',
         null,
         ArrayHelper::map(
@@ -229,8 +231,7 @@ use yii\helpers\Html;
                 ]);
             }
         ]
-    );*/
-    ?>
+    ); ?>
 
     <?php // echo $form->field($model, 'created_at')->textInput() ?>
 

@@ -17,7 +17,7 @@ class m170218_235213_iterationOnResuHours extends Migration
             RENAME TO  `resu_location_hour`,
             ADD COLUMN `resu_location_id` INT(11) NULL DEFAULT NULL AFTER `id`,
             ADD COLUMN `resu_day_option_id` INT(11) NULL DEFAULT NULL AFTER `resu_location_id`,
-            CHANGE COLUMN `value` `open` VARCHAR(5) NULL DEFAULT NULL AFTER `day_id`,
+            CHANGE COLUMN `value` `open` VARCHAR(5) NULL DEFAULT NULL AFTER `resu_day_option_id`,
             ADD COLUMN `close` VARCHAR(5) NULL DEFAULT NULL AFTER `open`;
             
             SET SQL_MODE=@OLD_SQL_MODE;

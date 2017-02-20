@@ -60,14 +60,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 )
             ],
 
-            [
-                'label' => 'Hours of Operation',
-                'value' => \Yii::$app->controller->renderPartial('../partials/DaysAndHours',
-                    [
-                        'model' => $model
-                    ]
-                )
-            ],
+//            [
+//                'label' => 'Hours of Operation',
+//                'value' => \Yii::$app->controller->renderPartial('../partials/DaysAndHours',
+//                    [
+//                        'model' => $model
+//                    ]
+//                )
+//            ],
 
             [
                 'label' => 'Features Values',
