@@ -108,54 +108,13 @@ use kartik\checkbox\CheckboxX;
         ]
     ]); ?>
 
-    <hr>
-
-    <?php
-    $days = \resutoran\common\models\ResuDayOption::find()->select(['id', 'value', 'abbr'])->asArray()->all();
-    foreach ($days as $key => $value) {
-    ?>
-        <div class="form-group field-resulocation-value required">
-            <?php
-            $fieldName = 'ResuLocation[hour_value]['.$value['id'].'][]';
-
-            echo \yii\bootstrap\BaseHtml::label(
-                $value['value'],
-                $fieldName
-            );
-
-            // TODO make this a AR data retrieval, not a SQL request
-            $hours = \resutoran\common\models\ResuLocationDay::find()
-                ->select('resu_hour_value.value as hour')
-                ->andWhere([
-                    'resu_location_id' => $model->id,
-                    'resu_day_option_id' => $value['id']
-                ])
-                ->leftJoin('resu_day_option', '`resu_day_option`.`id` = `resu_location_day`.`resu_day_option_id`')
-                ->leftJoin('resu_hour_value', '`resu_hour_value`.`id` = `resu_location_day`.`resu_hour_value_id`')
-                ->asArray()
-                ->all();
-
-            echo \yii\bootstrap\BaseHtml::textInput(
-                $fieldName,
-                !empty($hours[0]['hour']) ? $hours[0]['hour'] : null,
-                [
-                    'maxlength'     => 12,
-                    'placeholder'   => 'Open-Close hours in 24h format. Exp: 07-13, 15-22',
-                    'class'         => 'form-control',
-
-                ]
-            ); ?>
-
-            <p class="help-block help-block-error"></p>
-        </div>
-
-    <?php }; ?>
 
     <hr>
+    <?php echo Html::label('Menu Pricing'); ?><br />
 
     <?php
     // pricing options
-    echo \yii\bootstrap\BaseHtml::checkboxList(
+    /*echo \yii\bootstrap\BaseHtml::checkboxList(
         'resu_location_menu',
         null,
         ArrayHelper::map(
@@ -177,12 +136,13 @@ use kartik\checkbox\CheckboxX;
                 return $return;
             }
         ]
-    ); ?>
+    );*/ ?>
 
     <hr />
+    <?php echo Html::label('Options'); ?><br />
 
     <?php
-    echo Html::label('Dress Option');
+    /*echo Html::label('Dress Option');
     echo Select2::widget([
         'name'          => 'ResuLocation[location_options][resu_location_dress_code][]',
         'value'         => ArrayHelper::map($model->getResuLocationDressCodes()->asArray()->all(), 'id', 'id'),
@@ -192,10 +152,10 @@ use kartik\checkbox\CheckboxX;
             'multiple'      => true,
             'placeholder'   => 'Select Dress Code Options ...'
         ]
-    ]); ?>
+    ]);*/ ?>
 
     <?php
-    echo Html::label('Seating Option');
+    /*echo Html::label('Seating Option');
     echo Select2::widget([
         'name'      => 'ResuLocation[location_options][resu_location_seating][]',
         'value'     => null,
@@ -204,10 +164,10 @@ use kartik\checkbox\CheckboxX;
             'multiple'      => true,
             'placeholder'   => 'Select Seating Options ...'
         ]
-    ]); ?>
+    ]);*/ ?>
 
     <?php
-    echo Html::label('Cuisine Option');
+    /*echo Html::label('Cuisine Option');
     echo Select2::widget([
         'name'      => 'ResuLocation[location_options][resu_location_cuisine][]',
         'value'     => null,
@@ -216,10 +176,10 @@ use kartik\checkbox\CheckboxX;
             'multiple'      => true,
             'placeholder'   => 'Select Cuisine Options ...'
         ]
-    ]); ?>
+    ]);*/ ?>
 
     <?php
-    echo Html::label('Media Option');
+    /*echo Html::label('Media Option');
     echo Select2::widget([
         'name'      => 'ResuLocation[location_options][resu_location_media][]',
         'value'     => null,
@@ -228,10 +188,10 @@ use kartik\checkbox\CheckboxX;
             'multiple'      => true,
             'placeholder'   => 'Select Media Options ...'
         ]
-    ]); ?>
+    ]);*/ ?>
 
     <?php
-    echo Html::label('Payment Option');
+    /*echo Html::label('Payment Option');
     echo Select2::widget([
         'name'      => 'ResuLocation[location_options][resu_location_payment][]',
         'value'     => null,
@@ -240,14 +200,14 @@ use kartik\checkbox\CheckboxX;
             'multiple'      => true,
             'placeholder'   => 'Select Payment Options ...'
         ]
-    ]); ?>
+    ]);*/ ?>
 
     <hr />
 
     <?php echo Html::label('Features'); ?><br />
 
     <?php
-    echo \yii\bootstrap\BaseHtml::checkboxList(
+    /*echo \yii\bootstrap\BaseHtml::checkboxList(
         'resu_location_boolean',
         null,
         ArrayHelper::map(
@@ -271,7 +231,8 @@ use kartik\checkbox\CheckboxX;
                 ]);
             }
         ]
-    ); ?>
+    );*/
+    ?>
 
     <?php // echo $form->field($model, 'created_at')->textInput() ?>
 
@@ -293,3 +254,4 @@ use kartik\checkbox\CheckboxX;
     <?php ActiveForm::end(); ?>
 
 </div>
+
