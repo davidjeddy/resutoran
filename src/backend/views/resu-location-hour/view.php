@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'resu_location_id',
-            'day_id',
+            'resu_day_option_id',
             'open',
             'close',
             'created_at:date',

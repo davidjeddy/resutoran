@@ -16,7 +16,7 @@ class m170218_235213_iterationOnResuHours extends Migration
             ALTER TABLE `resu_hour_value`
             RENAME TO  `resu_location_hour`,
             ADD COLUMN `resu_location_id` INT(11) NULL DEFAULT NULL AFTER `id`,
-            ADD COLUMN `day_id` INT(11) NULL DEFAULT NULL AFTER `resu_location_id`,
+            ADD COLUMN `resu_day_option_id` INT(11) NULL DEFAULT NULL AFTER `resu_location_id`,
             CHANGE COLUMN `value` `open` VARCHAR(5) NULL DEFAULT NULL AFTER `day_id`,
             ADD COLUMN `close` VARCHAR(5) NULL DEFAULT NULL AFTER `open`;
             
@@ -40,7 +40,7 @@ class m170218_235213_iterationOnResuHours extends Migration
             ALTER TABLE `resu_location_hour` 
             RENAME TO  `resu_hour_value`,
             DROP COLUMN `resu_location_id`,
-            DROP COLUMN `day_id`,
+            DROP COLUMN `resu_day_option_id_id`,
             CHANGE COLUMN `open` `value` TEXT NULL DEFAULT NULL,
             DROP COLUMN `close`;
                 

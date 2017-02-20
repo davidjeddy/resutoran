@@ -15,8 +15,6 @@ use Yii;
  * @property integer $updated_at
  * @property integer $updated_by
  * @property integer $deleted_at
- *
- * @property ResuLocationDay[] $resuLocationDays
  */
 class ResuDayOption extends \resutoran\common\models\ResuBase
 {
@@ -56,22 +54,5 @@ class ResuDayOption extends \resutoran\common\models\ResuBase
             'updated_by' => Yii::t('resutoran', 'Updated By'),
             'deleted_at' => Yii::t('resutoran', 'Deleted At'),
         ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getResuLocationDays()
-    {
-        return $this->hasMany(ResuLocationDay::className(), ['resu_day_option_id' => 'id']);
-    }
-
-    /**
-     * @inheritdoc
-     * @return ResuDayOptionQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new \resutoran\common\models\query\ResuHourValueQuery(get_called_class());
     }
 }

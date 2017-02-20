@@ -8,8 +8,8 @@ use Yii;
  * This is the model class for table "{{%resu_location_day}}".
  *
  * @property integer $id
- * @property integer resu_location_id
- * @property integer $day_id
+ * @property integer $resu_location_id
+ * @property integer $resu_day_option_id
  * @property integer $open
  * @property integer $close
  * @property integer $created_at
@@ -37,11 +37,13 @@ class ResuLocationHour extends \resutoran\common\models\ResuBase
     public function rules()
     {
         return [
-            [['resu_location_id', 'day_id', 'open', 'close'], 'required'],
-            [['open', 'close'], 'date', 'format' => 'H:i'],
+            [['resu_location_id', 'resu_day_option_id', 'open', 'close'], 'required'],
+            // todo why is this not working?
+            //[['open', 'close'], 'date', 'format' => 'H:i'],
+            [['resu_location_id', 'resu_day_option_id'], 'unique'],
 
-            [['resu_location_id', 'day_id', 'created_at', 'created_by', 'updated_at', 'updated_by', 'deleted_at'], 'integer'],
-            [['day_id'], 'exist', 'skipOnError' => true, 'targetClass' => ResuDayOption::className(), 'targetAttribute' => ['day_id' => 'id']],
+            [['resu_location_id', 'resu_day_option_id', 'created_at', 'created_by', 'updated_at', 'updated_by', 'deleted_at'], 'integer'],
+            [['resu_day_option_id'], 'exist', 'skipOnError' => true, 'targetClass' => ResuDayOption::className(), 'targetAttribute' => ['resu_day_option_id' => 'id']],
         ];
     }
 
@@ -51,16 +53,16 @@ class ResuLocationHour extends \resutoran\common\models\ResuBase
     public function attributeLabels()
     {
         return [
-            'id'               => Yii::t('resutoran', 'ID'),
-            'resu_location_id' => Yii::t('resutoran', 'Restaurant'),
-            'day_id'           => Yii::t('resutoran', 'Day'),
-            'open'             => Yii::t('resutoran', 'Open'),
-            'close'            => Yii::t('resutoran', 'Close'),
-            'created_at'       => Yii::t('resutoran', 'Created At'),
-            'created_by'       => Yii::t('resutoran', 'Created By'),
-            'updated_at'       => Yii::t('resutoran', 'Updated At'),
-            'updated_by'       => Yii::t('resutoran', 'Updated By'),
-            'deleted_at'       => Yii::t('resutoran', 'Deleted At'),
+            'id'                 => Yii::t('resutoran', 'ID'),
+            'resu_location_id'   => Yii::t('resutoran', 'Restaurant'),
+            'resu_day_option_id' => Yii::t('resutoran', 'Day'),
+            'open'               => Yii::t('resutoran', 'Open'),
+            'close'              => Yii::t('resutoran', 'Close'),
+            'created_at'         => Yii::t('resutoran', 'Created At'),
+            'created_by'         => Yii::t('resutoran', 'Created By'),
+            'updated_at'         => Yii::t('resutoran', 'Updated At'),
+            'updated_by'         => Yii::t('resutoran', 'Updated By'),
+            'deleted_at'         => Yii::t('resutoran', 'Deleted At'),
         ];
     }
 
@@ -69,7 +71,7 @@ class ResuLocationHour extends \resutoran\common\models\ResuBase
      */
     public function getResuDayOption()
     {
-        return $this->hasOne(ResuDayOption::className(), ['id' => 'day_id']);
+        return $this->hasOne(ResuDayOption::className(), ['id' => 'resu_day_option_id']);
     }
 
     /**

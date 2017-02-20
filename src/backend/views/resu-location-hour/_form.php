@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use yii\helpers\ArrayHelper;
+
 
 /* @var $this yii\web\View */
 /* @var $model resutoran\common\models\ResuLocationHour */
@@ -14,13 +16,45 @@ use yii\bootstrap\ActiveForm;
 
     <?php echo $form->errorSummary($model); ?>
 
-    <?php echo $form->field($model, 'resu_location_id')->textInput() ?>
+    <?php // echo $form->field($model, 'resu_location_id')->textInput() ?>
+    <?php echo $this->render('../partials/Select2', [
+        'options' => [
+            'clear'     => true,
+            'form'      => $form,
+            'label'     => 'Location',
+            'model'     => $model,
+            'options'   => ArrayHelper::map(
+                \resutoran\common\models\ResuLocation::find()->asArray()->all(),
+                'id',
+                'value'
+            )
+        ]
+    ]); ?>
 
-    <?php echo $form->field($model, 'day_id')->textInput() ?>
+    <?php // cho $form->field($model, 'resu_day_option_id')->textInput() ?>
+    <?php echo $this->render('../partials/Select2', [
+        'options' => [
+            'clear'     => true,
+            'form'      => $form,
+            'label'     => 'DayOption',
+            'model'     => $model,
+            'options'   => ArrayHelper::map(
+                resutoran\common\models\ResuDayOption::find()->asArray()->all(),
+                'id',
+                'value'
+            )
+        ]
+    ]); ?>
 
-    <?php echo $form->field($model, 'open')->textInput() ?>
+    <?php echo $form->field($model, 'open')->textInput([
+        'placeholder' => '00:00 to 24:00 format',
+        'maxlength'   => true
+    ]) ?>
 
-    <?php echo $form->field($model, 'close')->textInput() ?>
+    <?php echo $form->field($model, 'close')->textInput([
+        'placeholder' => '00:00 to 24:00 format',
+        'maxlength'   => true
+    ]) ?>
 
     <?php // echo $form->field($model, 'created_at')->textInput() ?>
 
