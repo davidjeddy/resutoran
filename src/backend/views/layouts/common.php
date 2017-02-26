@@ -23,18 +23,17 @@ echo Menu::widget([
         ],
         [
             'icon'      => '<i class="fa fa-bars"></i>',
-            'label'     => \Yii::t('resutoran', 'Location Data'),
+            'label'     => \Yii::t('resutoran', 'Locations'),
+            'url'       => ['/resutoran/resu-location'],
+        ],
+        [
+            'icon'      => '<i class="fa fa-bars"></i>',
+            'label'     => \Yii::t('resutoran', 'Location Information'),
             'url'       => ['#'],
-            'options'   => ['class' => 'active'],
             'items'     => [
                 [
                     'icon'      => '<i class="fa fa-bars"></i>',
-                    'label'     => \Yii::t('resutoran', 'Locations'),
-                    'url'       => ['/resutoran/resu-location'],
-                ],
-                [
-                    'icon'      => '<i class="fa fa-bars"></i>',
-                    'label'     => \Yii::t('resutoran', 'Location Hours'),
+                    'label'     => \Yii::t('resutoran', 'Hours'),
                     'url'       => ['/resutoran/resu-location-hour'],
                 ],
                 [
@@ -42,7 +41,13 @@ echo Menu::widget([
                     'label'     => \Yii::t('resutoran', 'Franchise'),
                     'url'       => ['/resutoran/resu-franchise'],
                 ],
-
+            ]
+        ],
+        [
+            'icon'      => '<i class="fa fa-bars"></i>',
+            'label'     => \Yii::t('resutoran', 'ZFG Options'),
+            'url'       => ['#'],
+            'items'     => [
                 [
                     'icon'      => '<i class="fa fa-bars"></i>',
                     'label'     => \Yii::t('resutoran', 'Map'),
@@ -78,12 +83,11 @@ echo Menu::widget([
                     'label' => \Yii::t('resutoran', 'Media'),
                     'url'   => ['/resutoran/resu-media-option/'],
                 ],
-// PEr user req. hiding this menu item until future needs require it.
-//                [
-//                    'icon'  => '<i class="fa fa-bars"></i>',
-//                    'label' => \Yii::t('resutoran', 'Menu'),
-//                    'url'   => ['/resutoran/resu-menu-option/'],
-//                ],
+                [
+                    'icon'  => '<i class="fa fa-bars"></i>',
+                    'label' => \Yii::t('resutoran', 'Menu'),
+                    'url'   => ['/resutoran/resu-menu-option/'],
+                ],
                 [
                     'icon'  => '<i class="fa fa-bars"></i>',
                     'label' => \Yii::t('resutoran', 'Payment'),
@@ -94,7 +98,7 @@ echo Menu::widget([
                     'label' => \Yii::t('resutoran', 'Seating'),
                     'url'   => ['/resutoran/resu-seating-option/'],
                 ],
-            ]
-        ]
-    ]
+            ],
+        ],
+    ],
 ]);
