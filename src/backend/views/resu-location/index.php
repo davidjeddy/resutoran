@@ -3,6 +3,9 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 
+use  resutoran\backend\assets\ResuReviewBundle;
+$resuAppAsset = ResuReviewBundle::register($this);
+
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
@@ -24,14 +27,55 @@ $this->params['breadcrumbs'][] = $this->title;
 
             // 'id',
             'value:text:Location Name',
+            [
+                'attribute' => 'reviews',
+                'format' => 'html',
+                'value' => function ($model) use ($resuAppAsset) {
+                    $returnData = null;
+                    $adminIds = explode(',', env('ADMIN_IDS'));
+
+                    foreach ($adminIds as $key => $value) {
+                        $userMDL = \common\models\User::findOne([
+                            'id' => $value
+                        ]);
+                        if ($userMDL === null) {
+                            continue;
+                        }
+
+                        $reviewMDL = \resutoran\common\models\ResuReview::find()
+                            ->select(['id', 'resu_location_id', 'user_id'])
+                            ->andWhere([
+                                'user_id' => $value,
+                                'resu_location_id' => $model->id
+                            ])
+                            ->one();
+
+                        $reviewStatus = 0;
+
+                        if ($reviewMDL !== false) {
+                            $reviewStatus = 1;
+                        }
+
+                        $returnData .= $userMDL->username .': <img
+                            src="' . $resuAppAsset->baseUrl . '/' . $resuAppAsset->image[$reviewStatus] . '"
+                            alt=""
+                            class=""
+                            height="32"
+                            width="32"
+                        />&nbsp;';
+                    }
+
+                    return $returnData;
+                },
+            ],
             // 'resu_franchise_id',
-            'resuFranchise.value:text:Franchise',
+            //'resuFranchise.value:text:Franchise',
             // 'resuContact.value:text:Contact',
             // 'resu_price_option_id',
             // 'resu_decor_option_id',
-            'resuDecorOption.value:text:Decor',
+            //'resuDecorOption.value:text:Decor',
             // 'resu_ambiance_option_id',
-            'resuAmbianceOption.value:text:Ambiance',
+            //'resuAmbianceOption.value:text:Ambiance',
             // 'resu_map_id',
             // 'created_at',
             // 'created_by',
@@ -41,6 +85,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
-    ]); ?>
+    ]) ?>
 
 </div>
