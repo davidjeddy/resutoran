@@ -39,7 +39,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => $this->title
             ],
             'value:ntext',
-            'created_at',
+            'rating',
+            'created_at:date',
             //'created_by',
             [
                 'label' => 'Created By',
