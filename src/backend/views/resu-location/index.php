@@ -30,42 +30,10 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'reviews',
                 'format' => 'html',
-                'value' => function ($model) use ($resuAppAsset) {
-                    $returnData = null;
-                    $adminIds = explode(',', env('ADMIN_IDS'));
-
-                    foreach ($adminIds as $key => $value) {
-                        $userMDL = \common\models\User::findOne([
-                            'id' => $value
-                        ]);
-                        if ($userMDL === null) {
-                            continue;
-                        }
-
-                        $reviewMDL = \resutoran\common\models\ResuReview::find()
-                            ->select(['id', 'resu_location_id', 'user_id'])
-                            ->andWhere([
-                                'user_id' => $value,
-                                'resu_location_id' => $model->id
-                            ])
-                            ->one();
-
-                        $reviewStatus = 0;
-
-                        if ($reviewMDL !== false) {
-                            $reviewStatus = 1;
-                        }
-
-                        $returnData .= $userMDL->username .': <img
-                            src="' . $resuAppAsset->baseUrl . '/' . $resuAppAsset->image[$reviewStatus] . '"
-                            alt=""
-                            class=""
-                            height="32"
-                            width="32"
-                        />&nbsp;';
-                    }
-
-                    return $returnData;
+                'value' => function ($model) {
+                    return $this->render('../partials/ReviewStatusIndicator', [
+                        'model' => $model
+                    ]);
                 },
             ],
             // 'resu_franchise_id',
