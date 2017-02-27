@@ -24,6 +24,17 @@ $this->params['breadcrumbs'][] = $this->title;
             'user_id',
             'value:html',
             'resuLocation.value:text:Location',
+            'rating:ntext',
+            //'status:integer',
+            [
+                'attribute' => 'status',
+                'format'    => 'html',
+                'value'     => function ($model) {
+                    return $this->render('./partials/SingleReviewStatusIndicator', [
+                        'model' => $model
+                    ]);
+                },
+            ],
             'created_at:date',
             'created_by',
             'updated_at:date',

@@ -3,6 +3,9 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 
+use  resutoran\backend\assets\ResuReviewBundle;
+$resuAppAsset = ResuReviewBundle::register($this);
+
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
@@ -24,14 +27,23 @@ $this->params['breadcrumbs'][] = $this->title;
 
             // 'id',
             'value:text:Location Name',
+            [
+                'attribute' => 'reviews',
+                'format' => 'html',
+                'value' => function ($model) {
+                    return $this->render('./partials/CompoundReviewStatusIndicator', [
+                        'model' => $model
+                    ]);
+                },
+            ],
             // 'resu_franchise_id',
-            'resuFranchise.value:text:Franchise',
+            //'resuFranchise.value:text:Franchise',
             // 'resuContact.value:text:Contact',
             // 'resu_price_option_id',
             // 'resu_decor_option_id',
-            'resuDecorOption.value:text:Decor',
+            //'resuDecorOption.value:text:Decor',
             // 'resu_ambiance_option_id',
-            'resuAmbianceOption.value:text:Ambiance',
+            //'resuAmbianceOption.value:text:Ambiance',
             // 'resu_map_id',
             // 'created_at',
             // 'created_by',
@@ -41,6 +53,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
-    ]); ?>
+    ]) ?>
 
 </div>

@@ -51,8 +51,8 @@ use kartik\select2\Select2;
             'id',
             'name'
         )
-    ); ?>
-    
+    ) ?>
+
     <!-- business contact fields -->
     <?php echo $form->field($model, 'business_contact_name')->textInput([
         'placeholder' => 'Business Contact Name',
@@ -86,7 +86,7 @@ use kartik\select2\Select2;
             'label'     => 'Franchise',
             'model'     => $model
         ]
-    ]); ?>
+    ]) ?>
 
     <?php // echo $form->field($model, 'resu_decor_option_id')->textInput() ?>
     <?php echo $this->render('../partials/Select2', [
@@ -96,7 +96,7 @@ use kartik\select2\Select2;
             'label'     => 'DecorOption',
             'model'     => $model
         ]
-    ]); ?>
+    ]) ?>
 
     <?php // echo $form->field($model, 'resu_ambiance_option_id')->textInput() ?>
     <?php echo $this->render('../partials/Select2', [
@@ -106,7 +106,7 @@ use kartik\select2\Select2;
             'label'     => 'AmbianceOption',
             'model'     => $model
         ]
-    ]); ?>
+    ]) ?>
 
     <?php // echo $form->field($model, 'resu_map_id')->textInput(); ?>
     <?php echo $this->render('../partials/Select2', [
@@ -116,7 +116,7 @@ use kartik\select2\Select2;
             'label'     => 'Map',
             'model'     => $model
         ]
-    ]); ?>
+    ]) ?>
 
 
     <hr>
@@ -162,7 +162,7 @@ use kartik\select2\Select2;
             'multiple'      => true,
             'placeholder'   => 'Select Dress Code Options ...'
         ]
-    ]); ?>
+    ]) ?>
 
     <?php
     echo Html::label('Seating Option');
@@ -174,7 +174,7 @@ use kartik\select2\Select2;
             'multiple'      => true,
             'placeholder'   => 'Select Seating Options ...'
         ]
-    ]); ?>
+    ]) ?>
 
     <?php
     echo Html::label('Cuisine Option');
@@ -186,7 +186,7 @@ use kartik\select2\Select2;
             'multiple'      => true,
             'placeholder'   => 'Select Cuisine Options ...'
         ]
-    ]); ?>
+    ]) ?>
 
     <?php
     echo Html::label('Media Option');
@@ -198,7 +198,7 @@ use kartik\select2\Select2;
             'multiple'      => true,
             'placeholder'   => 'Select Media Options ...'
         ]
-    ]); ?>
+    ]) ?>
 
     <?php
     echo Html::label('Payment Option');
@@ -210,7 +210,7 @@ use kartik\select2\Select2;
             'multiple'      => true,
             'placeholder'   => 'Select Payment Options ...'
         ]
-    ]); ?>
+    ]) ?>
 
     <hr />
 
