@@ -38,17 +38,24 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => 'Location',
                 'value' => $this->title
             ],
-            'value:ntext',
+            'value:html',
             'rating:integer',
-            'status:integer',
-            'created_at',
+            //'status:integer',
+            [
+                'attribute' => 'status',
+                'format'    => 'html',
+                'value'     => $this->render('./partials/SingleReviewStatusIndicator', [
+                        'model' => $model
+                    ])
+            ],
+            'created_at:date',
             //'created_by',
             [
                 'label' => 'Created By',
                 'value' => (\common\models\User::findOne(['id' => $model->user_id])->username ?: null)
             ],
-            //'updated_at',
-            //'updated_by',
+            'updated_at:date',
+            'updated_by',
             //'deleted_at',
         ],
     ]) ?>

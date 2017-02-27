@@ -4,7 +4,6 @@ use  resutoran\backend\assets\ResuReviewBundle;
 $resuAppAsset = ResuReviewBundle::register($this);
 
 /* @var $model \yii\db\ActiveRecord */
-/* @var $returnData string */
 
 $returnData = null;
 $adminIds   = explode(',', env('ADMIN_IDS'));

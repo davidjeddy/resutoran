@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'reviews',
                 'format' => 'html',
                 'value' => function ($model) {
-                    return $this->render('../partials/ReviewStatusIndicator', [
+                    return $this->render('./partials/CompoundReviewStatusIndicator', [
                         'model' => $model
                     ]);
                 },
