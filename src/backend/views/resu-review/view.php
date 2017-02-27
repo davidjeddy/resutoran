@@ -39,6 +39,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => $this->title
             ],
             'value:ntext',
+            'rating:integer',
+            'status:integer',
             'created_at',
             //'created_by',
             [

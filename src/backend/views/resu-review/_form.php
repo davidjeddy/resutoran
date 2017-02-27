@@ -58,6 +58,12 @@ ResuReviewBundle::register($this);
 //    ]);
     ?>
 
+    <?php echo $form->field($model, 'status')->checkBox([
+            'label'     => 'Completed',
+            'checked'   => ($model->status === 2 ? true : false),
+            'value'     => 2
+    ]); ?>
+
     <?php //echo $form->field($model, 'created_at')->textInput() ?>
 
     <?php //echo $form->field($model, 'created_by')->textInput() ?>

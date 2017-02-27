@@ -24,6 +24,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'user_id',
             'value:html',
             'resuLocation.value:text:Location',
+            'rating:ntext',
+            'status:integer',
             'created_at:date',
             'created_by',
             'updated_at:date',

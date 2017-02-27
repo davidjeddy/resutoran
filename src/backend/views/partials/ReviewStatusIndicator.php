@@ -27,24 +27,23 @@ foreach ($adminIds as $key => $value) {
 
     // get review information
     $reviewMDL = \resutoran\common\models\ResuReview::find()
-        ->select(['id', 'resu_location_id', 'user_id'])
+        ->select(['id', 'resu_location_id', 'status', 'user_id'])
         ->andWhere([
-            'user_id' => $value,
+            'user_id'          => $value,
             'resu_location_id' => $model->id
         ])
         ->one();
 
-    if (!is_int($reviewMDL->id)) {
+    if (!isset($reviewMDL->status)) {
         $reviewStatus = 0;
     } else {
-        $reviewStatus = 1;
+        $reviewStatus = $reviewMDL->status;
     }
 
-    echo $userMDL->username .': <img
-            src="' . $resuAppAsset->baseUrl . '/' . $resuAppAsset->image[$reviewStatus] . '"
-            alt=""
-            class=""
-            height="32"
-            width="32"
+    echo $userMDL->username . ': <img
+            src     = "' . $resuAppAsset->baseUrl . '/' . $resuAppAsset->image[$reviewStatus] . '"
+            alt     = "Review Status"
+            height  = "32"
+            width   = "32"
         />&nbsp;';
 }
