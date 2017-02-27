@@ -2,7 +2,7 @@
 
 use yii\db\Migration;
 
-class m170218_235213_review_rating_as_input_field extends Migration
+class m170226_122530_review_rating_as_input_field extends Migration
 {
     public function safeUp()
     {
