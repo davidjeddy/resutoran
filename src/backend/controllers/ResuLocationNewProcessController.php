@@ -101,7 +101,7 @@ class ResuLocationNewProcessController extends ResuLocationController
 
             //if ($model->load($data) && $model->save()) {
             if ($saveStatus === true) {
-                return \Yii::$app->response->redirect('add-additional-options?id=' . $id);
+                return \Yii::$app->response->redirect('add-additional-option?id=' . $id);
             }
         }
 
@@ -109,7 +109,64 @@ class ResuLocationNewProcessController extends ResuLocationController
             'model' => $model,
         ]);
     }
+
+    /**
+     * @param $id
+     *
+     * @return string
+     */
+    public function actionAddAdditionalOption($id)
+    {
+        $model = new \resutoran\common\models\ResuLocationMenu();
+
+        if (Yii::$app->request->isPost === true) {
+
+            $data = Yii::$app->request->post();
+
+            $saveStatus = $this->saveAdditionalOptions($id, $data['ResuLocation']['location_options']);
+
+            //if ($model->load($data) && $model->save()) {
+            if ($saveStatus === true) {
+                return \Yii::$app->response->redirect('add-hour?id=' . $id);
+            }
+        }
+
+        return $this->render('addAdditionalOption', [
+            'model' => $model,
+        ]);
+    }
+
     // private methods
+
+    /**
+     * @param $resuLocationId integer
+     * @param $data array
+     *
+     * @return boolean
+     */
+    private function saveMenuAmountValues($resuLocationId, $data)
+    {
+        $returnData = false;
+
+        foreach ($data as $key => $menuAmountValue) {
+            $resuLocMenuMDL = new \resutoran\common\models\ResuLocationMenu;
+            $resuLocMenuMDL->setAttributes([
+                'resu_location_id'    => $resuLocationId,
+                'resu_menu_option_id' => (integer)$key,
+                'high_price'          => $menuAmountValue['high_price'] ?: null,
+                'low_price'           => $menuAmountValue['low_price'] ?: null,
+            ]);
+
+            if ($resuLocMenuMDL->save()) {
+                $returnData = true;
+            } else {
+                $returnData = $resuLocMenuMDL->getErrors();
+                continue 1;
+            }
+        }
+
+        return $returnData;
+    }
 
     /**
      * @TODO this smells funny, can we factor this out to something like an event?
@@ -146,69 +203,6 @@ class ResuLocationNewProcessController extends ResuLocationController
                 if (!$locationDay->save()) {
                     $returnData = $locationDay->getErrors();
                 }
-            }
-        }
-
-        return $returnData;
-    }
-
-    /**
-     * @param $resuLocationId integer
-     * @param $data array
-     *
-     * @return boolean
-     */
-    private function saveMenuAmountValues($resuLocationId, $data)
-    {
-        $returnData = false;
-
-        foreach ($data as $key => $menuAmountValue) {
-            $resuLocMenuMDL = new \resutoran\common\models\ResuLocationMenu;
-            $resuLocMenuMDL->setAttributes([
-                'resu_location_id'    => $resuLocationId,
-                'resu_menu_option_id' => (integer)$key,
-                'high_price'          => $menuAmountValue['high_price'] ?: null,
-                'low_price'           => $menuAmountValue['low_price'] ?: null,
-            ]);
-
-            if ($resuLocMenuMDL->save()) {
-                $returnData = true;
-            } else {
-                $returnData = $resuLocMenuMDL->getErrors();
-                continue 1;
-            }
-        }
-
-        return $returnData;
-    }
-
-    /**
-     * @param $model \resutoran\common\models\ResuLocation
-     * @param $data \array
-     *
-     * @return boolean
-     */
-    private function saveBooleanOptionValues($model, $data)
-    {
-        $returnData = false;
-
-        foreach ($data as $key => $value) {
-            // TODO why is the view widget returning 1 for un-checked checkboxes?
-            if ($value === '1') {
-                continue;
-            }
-
-            $resuLocOptionMDL = new \resutoran\common\models\ResuLocationBoolean([
-                'resu_location_id'      => $model->id,
-                'resu_boolean_option_id'=> \resutoran\common\models\ResuBooleanOption::findOne([
-                    'value' => $value
-                ])->id
-            ]);
-
-            if (!$resuLocOptionMDL->save()) {
-                $returnData = $resuLocOptionMDL->getErrors();
-            } else {
-                $returnData = true;
             }
         }
 
