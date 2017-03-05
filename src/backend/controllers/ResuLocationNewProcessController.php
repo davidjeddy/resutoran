@@ -136,6 +136,31 @@ class ResuLocationNewProcessController extends ResuLocationController
         ]);
     }
 
+    /**
+     * @param $id
+     *
+     * @return string
+     */
+    public function actionAddHour($id)
+    {
+        $model = new \resutoran\common\models\ResuLocationMenu();
+
+        if (Yii::$app->request->isPost === true) {
+
+            $data = Yii::$app->request->post();
+            $saveStatus = false; //$this->saveMenuAmountValues($id, $data['ResuLocation']['resu_location_menu']);
+
+            //if ($model->load($data) && $model->save()) {
+            if ($saveStatus === true) {
+                return \Yii::$app->response->redirect('add-additional-option?id=' . $id);
+            }
+        }
+
+        return $this->render('addHour', [
+            'model' => $model,
+        ]);
+    }
+
     // private methods
 
     /**
