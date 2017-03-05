@@ -123,10 +123,10 @@ class ResuLocationNewProcessController extends ResuLocationController
 
             $data = Yii::$app->request->post();
             $saveStatus = $this->saveBooleanOptionValues($id, $data['ResuLocation']);
-            //$saveStatus = additional options here;
+            $saveStates2= $this->saveAdditionalOption($id, $data['ResuLocation']['location_options']);
 
             //if ($model->load($data) && $model->save()) {
-            if ($saveStatus === true) {
+            if ($saveStatus === true && $saveStates2 === true) {
                 return \Yii::$app->response->redirect('add-hour?id=' . $id);
             }
         }
@@ -199,6 +199,46 @@ class ResuLocationNewProcessController extends ResuLocationController
                 $returnData = true;
             } else {
                 $returnData = $resuLocOptionMDL->getErrors();
+            }
+        }
+
+        return $returnData;
+    }
+
+    /**
+     * @param $id integer
+     * @param $data array
+     *
+     * @return bool
+     */
+    private function saveAdditionalOption($id, $data)
+    {
+        $returnData = false;
+
+        // loop MDLs
+        foreach ($data as $MDLName => $values) {
+
+            $attributeString = str_replace('resu_location_', 'resu_', $MDLName) . '_option_id';
+            $model = '\resutoran\common\models\\' . \yii\helpers\Inflector::camelize($MDLName);
+            $model = new $model;
+
+            // loop items on that MDL
+            foreach ($values as $valueKey => $value) {
+
+                $model->setAttributes([
+                    $attributeString => $value,
+                    'resu_location_id' => $id
+                ]);
+
+                if ($model === null) {
+                    continue;
+                }
+
+                if ($model->save()) {
+                    $returnData = true;
+                } else {
+                    $returnData = $model->getErrors();
+                }
             }
         }
 
