@@ -8,10 +8,10 @@ use yii\helpers\Html;
 /* @var $model \resutoran\common\models\ResuLocation */
 /* @var $form yii\bootstrap\ActiveForm */
 
-$this->title = Yii::t('backend', 'Create {modelClass}', [
+$this->title = Yii::t('backend', '{modelClass} Options', [
     'modelClass' => 'Location',
 ]);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('resutoran', 'Create Locations'), 'url' => ['create']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('resutoran', 'Create'), 'url' => ['/resu-location-new-process/create']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

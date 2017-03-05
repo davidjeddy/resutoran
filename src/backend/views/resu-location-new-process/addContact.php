@@ -1,16 +1,17 @@
 <?php
 
 use yii\bootstrap\ActiveForm;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model \resutoran\common\models\ResuLocation */
 /* @var $form yii\bootstrap\ActiveForm */
 
-$this->title = Yii::t('backend', 'Create {modelClass}', [
+$this->title = Yii::t('backend', '{modelClass} Options', [
     'modelClass' => 'Location',
 ]);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('resutoran', 'Create Locations Contact'), 'url' => ['newLocation']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('resutoran', 'Create'), 'url' => ['/resu-location-new-process/create']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

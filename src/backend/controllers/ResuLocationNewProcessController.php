@@ -4,7 +4,6 @@ namespace resutoran\backend\controllers;
 
 use Yii;
 use \yii\base\Exception;
-use \yii\helpers\BaseInflector;
 
 /**
  * ResuLocationController implements the CRUD actions for ResuLocation model.
@@ -30,11 +29,11 @@ class ResuLocationNewProcessController extends ResuLocationController
             if ($model->load($data) && $model->save()) {
 
                 // TODO use url module?
-                return \Yii::$app->response->redirect('create-contact?id=' . $model->id);
+                return \Yii::$app->response->redirect('add-contact?id=' . $model->id);
             }
         }
 
-        return $this->render('newLocation', [
+        return $this->render('addLocation', [
             'model' => $model,
         ]);
     }
@@ -44,7 +43,7 @@ class ResuLocationNewProcessController extends ResuLocationController
      *
      * @return string
      */
-    public function actionCreateContact($id)
+    public function actionAddContact($id)
     {
         $model = new \resutoran\common\models\ResuLocationContact();
 
@@ -58,7 +57,7 @@ class ResuLocationNewProcessController extends ResuLocationController
             }
         }
 
-        return $this->render('newContact', [
+        return $this->render('addContact', [
             'model' => $model,
         ]);
     }
@@ -68,67 +67,49 @@ class ResuLocationNewProcessController extends ResuLocationController
      *
      * @return string
      */
-    public function actionCreateOption($id)
+    public function actionAddOption($id)
     {
-        $model = new \resutoran\common\models\ResuLocationContact();
+        $model = $this->findModel($id);
 
         if (Yii::$app->request->isPost === true) {
 
             $data = Yii::$app->request->post();
-            $data['ResuLocationOption']['resu_location_id'] = $id;
 
             if ($model->load($data) && $model->save()) {
-                return \Yii::$app->response->redirect('create-menu?id=' . $id);
+                return \Yii::$app->response->redirect('add-menu?id=' . $id);
             }
         }
 
-        return $this->render('newContact', [
+        return $this->render('addOption', [
             'model' => $model,
         ]);
     }
+
     /**
-     * @param $model
-     * @param $optionMDLArray
+     * @param $id
      *
-     * @return bool
-     * @throws \yii\base\Exception
+     * @return string
      */
-    private function saveLocationOptions($model, $optionMDLArray)
+    public function actionAddMenu($id)
     {
-        $returnData = false;
+        $model = new \resutoran\common\models\ResuLocationMenu();
 
-        foreach ($optionMDLArray as $optionKeyMDL => $optionValueAttributes) {
+        if (Yii::$app->request->isPost === true) {
 
-            // does the option model class exists?s
-            $optionMDL = '\resutoran\common\models\\' . BaseInflector::camelize( $optionKeyMDL );
+            $data = Yii::$app->request->post();
+            $saveStatus = $this->saveMenuAmountValues($id, $data['ResuLocation']['resu_location_menu']);
 
-            if (class_exists($optionMDL)) {
-
-                foreach ($optionValueAttributes as $optionValueKey => $optionValueValue) {
-
-                    // create a an AR
-                    $optionMDL = new $optionMDL;
-
-                    $optionMDL->setAttributes([
-                        'resu_location_id'      => $model->id,
-                        // todo This is terrible, refactor - DJE
-                        str_replace('_location', '', $optionKeyMDL) . '_option_id'   => $optionValueValue
-                    ]);
-
-                    // save option AR to data store, or return error if present
-                    if (!$optionMDL->validate() || !$optionMDL->save()) {
-                        $returnData = $optionMDL->getErrors();
-                    } else {
-                        $returnData = true;
-                    }
-                }
-            } else {
-                throw new Exception('Unable to find related model for optional data.');
+            //if ($model->load($data) && $model->save()) {
+            if ($saveStatus === true) {
+                return \Yii::$app->response->redirect('add-additional-options?id=' . $id);
             }
         }
 
-        return $returnData;
+        return $this->render('addMenu', [
+            'model' => $model,
+        ]);
     }
+    // private methods
 
     /**
      * @TODO this smells funny, can we factor this out to something like an event?
@@ -172,31 +153,29 @@ class ResuLocationNewProcessController extends ResuLocationController
     }
 
     /**
-     * @param $model \resutoran\common\models\ResuLocation
-     * @param $data \array
+     * @param $resuLocationId integer
+     * @param $data array
      *
      * @return boolean
      */
-    private function saveMenuAmountValues($model, $data)
+    private function saveMenuAmountValues($resuLocationId, $data)
     {
         $returnData = false;
 
         foreach ($data as $key => $menuAmountValue) {
-            if (!empty($menuAmountValue['high_price']) && !empty($menuAmountValue['low_price'])) {
-                $resuLocMenuMDL = new \resutoran\common\models\ResuLocationMenu([
-                    'resu_location_id'    => $model->id,
-                    'resu_menu_option_id' => $key,
-                    'high_price'          => $menuAmountValue['high_price'] ?: null,
-                    'low_price'           => $menuAmountValue['low_price'] ?: null,
-                ]);
+            $resuLocMenuMDL = new \resutoran\common\models\ResuLocationMenu;
+            $resuLocMenuMDL->setAttributes([
+                'resu_location_id'    => $resuLocationId,
+                'resu_menu_option_id' => (integer)$key,
+                'high_price'          => $menuAmountValue['high_price'] ?: null,
+                'low_price'           => $menuAmountValue['low_price'] ?: null,
+            ]);
 
-                if (!$resuLocMenuMDL->save()) {
-                    $returnData = $resuLocMenuMDL->getErrors();
-                } else {
-                    $returnData = true;
-                }
+            if ($resuLocMenuMDL->save()) {
+                $returnData = true;
             } else {
-
+                $returnData = $resuLocMenuMDL->getErrors();
+                continue 1;
             }
         }
 
