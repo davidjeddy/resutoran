@@ -88,6 +88,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?php
         echo Html::label('Boolean Option');
+        echo '<br />';
         echo \yii\bootstrap\BaseHtml::checkboxList(
             'resu_location_boolean',
             null,

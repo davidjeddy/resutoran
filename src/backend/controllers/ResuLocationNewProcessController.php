@@ -122,8 +122,8 @@ class ResuLocationNewProcessController extends ResuLocationController
         if (Yii::$app->request->isPost === true) {
 
             $data = Yii::$app->request->post();
-
-            $saveStatus = $this->saveAdditionalOptions($id, $data['ResuLocation']['location_options']);
+            $saveStatus = $this->saveBooleanOptionValues($id, $data['ResuLocation']);
+            //$saveStatus = additional options here;
 
             //if ($model->load($data) && $model->save()) {
             if ($saveStatus === true) {
@@ -162,6 +162,43 @@ class ResuLocationNewProcessController extends ResuLocationController
             } else {
                 $returnData = $resuLocMenuMDL->getErrors();
                 continue 1;
+            }
+        }
+
+        return $returnData;
+    }
+
+    /**
+     * @param $resuLocationId integer
+     * @param $data \array
+     *
+     * @return boolean
+     */
+    private function saveBooleanOptionValues($resuLocationId, $data)
+    {
+        $returnData = false;
+
+        foreach ($data as $key => $value) {
+            // why is the checkboxX widget returning integer 1 for unchecked items?
+            if ($value == 1) {
+                continue;
+            }
+
+            $resuLocOptionMDL = new \resutoran\common\models\ResuLocationBoolean([
+                'resu_location_id'      => $resuLocationId,
+                'resu_boolean_option_id'=> \resutoran\common\models\ResuBooleanOption::findOne([
+                    'value' => $value
+                ])->id
+            ]);
+
+            if ($resuLocOptionMDL === null) {
+                continue;
+            }
+
+            if ($resuLocOptionMDL->save()) {
+                $returnData = true;
+            } else {
+                $returnData = $resuLocOptionMDL->getErrors();
             }
         }
 
