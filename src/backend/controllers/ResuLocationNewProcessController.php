@@ -143,12 +143,12 @@ class ResuLocationNewProcessController extends ResuLocationController
      */
     public function actionAddHour($id)
     {
-        $model = new \resutoran\common\models\ResuLocationMenu();
+        $model = new \resutoran\common\models\ResuLocationHour();
 
         if (Yii::$app->request->isPost === true) {
 
             $data = Yii::$app->request->post();
-            $saveStatus = false; //$this->saveMenuAmountValues($id, $data['ResuLocation']['resu_location_menu']);
+            $saveStatus = $this->saveHoursValues($id, $data['ResuLocation']['resu_location_hour']);
 
             //if ($model->load($data) && $model->save()) {
             if ($saveStatus === true) {
