@@ -286,7 +286,7 @@ class ResuLocationNewProcessController extends ResuLocationController
         foreach ($data as $key => $dayValue) {
 
             // save the hour value to the resu_hour_value
-            $hourValueMDL = new \resutoran\common\models\ResuHourValue([
+            $hourValueMDL = new \resutoran\common\models\ResuLocationHour([
                 'open' => $dayValue[0],
                 'close' => $dayValue[1]
             ]);
@@ -296,10 +296,11 @@ class ResuLocationNewProcessController extends ResuLocationController
                 $returnData = $hourValueMDL->getErrors();
             } else {
 
-                $locationDay = new \resutoran\common\models\ResuLocationDay([
+                $locationDay = new \resutoran\common\models\ResuLocationHour([
                     'resu_day_option_id'=> $key,
                     'resu_location_id'  => $model->id,
-                    'resu_hour_value_id'=> $hourValueMDL->id
+                    'open' => $dayValue[0],
+                    'close' => $dayValue[1]
                 ]);
 
                 if (!$locationDay->save()) {
