@@ -29,11 +29,42 @@ class ResuLocationNewProcessController extends ResuLocationController
             if ($model->load($data) && $model->save()) {
 
                 // TODO use url module?
-                return \Yii::$app->response->redirect('add-contact?id=' . $model->id);
+                return \Yii::$app->response->redirect('add-additional-option?id=' . $model->id);
             }
         }
 
-        return $this->render('addLocation', [
+        return $this->render('create', [
+            'model' => $model,
+        ]);
+    }
+
+    // from here on the additional data points are stepped through alphabetically
+
+    /**
+     * @param $id integer
+     *
+     * @return string
+     */
+    public function actionAddAdditionalOption($id)
+    {
+        $model = new \resutoran\common\models\ResuLocationMenu();
+
+        if (Yii::$app->request->isPost === true) {
+
+            $data = Yii::$app->request->post();
+
+            // temp disable boolean options
+            //$saveStatus = $this->saveBooleanOptionValues($id, $data['ResuLocation']);
+            $saveStates2 = $this->saveAdditionalOption($id, $data['ResuLocation']['location_options']);
+
+            //if ($model->load($data) && $model->save()) {
+            //if ($saveStatus === true && $saveStates2 === true) {
+            if ($saveStates2 === true) {
+                return \Yii::$app->response->redirect('add-hour?id=' . $id);
+            }
+        }
+
+        return $this->render('addAdditionalOption', [
             'model' => $model,
         ]);
     }
@@ -53,7 +84,7 @@ class ResuLocationNewProcessController extends ResuLocationController
             $data['ResuLocationContact']['resu_location_id'] = $id;
 
             if ($model->load($data) && $model->save()) {
-                return \Yii::$app->response->redirect('create-option?id=' . $id);
+                return \Yii::$app->response->redirect('add-option?id=' . $id);
             }
         }
 
@@ -67,20 +98,22 @@ class ResuLocationNewProcessController extends ResuLocationController
      *
      * @return string
      */
-    public function actionAddOption($id)
+    public function actionAddHour($id)
     {
-        $model = $this->findModel($id);
+        $model = new \resutoran\common\models\ResuLocationHour();
 
         if (Yii::$app->request->isPost === true) {
 
             $data = Yii::$app->request->post();
+            $saveStatus = $this->saveHoursValues($id, $data['ResuLocationHour']);
 
-            if ($model->load($data) && $model->save()) {
+            //if ($model->load($data) && $model->save()) {
+            if ($saveStatus === true) {
                 return \Yii::$app->response->redirect('add-menu?id=' . $id);
             }
         }
 
-        return $this->render('addOption', [
+        return $this->render('addHour', [
             'model' => $model,
         ]);
     }
@@ -101,7 +134,7 @@ class ResuLocationNewProcessController extends ResuLocationController
 
             //if ($model->load($data) && $model->save()) {
             if ($saveStatus === true) {
-                return \Yii::$app->response->redirect('add-additional-option?id=' . $id);
+                return \Yii::$app->response->redirect('add-option?id=' . $id);
             }
         }
 
@@ -115,48 +148,20 @@ class ResuLocationNewProcessController extends ResuLocationController
      *
      * @return string
      */
-    public function actionAddAdditionalOption($id)
+    public function actionAddOption($id)
     {
-        $model = new \resutoran\common\models\ResuLocationMenu();
+        $model = $this->findModel($id);
 
         if (Yii::$app->request->isPost === true) {
 
             $data = Yii::$app->request->post();
-            $saveStatus = $this->saveBooleanOptionValues($id, $data['ResuLocation']);
-            $saveStates2= $this->saveAdditionalOption($id, $data['ResuLocation']['location_options']);
 
-            //if ($model->load($data) && $model->save()) {
-            if ($saveStatus === true && $saveStates2 === true) {
-                return \Yii::$app->response->redirect('add-hour?id=' . $id);
+            if ($model->load($data) && $model->save()) {
+                return \Yii::$app->response->redirect('/resutoran/resu-location');
             }
         }
 
-        return $this->render('addAdditionalOption', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * @param $id
-     *
-     * @return string
-     */
-    public function actionAddHour($id)
-    {
-        $model = new \resutoran\common\models\ResuLocationHour();
-
-        if (Yii::$app->request->isPost === true) {
-
-            $data = Yii::$app->request->post();
-            $saveStatus = $this->saveHoursValues($id, $data['ResuLocation']['resu_location_hour']);
-
-            //if ($model->load($data) && $model->save()) {
-            if ($saveStatus === true) {
-                return \Yii::$app->response->redirect('add-additional-option?id=' . $id);
-            }
-        }
-
-        return $this->render('addHour', [
+        return $this->render('addOption', [
             'model' => $model,
         ]);
     }
@@ -279,34 +284,21 @@ class ResuLocationNewProcessController extends ResuLocationController
      * @return bool
      * @throws Exception
      */
-    private function saveHoursValues($model, $data)
+    private function saveHoursValues($id, $data)
     {
         $returnData = false;
 
-        foreach ($data as $key => $dayValue) {
+        $model = new \resutoran\common\models\ResuLocationHour([
+            'resu_day_option_id'=> (int)$data['resu_day_option_id'],
+            'resu_location_id'  => (int)$id,
+            'open' => $data['open'],
+            'close' => $data['close']
+        ]);
 
-            // save the hour value to the resu_hour_value
-            $hourValueMDL = new \resutoran\common\models\ResuLocationHour([
-                'open' => $dayValue[0],
-                'close' => $dayValue[1]
-            ]);
-
-            // save hour AR to data store, or return error if present
-            if (!$hourValueMDL->save()) {
-                $returnData = $hourValueMDL->getErrors();
-            } else {
-
-                $locationDay = new \resutoran\common\models\ResuLocationHour([
-                    'resu_day_option_id'=> $key,
-                    'resu_location_id'  => $model->id,
-                    'open' => $dayValue[0],
-                    'close' => $dayValue[1]
-                ]);
-
-                if (!$locationDay->save()) {
-                    $returnData = $locationDay->getErrors();
-                }
-            }
+        if ($model->save()) {
+            $returnData = true;
+        } else {
+            $returnData = $model->getErrors();
         }
 
         return $returnData;

@@ -10,7 +10,7 @@ use kartik\checkbox\CheckboxX;
 /* @var $model \resutoran\common\models\ResuLocation */
 /* @var $form yii\bootstrap\ActiveForm */
 
-$this->title = Yii::t('backend', '{modelClass} Options', [
+$this->title = Yii::t('backend', '{modelClass} Additional Options', [
     'modelClass' => 'Location',
 ]);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('resutoran', 'Create'), 'url' => ['/resu-location-new-process/create']];
@@ -115,19 +115,10 @@ $this->params['breadcrumbs'][] = $this->title;
             ]
         ) ?>
 
-        <?php // echo $form->field($model, 'created_at')->textInput() ?>
-
-        <?php // echo $form->field($model, 'created_by')->textInput() ?>
-
-        <?php // echo $form->field($model, 'updated_at')->textInput() ?>
-
-        <?php // echo $form->field($model, 'updated_by')->textInput() ?>
-
-        <?php // echo $form->field($model, 'deleted_at')->textInput() ?>
-
-        <div class="form-group">
-            <?php echo Html::submitButton($model->isNewRecord ? Yii::t('backend', 'Create') : Yii::t('backend', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-        </div>
+        <?php echo $this->render('./partials/_timestamp_submit_skip.php', [
+            'model' => $model,
+            'nextStep' => 'add-contact'
+        ]) ?>
 
         <?php ActiveForm::end(); ?>
 
