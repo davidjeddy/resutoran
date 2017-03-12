@@ -26,7 +26,9 @@ use yii\helpers\Html;
 
 <div class="form-group">
     <?php
-    if (is_string($nextStep)) {
+    if (!isset($nextStep)) {
+        return false;
+    } elseif (is_string($nextStep)) {
         echo Html::a(
             'Skip',
             ['resu-location-new-process/' . $nextStep . '?' . \Yii::$app->request->getQueryString()],

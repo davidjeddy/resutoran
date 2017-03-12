@@ -59,7 +59,8 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
 
         <?php echo $this->render('./partials/_timestamp_submit_skip.php', [
-            'model' => $model
+            'model' => $model,
+            'nextStep' => 'add-additional-options'
         ]) ?>
 
         <?php ActiveForm::end(); ?>
