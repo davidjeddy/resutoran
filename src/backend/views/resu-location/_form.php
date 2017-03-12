@@ -38,11 +38,6 @@ use kartik\select2\Select2;
         'maxlength'   => true
     ]) ?>
 
-    <?php echo $form->field($model, 'zip_code')->textInput([
-        'placeholder' => 'ZIP Code',
-        'maxlength'   => true
-    ]) ?>
-
     <?php // echo $form->field($model, 'resu_state_id')->textInput() ?>
     <?php //. why the fuck wont our ./partial/Select2 work for this? ?>
     <?php echo $form->field($model, 'resu_state_id')->dropDownList(
@@ -52,6 +47,11 @@ use kartik\select2\Select2;
             'name'
         )
     ) ?>
+
+    <?php echo $form->field($model, 'zip_code')->textInput([
+        'placeholder' => 'ZIP Code',
+        'maxlength'   => true
+    ]) ?>
 
     <?php // echo $form->field($model, 'created_at')->textInput() ?>
 
