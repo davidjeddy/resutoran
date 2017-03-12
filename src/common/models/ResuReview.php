@@ -42,6 +42,9 @@ class ResuReview extends \resutoran\common\models\ResuBase
             [['value'], 'string'],
             [['rating', 'status'], 'number'],
             [['resu_location_id'], 'exist', 'skipOnError' => true, 'targetClass' => ResuLocation::className(), 'targetAttribute' => ['resu_location_id' => 'id']],
+
+            [['rating'], 'double',  'min' => 0.00, 'max' => 100.00],
+            [['user_id', 'created_by', 'resu_location_id'], 'unique', 'message' => 'You already reviewed this location.']
         ];
     }
 
