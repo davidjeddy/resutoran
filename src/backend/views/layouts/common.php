@@ -23,6 +23,11 @@ echo Menu::widget([
         ],
         [
             'icon'      => '<i class="fa fa-bars"></i>',
+            'label'     => \Yii::t('resutoran', 'New Locations'),
+            'url'       => ['/resutoran/resu-location-new-process/create'],
+        ],
+        [
+            'icon'      => '<i class="fa fa-bars"></i>',
             'label'     => \Yii::t('resutoran', 'Locations'),
             'url'       => ['/resutoran/resu-location'],
         ],
