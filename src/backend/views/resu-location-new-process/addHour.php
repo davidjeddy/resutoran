@@ -1,7 +1,6 @@
 <?php
 
 use yii\bootstrap\ActiveForm;
-use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
@@ -24,29 +23,39 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php echo $form->errorSummary($model); ?>
 
         <?php // cho $form->field($model, 'resu_day_option_id')->textInput() ?>
-        <?php echo $this->render('../partials/Select2', [
-            'options' => [
-                'clear'     => true,
-                'form'      => $form,
-                'label'     => 'DayOption',
-                'model'     => $model,
-                'options'   => ArrayHelper::map(
-                    \resutoran\common\models\ResuDayOption::find()->asArray()->all(),
-                    'id',
-                    'value'
-                )
-            ]
-        ]); ?>
 
-        <?php echo $form->field($model, 'open')->textInput([
-            'placeholder' => '00:00 to 24:00 format',
-            'maxlength'   => true
-        ]) ?>
+        <?php
+        $daysOfWeek = \resutoran\common\models\ResuDayOption::find()->all();
+        foreach ($daysOfWeek as $key => $dayMDL) {
+            echo Html::label($dayMDL->value);
+            echo '<br />';
 
-        <?php echo $form->field($model, 'close')->textInput([
-            'placeholder' => '00:00 to 24:00 format',
-            'maxlength'   => true
-        ]) ?>
+            // public static function input($type, $name = null, $value = null, $options = [])
+            echo Html::label('Open');
+            echo Html::input(
+                'text',
+                '[ResuLocationHour][' . $dayMDL->id . '][open]',
+                null,
+                [
+                    'class' => 'form-control',
+                    'placeholder' => '00:00 to 24:00 format',
+                    'maxlength'   => true,
+                ]
+            );
+
+            echo Html::label('Close');
+            echo Html::input(
+                'text',
+                '[ResuLocationHour][' . $dayMDL->id . '][close]',
+                null,
+                [
+                    'class' => 'form-control',
+                    'placeholder' => '00:00 to 24:00 format',
+                    'maxlength'   => true,
+                ]
+            );
+        }
+        ?>
 
         <?php echo $this->render('./partials/_timestamp_submit_skip.php', [
             'model' => $model,

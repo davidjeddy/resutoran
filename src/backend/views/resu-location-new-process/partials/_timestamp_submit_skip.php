@@ -21,7 +21,12 @@ use yii\helpers\Html;
 <?php // echo $form->field($model, 'deleted_at')->textInput() ?>
 
 <div class="form-group">
-    <?php echo Html::submitButton($model->isNewRecord ? Yii::t('backend', 'Create') : Yii::t('backend', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+    <?php echo Html::submitButton(
+        Yii::t('backend', 'Next'),
+        [
+            'class' =>'btn btn-primary'
+        ]
+    ); ?>
 </div>
 
 <div class="form-group">
