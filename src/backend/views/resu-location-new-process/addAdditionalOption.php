@@ -109,10 +109,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     'value'
                 ),
                 [
+                    'threeState'=>false,
                     'inline' => false,
                     'item'   => function($index, $label, $name, $checked, $value) {
 
-                        $name = 'ResuLocation[resu_location_boolean]['.$index.']';
+                        $name = 'ResuLocation[resu_location_boolean]['.$label.']';
 
                         echo '<label class="cbx-label" for="'.$name.'">'.$label.'</label>';
                         echo CheckboxX::widget([
@@ -125,7 +126,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     }
                 ]
             ) ?>
-        </div>
 
         <?php echo $this->render('./partials/_timestamp_submit_skip.php', [
             'model' => $model,
