@@ -65,6 +65,11 @@ echo Menu::widget([
             'items'     => [
                 [
                     'icon'      => '<i class="fa fa-bars"></i>',
+                    'label'     => \Yii::t('resutoran', 'Boolean Options'),
+                    'url'       => ['/resutoran/resu-boolean-option'],
+                ],
+                [
+                    'icon'      => '<i class="fa fa-bars"></i>',
                     'label'     => \Yii::t('resutoran', 'Map'),
                     'url'       => ['/resutoran/resu-map'],
                 ],

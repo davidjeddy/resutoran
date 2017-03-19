@@ -13,8 +13,7 @@ $this->title = Yii::t('backend', '{modelClass} Hours', [
 $this->params['breadcrumbs'][] = ['label' => Yii::t('resutoran', 'Create'), 'url' => ['/resu-location-new-process/create']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-
-    <div class="resu-location-create">
+<div class="resu-location-create">
 
     <div class="resu-location-form">
 
@@ -22,31 +21,33 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?php echo $form->errorSummary($model); ?>
 
-        <?php // cho $form->field($model, 'resu_day_option_id')->textInput() ?>
+        <?php // echo $form->field($model, 'resu_day_option_id')->textInput() ?>
 
         <?php
         $daysOfWeek = \resutoran\common\models\ResuDayOption::find()->all();
         foreach ($daysOfWeek as $key => $dayMDL) {
+            echo '<div class="form-group">';
             echo Html::label($dayMDL->value);
             echo '<br />';
 
             // public static function input($type, $name = null, $value = null, $options = [])
             echo Html::label('Open');
+            // public static function input($type, $name = null, $value = null, $options = [])
             echo Html::input(
-                'text',
-                '[ResuLocationHour][' . $dayMDL->id . '][open]',
+                'input',
+                'ResuLocationHour[' . $dayMDL->id . '][open]',
                 null,
                 [
-                    'class' => 'form-control',
-                    'placeholder' => '00:00 to 24:00 format',
-                    'maxlength'   => true,
+                    'class'         => 'form-control',
+                    'placeholder'   => '00:00 to 24:00 format',
+                    'maxlength'     => true,
                 ]
             );
 
             echo Html::label('Close');
             echo Html::input(
                 'text',
-                '[ResuLocationHour][' . $dayMDL->id . '][close]',
+                'ResuLocationHour[' . $dayMDL->id . '][close]',
                 null,
                 [
                     'class' => 'form-control',
@@ -54,6 +55,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'maxlength'   => true,
                 ]
             );
+            echo '</div>';
         }
         ?>
 
