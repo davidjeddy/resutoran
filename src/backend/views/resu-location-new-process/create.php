@@ -8,7 +8,7 @@ use yii\helpers\Html;
 /* @var $model \resutoran\common\models\ResuLocation */
 /* @var $form yii\bootstrap\ActiveForm */
 
-$this->title = Yii::t('backend', '{modelClass} Options', [
+$this->title = Yii::t('backend', 'New {modelClass}', [
     'modelClass' => 'Location',
 ]);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('resutoran', 'Create'), 'url' => ['/resu-location-new-process/create']];
@@ -59,8 +59,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
 
         <?php echo $this->render('./partials/_timestamp_submit_skip.php', [
-            'model' => $model,
-            'nextStep' => 'add-additional-options'
+            'model' => $model
         ]) ?>
 
         <?php ActiveForm::end(); ?>

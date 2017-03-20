@@ -54,12 +54,11 @@ class ResuLocationNewProcessController extends ResuLocationController
             $data = Yii::$app->request->post();
 
             // temp disable boolean options
-            //$saveStatus = $this->saveBooleanOptionValues($id, $data['ResuLocation']);
-            $saveStates2 = $this->saveAdditionalOption($id, $data['ResuLocation']['location_options']);
+            $saveStatus  = $this->saveBooleanOptionValues($id, $data);
+            $saveStates2 = $this->saveAdditionalOption($id, $data);
 
             //if ($model->load($data) && $model->save()) {
-            //if ($saveStatus === true && $saveStates2 === true) {
-            if ($saveStates2 === true) {
+            if ($saveStatus === true && $saveStates2 === true) {
                 return \Yii::$app->response->redirect('add-hour?id=' . $id);
             }
         }
@@ -105,7 +104,7 @@ class ResuLocationNewProcessController extends ResuLocationController
         if (Yii::$app->request->isPost === true) {
 
             $data = Yii::$app->request->post();
-            $saveStatus = $this->saveHoursValues($id, $data['ResuLocationHour']);
+            $saveStatus = $this->saveHoursValues($id, $data);
 
             //if ($model->load($data) && $model->save()) {
             if ($saveStatus === true) {
@@ -157,7 +156,7 @@ class ResuLocationNewProcessController extends ResuLocationController
             $data = Yii::$app->request->post();
 
             if ($model->load($data) && $model->save()) {
-                return \Yii::$app->response->redirect('/resutoran/resu-location');
+                return \Yii::$app->response->redirect('../resu-location');
             }
         }
 
@@ -204,26 +203,28 @@ class ResuLocationNewProcessController extends ResuLocationController
      *
      * @return boolean
      */
-    private function saveBooleanOptionValues($resuLocationId, $data)
+    private function saveBooleanOptionValues($id, $data)
     {
+        if (empty($data['ResuLocation']['resu_location_boolean']) || !isset($data['ResuLocation']['resu_location_boolean'])) {
+            return true;
+        }
+        $data = $data['ResuLocation']['resu_location_boolean'];
         $returnData = false;
 
         foreach ($data as $key => $value) {
-            // why is the checkboxX widget returning integer 1 for unchecked items?
-            if ($value == 1) {
+
+            // any value other than 1 is not valid for our use case
+            if ($value !== '1') {
                 continue;
             }
 
             $resuLocOptionMDL = new \resutoran\common\models\ResuLocationBoolean([
-                'resu_location_id'      => $resuLocationId,
-                'resu_boolean_option_id'=> \resutoran\common\models\ResuBooleanOption::findOne([
-                    'value' => $value
-                ])->id
+                'resu_location_id'      => $id,
+                'resu_boolean_option_id'=> \resutoran\common\models\ResuBooleanOption::find()
+                    ->andWhere(['value' => $key])
+                    ->one()
+                    ->id
             ]);
-
-            if ($resuLocOptionMDL === null) {
-                continue;
-            }
 
             if ($resuLocOptionMDL->save()) {
                 $returnData = true;
@@ -236,13 +237,18 @@ class ResuLocationNewProcessController extends ResuLocationController
     }
 
     /**
-     * @param $id integer
-     * @param $data array
+     * @param integer $id
+     * @param array $data
      *
      * @return bool
      */
     private function saveAdditionalOption($id, $data)
     {
+        // no data to process, return true;
+        if (!isset($data['ResuLocation']['location_options'])) {
+            return true;
+        }
+
         $returnData = false;
 
         // loop MDLs
@@ -276,29 +282,38 @@ class ResuLocationNewProcessController extends ResuLocationController
     }
 
     /**
-     * @TODO this smells funny, can we factor this out to something like an event?
+     * @param $id
+     * @param $data
      *
-     * @param $model
-     * @param $optionMDLArray
-     *
-     * @return bool
-     * @throws Exception
+     * @return array|bool
      */
     private function saveHoursValues($id, $data)
     {
+        if (empty($data['ResuLocationHour']) || !isset($data['ResuLocationHour'])) {
+            return true;
+        }
+
         $returnData = false;
 
-        $model = new \resutoran\common\models\ResuLocationHour([
-            'resu_day_option_id'=> (int)$data['resu_day_option_id'],
-            'resu_location_id'  => (int)$id,
-            'open' => $data['open'],
-            'close' => $data['close']
-        ]);
+        foreach ($data['ResuLocationHour'] as $key => $value) {
 
-        if ($model->save()) {
-            $returnData = true;
-        } else {
-            $returnData = $model->getErrors();
+            if (empty($value['open']) && empty($value['close']))  {
+                $returnData = true;
+                continue;
+            }
+
+            $model = new \resutoran\common\models\ResuLocationHour([
+                'resu_day_option_id' => $key,
+                'resu_location_id'   => $id,
+                'open'               => $value['open'],
+                'close'              => $value['close']
+            ]);
+
+            if ($model->save()) {
+                $returnData = true;
+            } else {
+                $returnData = $model->getErrors();
+            }
         }
 
         return $returnData;
