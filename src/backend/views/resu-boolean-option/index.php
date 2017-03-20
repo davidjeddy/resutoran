@@ -6,7 +6,7 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('resutoran', ' Feature Options');
+$this->title = Yii::t('resutoran', 'Boolean Options');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="resu-boolean-option-index">
