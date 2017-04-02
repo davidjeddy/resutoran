@@ -66,7 +66,7 @@ class ResuLocationNewProcessController extends ResuLocationController
      */
     public function actionAddAdditionalOption($id)
     {
-        $model = new \resutoran\common\models\ResuLocation($id);
+        $model = new \resutoran\common\models\ResuLocation;
 
         if (Yii::$app->request->isPost === true) {
 
