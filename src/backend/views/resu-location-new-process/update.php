@@ -4,10 +4,10 @@
 /* @var $model \resutoran\common\models\ResuLocation */
 /* @var $form yii\bootstrap\ActiveForm */
 
-$this->title = Yii::t('backend', 'New {modelClass}', [
+$this->title = Yii::t('backend', 'Update {modelClass}', [
     'modelClass' => 'Location',
 ]);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('resutoran', 'Create'), 'url' => ['/resu-location-new-process/create']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('resutoran', 'Update'), 'url' => ['/resu-location-new-process/update']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

@@ -38,6 +38,25 @@ class ResuLocationNewProcessController extends ResuLocationController
         ]);
     }
 
+    /**
+     * Updates an existing ResuAmbianceOption model.
+     * If update is successful, the browser will be redirected to the 'view' page.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionUpdate($id)
+    {
+        $model = $this->findModel($id);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return \Yii::$app->response->redirect('add-additional-option?id=' . $model->id);
+        } else {
+            return $this->render('update', [
+                'model' => $model,
+            ]);
+        }
+    }
+
     // from here on the additional data points are stepped through alphabetically
 
     /**
@@ -47,7 +66,7 @@ class ResuLocationNewProcessController extends ResuLocationController
      */
     public function actionAddAdditionalOption($id)
     {
-        $model = new \resutoran\common\models\ResuLocationMenu();
+        $model = new \resutoran\common\models\ResuLocation($id);
 
         if (Yii::$app->request->isPost === true) {
 
@@ -59,7 +78,7 @@ class ResuLocationNewProcessController extends ResuLocationController
 
             //if ($model->load($data) && $model->save()) {
             if ($saveStatus === true && $saveStates2 === true) {
-                return \Yii::$app->response->redirect('add-hour?id=' . $id);
+                return \Yii::$app->response->redirect('add-contact?id=' . $id);
             }
         }
 
@@ -83,7 +102,7 @@ class ResuLocationNewProcessController extends ResuLocationController
             $data['ResuLocationContact']['resu_location_id'] = $id;
 
             if ($model->load($data) && $model->save()) {
-                return \Yii::$app->response->redirect('add-option?id=' . $id);
+                return \Yii::$app->response->redirect('add-hour?id=' . $id);
             }
         }
 
