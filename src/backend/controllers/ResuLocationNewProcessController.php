@@ -280,19 +280,30 @@ class ResuLocationNewProcessController extends ResuLocationController
             // loop items on that MDL
             foreach ($values as $valueKey => $value) {
 
-                $model->setAttributes([
-                    $attributeString => $value,
-                    'resu_location_id' => $id
-                ]);
+                // is option already set? Do not save a new pair
+                // TODO this should be a unique index on the TBL
+                $optionExists = $model->find()
+                    ->andWhere([
+                        'resu_location_id' => $id,
+                        $attributeString   => $value
+                    ])
+                    ->one();
 
-                if ($model === null) {
-                    continue;
-                }
+                if ($optionExists === null) {
+                    $model->setAttributes([
+                        $attributeString => $value,
+                        'resu_location_id' => $id
+                    ]);
 
-                if ($model->save()) {
-                    $returnData = true;
-                } else {
-                    $returnData = false;
+                    if ($model === null) {
+                        continue;
+                    }
+
+                    if ($model->save()) {
+                        $returnData = true;
+                    } else {
+                        $returnData = false;
+                    }
                 }
             }
         }

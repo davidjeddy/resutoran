@@ -56,10 +56,18 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <div class="form-group">
             <?php
+            $currentValues = ArrayHelper::map(
+                \resutoran\common\models\ResuLocationCuisine::find()
+                    ->andWhere(['resu_location_id' => \Yii::$app->request->getQueryParam('id')])
+                    ->asArray()
+                    ->all(),
+                'resu_location_id', 'resu_cuisine_option_id'
+            );
+
             echo Html::label('Cuisine Option');
             echo Select2::widget([
                 'name'      => 'ResuLocation[location_options][resu_location_cuisine][]',
-                'value'     => null,
+                'value'     => ($currentValues ? $currentValues : null),
                 'data'      => ArrayHelper::map(\resutoran\common\models\ResuCuisineOption::find()->all(), 'id', 'value'),
                 'options'   => [
                     'multiple'      => true,
