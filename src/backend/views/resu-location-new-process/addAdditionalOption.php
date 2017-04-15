@@ -118,11 +118,15 @@ $this->params['breadcrumbs'][] = $this->title;
                         echo '<label class="cbx-label" for="'.$name.'">'.$label.'</label>';
                         echo CheckboxX::widget([
                             'name'          => $name,
-                            'value'         => $label,
+                            'value'         => (\resutoran\common\models\ResuLocationBoolean::find()
+                                ->andWhere(['resu_location_id' => \Yii::$app->request->getQueryParam('id')])
+                                ->andWhere(['resu_boolean_option_id' => $value])
+                                ->one() !== null ? 1 : 0),
                             'pluginOptions' => [
                                 'threeState' => false
                             ]
                         ]);
+                        echo '<br />';
                     }
                 ]
             ) ?>
