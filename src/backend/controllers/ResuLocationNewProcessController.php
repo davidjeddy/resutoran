@@ -60,24 +60,26 @@ class ResuLocationNewProcessController extends ResuLocationController
     // from here on the additional data points are stepped through alphabetically
 
     /**
+     * @todo break this into two steps
+     *
      * @param $id integer
      *
      * @return string
      */
     public function actionAddAdditionalOption($id)
     {
-        $model = new \resutoran\common\models\ResuLocation($id);
+        $model = \resutoran\common\models\ResuLocation::findOne($id);
 
         if (Yii::$app->request->isPost === true) {
 
             $data = Yii::$app->request->post();
 
-            // temp disable boolean options
-            $saveStatus  = $this->saveBooleanOptionValues($id, $data);
-            $saveStates2 = $this->saveAdditionalOption($id, $data);
+            $saveStatus  = $this->saveAdditionalOption($id, $data);
+            //$saveStatus2 = $this->saveBooleanOptionValues($id, $data);
+            $saveStatus2 = true;
 
             //if ($model->load($data) && $model->save()) {
-            if ($saveStatus === true && $saveStates2 === true) {
+            if ($saveStatus === true && $saveStatus2 === true) {
                 return \Yii::$app->response->redirect('add-contact?id=' . $id);
             }
         }
