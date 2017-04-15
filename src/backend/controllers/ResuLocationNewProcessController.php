@@ -271,7 +271,7 @@ class ResuLocationNewProcessController extends ResuLocationController
         $returnData = false;
 
         // loop MDLs
-        foreach ($data as $MDLName => $values) {
+        foreach ($data['ResuLocation']['location_options'] as $MDLName => $values) {
 
             $attributeString = str_replace('resu_location_', 'resu_', $MDLName) . '_option_id';
             $model = '\resutoran\common\models\\' . \yii\helpers\Inflector::camelize($MDLName);
@@ -292,7 +292,7 @@ class ResuLocationNewProcessController extends ResuLocationController
                 if ($model->save()) {
                     $returnData = true;
                 } else {
-                    $returnData = $model->getErrors();
+                    $returnData = false;
                 }
             }
         }
