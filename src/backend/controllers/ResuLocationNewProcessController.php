@@ -96,7 +96,7 @@ class ResuLocationNewProcessController extends ResuLocationController
      */
     public function actionAddContact($id)
     {
-        $model = new \resutoran\common\models\ResuLocationContact();
+        $model = \resutoran\common\models\ResuLocationContact::findOne(['resu_location_id' => $id]);
 
         if (Yii::$app->request->isPost === true) {
 
@@ -120,7 +120,7 @@ class ResuLocationNewProcessController extends ResuLocationController
      */
     public function actionAddHour($id)
     {
-        $model = new \resutoran\common\models\ResuLocationHour();
+        $model = \resutoran\common\models\ResuLocationHour::findAll(['resu_location_id' => $id]);
 
         if (Yii::$app->request->isPost === true) {
 
@@ -145,7 +145,7 @@ class ResuLocationNewProcessController extends ResuLocationController
      */
     public function actionAddMenu($id)
     {
-        $model = new \resutoran\common\models\ResuLocationMenu();
+        $model = \resutoran\common\models\ResuLocationMenu::findAll(['resu_location_id' => $id]);
 
         if (Yii::$app->request->isPost === true) {
 
