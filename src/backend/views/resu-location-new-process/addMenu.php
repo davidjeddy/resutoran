@@ -8,7 +8,7 @@ use yii\helpers\Html;
 /* @var $model \resutoran\common\models\ResuLocation */
 /* @var $form yii\bootstrap\ActiveForm */
 
-$this->title = Yii::t('backend', '{modelClass} Options', [
+$this->title = Yii::t('backend', '{modelClass} Menus', [
     'modelClass' => 'Location',
 ]);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('resutoran', 'Create'), 'url' => ['/resu-location-new-process/create']];
@@ -38,8 +38,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     $return = '<div class="form-group field-resulocation-resu_location_menu required">
                             <label for="ResuLocation[resu_location_menu]['.$value.'][high_price]">'.$label.'</label>
-                            <input type="text" class="form-control" name="ResuLocation[resu_location_menu]['.$value.'][low_price]" maxlength="6" placeholder="Low Price (XXX.YY)">
-                            <input type="text" class="form-control" name="ResuLocation[resu_location_menu]['.$value.'][high_price]" maxlength="6" placeholder="High Price  (XXX.YY)">
+                            <input type="text" class="form-control" value="' . $model[$index]['low_price'] . '" name="ResuLocation[resu_location_menu]['.$value.'][low_price]" maxlength="6" placeholder="Low Price (XXX.YY)">
+                            <input type="text" class="form-control" value="' . $model[$index]['high_price'] . '" name="ResuLocation[resu_location_menu]['.$value.'][high_price]" maxlength="6" placeholder="High Price  (XXX.YY)">
                             <p class="help-block help-block-error"></p>
                         </div>';
 
