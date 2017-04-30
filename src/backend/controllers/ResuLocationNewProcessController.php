@@ -72,14 +72,24 @@ class ResuLocationNewProcessController extends ResuLocationController
 
         if (Yii::$app->request->isPost === true) {
 
-            $data = Yii::$app->request->post();
+            $returnData = new \yii\db\ActiveRecord();
 
-            $saveStatus  = $this->saveAdditionalOption($id, $data);
-            //$saveStatus2 = $this->saveBooleanOptionValues($id, $data);
-            $saveStatus2 = true;
+            if ($returnData->hasErrors() === false
+                && !empty($seatingOptions = \Yii::$app->request->post()['ResuLocation']['location_options']['resu_location_seating'])
+            ) {
+                $returnData = $this->saveResuLocDressOption($id, $seatingOptions);
+            }
+
+            //$saveStatus  = $this->saveResuLocDressOption($id, \Yii::$app->request->post());
+            //$saveStatus2 = $this->saveBooleanOptionValues($id, \Yii::$app->request->post());
+
+            echo '<pre>';
+            echo \yii\helpers\VarDumper::dump($returnData, 10, true);
+            echo '</pre>';
+            exit(1);
 
             //if ($model->load($data) && $model->save()) {
-            if ($saveStatus === true && $saveStatus2 === true) {
+            if ($saveStatus === true) {
                 return \Yii::$app->response->redirect('add-contact?id=' . $id);
             }
         }
@@ -199,14 +209,30 @@ class ResuLocationNewProcessController extends ResuLocationController
         $returnData = false;
 
         foreach ($data as $key => $menuAmountValue) {
-            $resuLocMenuMDL = new \resutoran\common\models\ResuLocationMenu;
+            // find record
+            $resuLocMenuMDL = \resutoran\common\models\ResuLocationMenu::find()
+                ->andWhere([
+                    'resu_location_id'      => $resuLocationId,
+                    'resu_menu_option_id'   => $key
+                ])
+                ->one();
+
+            // or create AR
+            if ($resuLocMenuMDL === null) {
+                $resuLocMenuMDL = new \resutoran\common\models\ResuLocationMenu();
+                $resuLocMenuMDL->setAttributes([
+                    'resu_location_id'=> $menuAmountValue['high_price'] ?: null,
+                    '' => $menuAmountValue['low_price'] ?: null,
+                ]);
+            }
+
+            // populate values
             $resuLocMenuMDL->setAttributes([
-                'resu_location_id'    => $resuLocationId,
-                'resu_menu_option_id' => (integer)$key,
-                'high_price'          => $menuAmountValue['high_price'] ?: null,
-                'low_price'           => $menuAmountValue['low_price'] ?: null,
+                'high_price'=> $menuAmountValue['high_price'] ?: null,
+                'low_price' => $menuAmountValue['low_price'] ?: null,
             ]);
 
+            // save model
             if ($resuLocMenuMDL->save()) {
                 $returnData = true;
             } else {
@@ -258,62 +284,6 @@ class ResuLocationNewProcessController extends ResuLocationController
     }
 
     /**
-     * @param integer $id
-     * @param array $data
-     *
-     * @return bool
-     */
-    private function saveAdditionalOption($id, $data)
-    {
-        // no data to process, return true;
-        if (!isset($data['ResuLocation']['location_options'])) {
-            return true;
-        }
-
-        $returnData = false;
-
-        // loop MDLs
-        foreach ($data['ResuLocation']['location_options'] as $MDLName => $values) {
-
-            $attributeString = str_replace('resu_location_', 'resu_', $MDLName) . '_option_id';
-            $model = '\resutoran\common\models\\' . \yii\helpers\Inflector::camelize($MDLName);
-            $model = new $model;
-
-            // loop items on that MDL
-            foreach ($values as $valueKey => $value) {
-
-                // is option already set? Do not save a new pair
-                // TODO this should be a unique index on the TBL
-                $optionExists = $model->find()
-                    ->andWhere([
-                        'resu_location_id' => $id,
-                        $attributeString   => $value
-                    ])
-                    ->one();
-
-                if ($optionExists === null) {
-                    $model->setAttributes([
-                        $attributeString => $value,
-                        'resu_location_id' => $id
-                    ]);
-
-                    if ($model === null) {
-                        continue;
-                    }
-
-                    if ($model->save()) {
-                        $returnData = true;
-                    } else {
-                        $returnData = false;
-                    }
-                }
-            }
-        }
-
-        return $returnData;
-    }
-
-    /**
      * @param $id
      * @param $data
      *
@@ -349,5 +319,41 @@ class ResuLocationNewProcessController extends ResuLocationController
         }
 
         return $returnData;
+    }
+
+    /**
+     * We are only adding or remove a resu location {option} values.
+     *
+     * @param int   $id
+     * @param array $data
+     *
+     * @return static
+     */
+    private function saveResuLocDressOption($id, array $data)
+    {
+        $model = \resutoran\common\models\ResuLocationDressCode::find()
+            ->andwhere(['resu_location_id' => (int)$id])
+            ->all();
+
+        // 'delete' items not found in $data array
+
+
+
+        // 'add' new items to DB.TBO
+        foreach ($data as $key => $value) {
+            if ($model === null) {
+                $model = new \resutoran\common\models\ResuLocationDressCode();
+                $model->setAttributes([
+                    'resu_location_id'          => $id,
+                    'resu_dress_code_option_id' => $value,
+                ]);
+                $model->save();
+                // create new record
+            }
+
+            // remove old, no longer provided options
+        }
+
+        return $model;
     }
 }
