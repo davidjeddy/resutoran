@@ -126,12 +126,7 @@ class ResuLocationNewProcessController extends ResuLocationController
         $model = \resutoran\common\models\ResuLocationHour::findAll(['resu_location_id' => $id]);
 
         if (Yii::$app->request->isPost === true) {
-
-            $data = Yii::$app->request->post();
-            $saveStatus = $this->saveHoursValues($id, $data);
-
-            //if ($model->load($data) && $model->save()) {
-            if ($saveStatus === true) {
+            if ($this->saveHoursValues($id, Yii::$app->request->post()['ResuLocationHour'])) {
                 return \Yii::$app->response->redirect('add-menu?id=' . $id);
             }
         }
@@ -231,44 +226,6 @@ class ResuLocationNewProcessController extends ResuLocationController
             } else {
                 $returnData = $resuLocMenuMDL->getErrors();
                 continue 1;
-            }
-        }
-
-        return $returnData;
-    }
-
-    /**
-     * @param $id
-     * @param $data
-     *
-     * @return array|bool
-     */
-    private function saveHoursValues($id, $data)
-    {
-        if (empty($data['ResuLocationHour']) || !isset($data['ResuLocationHour'])) {
-            return true;
-        }
-
-        $returnData = false;
-
-        foreach ($data['ResuLocationHour'] as $key => $value) {
-
-            if (empty($value['open']) && empty($value['close']))  {
-                $returnData = true;
-                continue;
-            }
-
-            $model = new \resutoran\common\models\ResuLocationHour([
-                'resu_day_option_id' => $key,
-                'resu_location_id'   => $id,
-                'open'               => $value['open'],
-                'close'              => $value['close']
-            ]);
-
-            if ($model->save()) {
-                $returnData = true;
-            } else {
-                $returnData = $model->getErrors();
             }
         }
 
@@ -407,6 +364,60 @@ class ResuLocationNewProcessController extends ResuLocationController
                 if (!$model->save()) {
                     Yii::error($model->getErrors(), 'warning');
                     throw new \Error('Unable to deleted old Location Dress Code Option.');
+                }
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * @param string|null $id
+     * @param array|null  $data
+     *
+     * @return bool
+     * @throws \Error
+     */
+    private function saveHoursValues(string $id = null, array $data = null)
+    {
+        foreach ($data as $timeKey => $timeValue) {
+
+            // get location dress code options currently active in the database
+            $model = \resutoran\common\models\ResuLocationHour::find()
+                ->andwhere([
+                    'resu_location_id'  => (int)$id,
+                    'resu_day_option_id'=> (int)$timeKey,
+                ])
+                ->one();
+
+            if (empty($model)) {
+                // data not found in DB, create a new record
+                $model = new \resutoran\common\models\ResuLocationHour([
+                    'resu_location_id'  => (int)$id,
+                    'resu_day_option_id'=> (int)$timeKey,
+                    'open'              => !empty($timeValue['open']) ? $timeValue['open'] : null,
+                    'close'             => !empty($timeValue['close']) ? $timeValue['close'] : null,
+                    'created_by'        => \Yii::$app->user->getId()
+                ]);
+
+                if (!$model->save()) {
+                    Yii::error($model->getErrors(), 'warning');
+                    throw new \Error('Unable to add location hours.');
+                }
+            } else {
+                // data found in DB, update
+                if ($model->open !== $timeValue['open'] || $model->close !== $timeValue['close']) {
+                    // but only if $data[open] or $data[close] does not match what is already in the DB
+
+                    $model->setAttributes([
+                        'open'  => (!empty($timeValue['open']) ? $timeValue['open'] : null),
+                        'close' => (!empty($timeValue['close']) ? $timeValue['close'] : null),
+                    ]);
+
+                    if (!$model->save()) {
+                        Yii::error($model->getErrors(), 'warning');
+                        throw new \Error('Unable to update location hours.');
+                    }
                 }
             }
         }
