@@ -60,24 +60,29 @@ class ResuLocationNewProcessController extends ResuLocationController
     // from here on the additional data points are stepped through alphabetically
 
     /**
+     * @todo break this into two steps
+     *
      * @param $id integer
      *
      * @return string
      */
     public function actionAddAdditionalOption($id)
     {
-        $model = new \resutoran\common\models\ResuLocation($id);
+        $model = \resutoran\common\models\ResuLocation::findOne($id);
 
         if (Yii::$app->request->isPost === true) {
 
-            $data = Yii::$app->request->post();
+            $saveStatus  = $this->saveResuLocDressOption(
+                $id,
+                (\Yii::$app->request->post()['ResuLocation']['location_options']['resu_location_dress_code'] ?? null)
+            );
 
-            // temp disable boolean options
-            $saveStatus  = $this->saveBooleanOptionValues($id, $data);
-            $saveStates2 = $this->saveAdditionalOption($id, $data);
+            $saveStatus2 = $this->saveBooleanOptionValues(
+                $id,
+                (\Yii::$app->request->post()['ResuLocation']['resu_location_boolean'] ?? null)
+            );
 
-            //if ($model->load($data) && $model->save()) {
-            if ($saveStatus === true && $saveStates2 === true) {
+            if ($saveStatus === true && $saveStatus2 === true) {
                 return \Yii::$app->response->redirect('add-contact?id=' . $id);
             }
         }
@@ -94,7 +99,7 @@ class ResuLocationNewProcessController extends ResuLocationController
      */
     public function actionAddContact($id)
     {
-        $model = new \resutoran\common\models\ResuLocationContact();
+        $model = \resutoran\common\models\ResuLocationContact::findOne(['resu_location_id' => $id]);
 
         if (Yii::$app->request->isPost === true) {
 
@@ -118,15 +123,10 @@ class ResuLocationNewProcessController extends ResuLocationController
      */
     public function actionAddHour($id)
     {
-        $model = new \resutoran\common\models\ResuLocationHour();
+        $model = \resutoran\common\models\ResuLocationHour::findAll(['resu_location_id' => $id]);
 
         if (Yii::$app->request->isPost === true) {
-
-            $data = Yii::$app->request->post();
-            $saveStatus = $this->saveHoursValues($id, $data);
-
-            //if ($model->load($data) && $model->save()) {
-            if ($saveStatus === true) {
+            if ($this->saveHoursValues($id, Yii::$app->request->post()['ResuLocationHour'])) {
                 return \Yii::$app->response->redirect('add-menu?id=' . $id);
             }
         }
@@ -143,7 +143,7 @@ class ResuLocationNewProcessController extends ResuLocationController
      */
     public function actionAddMenu($id)
     {
-        $model = new \resutoran\common\models\ResuLocationMenu();
+        $model = \resutoran\common\models\ResuLocationMenu::findAll(['resu_location_id' => $id]);
 
         if (Yii::$app->request->isPost === true) {
 
@@ -197,14 +197,30 @@ class ResuLocationNewProcessController extends ResuLocationController
         $returnData = false;
 
         foreach ($data as $key => $menuAmountValue) {
-            $resuLocMenuMDL = new \resutoran\common\models\ResuLocationMenu;
+            // find record
+            $resuLocMenuMDL = \resutoran\common\models\ResuLocationMenu::find()
+                ->andWhere([
+                    'resu_location_id'      => $resuLocationId,
+                    'resu_menu_option_id'   => $key
+                ])
+                ->one();
+
+            // or create AR
+            if ($resuLocMenuMDL === null) {
+                $resuLocMenuMDL = new \resutoran\common\models\ResuLocationMenu();
+                $resuLocMenuMDL->setAttributes([
+                    'resu_location_id'=> $menuAmountValue['high_price'] ?: null,
+                    '' => $menuAmountValue['low_price'] ?: null,
+                ]);
+            }
+
+            // populate values
             $resuLocMenuMDL->setAttributes([
-                'resu_location_id'    => $resuLocationId,
-                'resu_menu_option_id' => (integer)$key,
-                'high_price'          => $menuAmountValue['high_price'] ?: null,
-                'low_price'           => $menuAmountValue['low_price'] ?: null,
+                'high_price'=> $menuAmountValue['high_price'] ?: null,
+                'low_price' => $menuAmountValue['low_price'] ?: null,
             ]);
 
+            // save model
             if ($resuLocMenuMDL->save()) {
                 $returnData = true;
             } else {
@@ -217,124 +233,195 @@ class ResuLocationNewProcessController extends ResuLocationController
     }
 
     /**
-     * @param $resuLocationId integer
-     * @param $data \array
+     * We are only adding or remove a resu location {option} values.
      *
-     * @return boolean
+     * @param       $id
+     * @param array $data
+     *
+     * @return bool
+     * @throws \Error
      */
-    private function saveBooleanOptionValues($id, $data)
+    private function saveResuLocDressOption(string $id = null, array $data = null)
     {
-        if (empty($data['ResuLocation']['resu_location_boolean']) || !isset($data['ResuLocation']['resu_location_boolean'])) {
+        // if ID provided, but not data, update all items with delete data
+        if ($id !== null && $data === null) {
+            // Customer::updateAll(['status' => 1], 'status = 2');
+            \resutoran\common\models\ResuLocationDressCode::updateAll([
+                    'resu_location_id' => $id
+                ],
+                'updated_at = ' . time() . ' AND deleted_by = ' . \Yii::$app->user->getId()
+            );
+
             return true;
-        }
-        $data = $data['ResuLocation']['resu_location_boolean'];
-        $returnData = false;
+        } elseif ($id !== null && $data !== null) {
 
-        foreach ($data as $key => $value) {
-
-            // any value other than 1 is not valid for our use case
-            if ($value !== '1') {
-                continue;
+            // simplify data array
+            foreach ($data as $key => $value) {
+                $data[$key] = (int)$value;
             }
 
-            $resuLocOptionMDL = new \resutoran\common\models\ResuLocationBoolean([
-                'resu_location_id'      => $id,
-                'resu_boolean_option_id'=> \resutoran\common\models\ResuBooleanOption::find()
+            // get location dress code options currently active in the database
+            $inDB = \resutoran\common\models\ResuLocationDressCode::find()
+                ->select(['resu_location_id', 'resu_dress_code_option_id'])
+                ->andwhere(['resu_location_id' => (int)$id])
+                ->asArray()
+                ->all();
+
+            // simplify data that came from the database
+            foreach ($inDB as $key => $value) {
+                $inDB[$key] = (int)$value['resu_dress_code_option_id'];
+            }
+
+            // if the item is in the array but not in the DB, add it to the DB
+            foreach ($data as $key => $value) {
+
+                // if the item is in the array but not in the DB, add it to the DB
+                if (!in_array($value, $inDB)) {
+                    // if in data AND NOT in DB: add to DB
+                    $newItem = new \resutoran\common\models\ResuLocationDressCode([
+                        'resu_location_id'          => $id,
+                        'resu_dress_code_option_id' => $value
+                    ]);
+
+                    if (!$newItem->save()) {
+                        Yii::error($newItem->getFirstErrors(), 'warning');
+                        throw new \Error('Unable to save new Location Dress Code Option.');
+                    }
+                }
+            }
+
+            // if the item is in the DB, but not in the array, mark item as delete it
+            foreach ($inDB as $key => $value) {
+
+                // if the item is in the array but not in the DB, add it to the DB
+                if (!in_array($value, $data)) {
+                    // if in DB AND NOT in data: mark as deleted in DB
+                    $delItem = \resutoran\common\models\ResuLocationDressCode::findOne([
+                        'resu_location_id'          => $id,
+                        'resu_dress_code_option_id' => $value
+                    ]);
+
+                    $delItem->setAttribute('deleted_at', time());
+
+                    if (!$delItem->save()) {
+                        Yii::error($delItem->getErrors(), 'warning');
+                        throw new \Error('Unable to deleted old Location Dress Code Option.');
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * @param string|null $id
+     * @param array|null  $data
+     *
+     * @return bool
+     * @throws \Error
+     */
+    private function saveBooleanOptionValues(string $id = null, array $data = null)
+    {
+        foreach ($data as $key => $value) {
+            $value = (integer)$value;
+
+            $model = \resutoran\common\models\ResuLocationBoolean::findOne([
+                'resu_location_id' => $id,
+                'resu_boolean_option_id' => \resutoran\common\models\ResuBooleanOption::find()
                     ->andWhere(['value' => $key])
                     ->one()
                     ->id
             ]);
 
-            if ($resuLocOptionMDL->save()) {
-                $returnData = true;
-            } else {
-                $returnData = $resuLocOptionMDL->getErrors();
+            if (!empty($model) && isset($model->id) && $value === 0) {
+                // data found, new value 0
+                $model->setAttributes([
+                    'updated_by' => \Yii::$app->user->getId(),
+                    'deleted_at' => time()
+                ]);
+            } elseif (!empty($model) && $value === 1) {
+                // mode data found, new value
+                $model->setAttributes([
+                    'updated_by' => \Yii::$app->user->getId(),
+                    'updated_at' => time(),
+                    'deleted_at' => null
+                ]);
+            } elseif (empty($model) && $value === 1) {
+                // model data not found, new value 1
+                $model = new \resutoran\common\models\ResuLocationBoolean([
+                    'resu_location_id'       => $id,
+                    'resu_boolean_option_id' => \resutoran\common\models\ResuBooleanOption::find()
+                        ->andWhere(['value' => $key])
+                        ->one()
+                        ->id
+                ]);
+            }
+
+            if ($model) {
+                if (!$model->save()) {
+                    Yii::error($model->getErrors(), 'warning');
+                    throw new \Error('Unable to deleted old Location Dress Code Option.');
+                }
             }
         }
 
-        return $returnData;
+        return true;
     }
 
     /**
-     * @param integer $id
-     * @param array $data
+     * @param string|null $id
+     * @param array|null  $data
      *
      * @return bool
+     * @throws \Error
      */
-    private function saveAdditionalOption($id, $data)
+    private function saveHoursValues(string $id = null, array $data = null)
     {
-        // no data to process, return true;
-        if (!isset($data['ResuLocation']['location_options'])) {
-            return true;
-        }
+        foreach ($data as $timeKey => $timeValue) {
 
-        $returnData = false;
+            // get location dress code options currently active in the database
+            $model = \resutoran\common\models\ResuLocationHour::find()
+                ->andwhere([
+                    'resu_location_id'  => (int)$id,
+                    'resu_day_option_id'=> (int)$timeKey,
+                ])
+                ->one();
 
-        // loop MDLs
-        foreach ($data as $MDLName => $values) {
-
-            $attributeString = str_replace('resu_location_', 'resu_', $MDLName) . '_option_id';
-            $model = '\resutoran\common\models\\' . \yii\helpers\Inflector::camelize($MDLName);
-            $model = new $model;
-
-            // loop items on that MDL
-            foreach ($values as $valueKey => $value) {
-
-                $model->setAttributes([
-                    $attributeString => $value,
-                    'resu_location_id' => $id
+            if (empty($model)) {
+                // data not found in DB, create a new record
+                $model = new \resutoran\common\models\ResuLocationHour([
+                    'resu_location_id'  => (int)$id,
+                    'resu_day_option_id'=> (int)$timeKey,
+                    'open'              => !empty($timeValue['open']) ? $timeValue['open'] : null,
+                    'close'             => !empty($timeValue['close']) ? $timeValue['close'] : null,
+                    'created_by'        => \Yii::$app->user->getId()
                 ]);
 
-                if ($model === null) {
-                    continue;
+                if (!$model->save()) {
+                    Yii::error($model->getErrors(), 'warning');
+                    throw new \Error('Unable to add location hours.');
                 }
-
-                if ($model->save()) {
-                    $returnData = true;
-                } else {
-                    $returnData = $model->getErrors();
-                }
-            }
-        }
-
-        return $returnData;
-    }
-
-    /**
-     * @param $id
-     * @param $data
-     *
-     * @return array|bool
-     */
-    private function saveHoursValues($id, $data)
-    {
-        if (empty($data['ResuLocationHour']) || !isset($data['ResuLocationHour'])) {
-            return true;
-        }
-
-        $returnData = false;
-
-        foreach ($data['ResuLocationHour'] as $key => $value) {
-
-            if (empty($value['open']) && empty($value['close']))  {
-                $returnData = true;
-                continue;
-            }
-
-            $model = new \resutoran\common\models\ResuLocationHour([
-                'resu_day_option_id' => $key,
-                'resu_location_id'   => $id,
-                'open'               => $value['open'],
-                'close'              => $value['close']
-            ]);
-
-            if ($model->save()) {
-                $returnData = true;
             } else {
-                $returnData = $model->getErrors();
+                // data found in DB, update
+                if ($model->open !== $timeValue['open'] || $model->close !== $timeValue['close']) {
+                    // but only if $data[open] or $data[close] does not match what is already in the DB
+
+                    $model->setAttributes([
+                        'open'  => (!empty($timeValue['open']) ? $timeValue['open'] : null),
+                        'close' => (!empty($timeValue['close']) ? $timeValue['close'] : null),
+                    ]);
+
+                    if (!$model->save()) {
+                        Yii::error($model->getErrors(), 'warning');
+                        throw new \Error('Unable to update location hours.');
+                    }
+                }
             }
         }
 
-        return $returnData;
+        return true;
     }
 }

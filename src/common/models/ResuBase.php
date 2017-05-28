@@ -24,6 +24,7 @@ class ResuBase extends \yii\db\ActiveRecord
                 'softDeleteAttributeValues' => [
                     'deleted_at' => function () { return time(); },
                 ],
+                'replaceRegularDelete' => true
             ],
             'Timestamp'         => [
                 'attributes'         => [

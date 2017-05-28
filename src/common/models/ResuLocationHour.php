@@ -37,10 +37,11 @@ class ResuLocationHour extends \resutoran\common\models\ResuBase
     public function rules()
     {
         return [
-            [['resu_location_id', 'resu_day_option_id', 'open', 'close'], 'required'],
+            [['resu_location_id', 'resu_day_option_id'], 'required'],
             // todo why is this not working?
             //[['open', 'close'], 'date', 'format' => 'H:i'],
-            [['resu_location_id', 'resu_day_option_id'], 'unique'],
+            [['open', 'close'], 'string', 'max' => 5],
+            ['resu_location_id', 'unique', 'targetAttribute' => ['resu_location_id', 'resu_day_option_id'], 'message' => 'Location + Day combo already exists.'],
 
             [['resu_location_id', 'resu_day_option_id', 'created_at', 'created_by', 'updated_at', 'updated_by', 'deleted_at'], 'integer'],
             [['resu_day_option_id'], 'exist', 'skipOnError' => true, 'targetClass' => ResuDayOption::className(), 'targetAttribute' => ['resu_day_option_id' => 'id']],

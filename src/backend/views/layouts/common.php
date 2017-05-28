@@ -23,18 +23,13 @@ echo Menu::widget([
         ],
         [
             'icon'      => '<i class="fa fa-star"></i>',
-            'label'     => \Yii::t('resutoran', 'New Location (New)'),
-            'url'       => ['/resutoran/resu-location-new-process/create'],
-        ],
-        [
-            'icon'      => '<i class="fa fa-bars"></i>',
-            'label'     => \Yii::t('resutoran', 'New Location (Old)'),
+            'label'     => \Yii::t('resutoran', 'New Location'),
             'url'       => ['/resutoran/resu-location-new-process/create'],
         ],
         [
             'icon'      => '<i class="fa fa-bars"></i>',
             'label'     => \Yii::t('resutoran', 'Locations'),
-            'url'       => ['/resutoran/resu-location'],
+            'url'       => ['/resutoran/resu-location-new-process'],
         ],
         [
             'icon'      => '<i class="fa fa-bars"></i>',
