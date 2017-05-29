@@ -175,7 +175,7 @@ class ResuLocationNewProcessController extends ResuLocationController
             $data = Yii::$app->request->post();
 
             if ($model->load($data) && $model->save()) {
-                return \Yii::$app->response->redirect('../resu-location');
+                return \Yii::$app->response->redirect('../resu-location-new-process');
             }
         }
 
