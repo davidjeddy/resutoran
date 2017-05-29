@@ -249,7 +249,7 @@ class ResuLocationNewProcessController extends ResuLocationController
             \resutoran\common\models\ResuLocationDressCode::updateAll([
                     'resu_location_id' => $id
                 ],
-                'updated_at = ' . time() . ' AND deleted_by = ' . \Yii::$app->user->getId()
+                'deleted_at = ' . time() . ' AND updated_by = ' . \Yii::$app->user->getId()
             );
 
             return true;
