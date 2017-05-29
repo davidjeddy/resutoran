@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
             echo Html::input(
                 'input',
                 'ResuLocationHour[' . $dayMDL->id . '][open]',
-                (!empty($model[$key]->open) ? $model[$key]->open : null),
+                (isset($model[$key]->open) && !empty($model[$key]->open) ? $model[$key]->open : null),
                 [
                     'class'         => 'form-control',
                     'placeholder'   => '00:00 to 24:00 format',
@@ -48,7 +48,7 @@ $this->params['breadcrumbs'][] = $this->title;
             echo Html::input(
                 'text',
                 'ResuLocationHour[' . $dayMDL->id . '][close]',
-                (!empty($model[$key]->closee) ? $model[$key]->close : null),
+                (isset($model[$key]->close) && !empty($model[$key]->close) ? $model[$key]->close : null),
                 [
                     'class' => 'form-control',
                     'placeholder' => '00:00 to 24:00 format',
