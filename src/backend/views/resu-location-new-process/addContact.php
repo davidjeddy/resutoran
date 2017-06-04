@@ -22,6 +22,11 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php echo $form->errorSummary($model); ?>
 
         <!-- business contact fields -->
+        <?php echo $form->field($model, 'resu_location_id')->hiddenInput([
+            'placeholder'   => 'Location ID',
+            'value'         => (string)Yii::$app->request->getQueryParam('id')
+        ])->label(false) ?>
+
         <?php echo $form->field($model, 'name')->textInput([
             'placeholder' => 'Name',
             'maxlength'   => true

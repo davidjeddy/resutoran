@@ -32,13 +32,12 @@ use kartik\money\MaskMoney;
         ]
     ]); ?>
 
-    <?php //echo $form->field($model, 'low')->textInput(['rows' => 6]) ?>
-    <?php // Money mask widget with a default placeholder and `allowEmpty` set to `true`.
-        echo MaskMoney::widget([
-            'name' => 'amount_ph_1',
+    <?php //echo $form->field($model, 'low') ?>
+    <?php echo MaskMoney::widget([
+            'name' => 'low',
             'value' => null,
             'options' => [
-                'placeholder' => 'Enter a valid amount...'
+                'placeholder' => 'Low average price...'
             ],
             'pluginOptions' => [
                 'allowZero' => false,
@@ -47,7 +46,19 @@ use kartik\money\MaskMoney;
         ]);
     ?>
 
-    <?php echo $form->field($model, 'high') ?>
+    <?php //echo $form->field($model, 'high') ?>
+    <?php echo MaskMoney::widget([
+        'name' => 'high',
+        'value' => null,
+        'options' => [
+            'placeholder' => 'High average price...'
+        ],
+        'pluginOptions' => [
+            'allowZero' => false,
+            'allowEmpty' => true
+        ]
+    ]);
+    ?>
 
     <?php // echo $form->field($model, 'created_at')->textInput() ?>
 
