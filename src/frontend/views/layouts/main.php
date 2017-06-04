@@ -14,7 +14,7 @@ $this->beginContent('@vendor/davidjeddy/yii2-resutoran/frontend/views/layouts/ba
                 'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
             ]);
 
-            if(Yii::$app->session->hasFlash('alert')) {
+            if (Yii::$app->session->hasFlash('alert')) {
                 echo \yii\bootstrap\Alert::widget([
                     'body'      => ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'body'),
                     'options'   => ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'options'),
