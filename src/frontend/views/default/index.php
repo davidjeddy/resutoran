@@ -24,15 +24,16 @@ $this->title = Yii::$app->name;
             <h2 class="zfg-body-copy"><?php echo Yii::t('zfg', 'Find a review:'); ?></h2>
 
             <?php
-                $form = ActiveForm::begin([
+                ActiveForm::begin([
                     'id'        => 'search-form',
                     'options'   => ['class' => 'form form-horizontal'],
+                    'action'    => 'search'
                 ]);
             ?>
 
             <?php echo Html::input(
                 'text',
-                'location',
+                'search[location]',
                 null,
                 [
                     'class' => 'form form-control input',
@@ -43,7 +44,7 @@ $this->title = Yii::$app->name;
             <br />
 
             <?php echo Html::dropDownList(
-                'cuisine',
+                'search[cuisine]',
                 null,
                 ArrayHelper::map(
                     \resutoran\common\models\ResuCuisineOption::find()->asArray()->all(),
@@ -59,7 +60,7 @@ $this->title = Yii::$app->name;
             <br />
 
             <?php echo Html::dropDownList(
-                'price-range',
+                'search[price]',
                 null,
                 ['0 -> 10', '11 -> 20', '21 -> 30', '31 -> 40', '41 -> 50'],
                 [
