@@ -2,8 +2,6 @@
 
 namespace resutoran\frontend;
 
-use Yii;
-
 /**
  * resutoran module definition class
  */
@@ -18,13 +16,4 @@ class Module extends \yii\base\Module
      * @inheritdoc
      */
     public $controllerNamespace = 'resutoran\frontend\controllers';
-
-    /**
-     * @inheritdoc
-     */
-    public function init()
-    {
-
-        // load module FE menu into main menu area
-    }
 }

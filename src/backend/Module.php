@@ -12,15 +12,4 @@ class Module extends \yii\base\Module
      */
     public $controllerNamespace = 'resutoran\backend\controllers';
 
-    /**
-     * @inheritdoc
-     */
-    public function init()
-    {
-        parent::init();
-
-        // load module BE menu into main menu area
-
-
-    }
 }
