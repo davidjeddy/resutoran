@@ -51,6 +51,11 @@ echo Menu::widget([
                     'label'     => \Yii::t('resutoran', 'Hours'),
                     'url'       => ['/resutoran/resu-location-hour'],
                 ],
+                [
+                    'icon'      => '<i class="fa fa-bars"></i>',
+                    'label'     => \Yii::t('resutoran', 'Prices'),
+                    'url'       => ['/resutoran/resu-location-price'],
+                ],
             ],
         ],
         [
@@ -97,11 +102,6 @@ echo Menu::widget([
                     'icon'  => '<i class="fa fa-bars"></i>',
                     'label' => \Yii::t('resutoran', 'Media'),
                     'url'   => ['/resutoran/resu-media-option/'],
-                ],
-                [
-                    'icon'  => '<i class="fa fa-bars"></i>',
-                    'label' => \Yii::t('resutoran', 'Menu'),
-                    'url'   => ['/resutoran/resu-menu-option/'],
                 ],
                 [
                     'icon'  => '<i class="fa fa-bars"></i>',
