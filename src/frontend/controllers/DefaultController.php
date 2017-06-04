@@ -31,31 +31,37 @@ class DefaultController extends Controller
         // convert form data
         $searchData = (object)\Yii::$app->request->getBodyParams()['search'];
         // create query model
+        $query = new \yii\db\Query();
+        $query
+            ->select('*')
+            ->from('resu_location');
 
-        if ($searchData['cuisine']) {
-
+        if ($searchData->cuisine) {
+            $query
+                ->leftJoin('resu_location_cuisine', 'resu_location_cuisine.resu_location_id = resu_location.id')
+                ->andWhere(['resu_location_cuisine.id' => (int)$searchData->cuisine]);
         }
 
-        if ($searchData['price']) {
-
+        if ($searchData->price) {
+            $query
+                ->leftJoin('resu_location_cuisine', 'resu_location_cuisine.resu_location_id = resu_location.id')
+                ->andWhere(['resu_location_cuisine.id' => (int)$searchData->cuisine]);
         }
 
-        if ($searchData['location']) {
+        if ($searchData->location) {
 
         }
-
-        // exec query
 
         // return query results to view
         echo '<pre>';
         echo \yii\helpers\VarDumper::dump(\Yii::$app->request->getBodyParams(), 10, true);
-        echo \yii\helpers\VarDumper::dump($viewModel, 10, true);
+        echo \yii\helpers\VarDumper::dump($query->all(), 10, true);
         echo '</pre>';
         exit(1);
 
         // return viewModel to results view
         return $this->render('results',[
-            'viewModel' => $viewModel
+            'viewModel' => $query->all(), // exec query
         ]);
 
     }
