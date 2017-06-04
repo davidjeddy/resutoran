@@ -1,11 +1,13 @@
 <?php
 
-namespace common\models\query;
+namespace resutoran\common\models\query;
 
 /**
  * This is the ActiveQuery class for [[ResuLocationPrice]].
  *
  * @see ResuLocationPrice
+ *
+ * @deprecated 0.0.3
  */
 class ResuLocationPriceQuery extends \yii\db\ActiveQuery
 {
@@ -16,7 +18,7 @@ class ResuLocationPriceQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return ResuLocationPrice[]|array
+     * @return \resutoran\common\models\ResuLocationPrice[]|array
      */
     public function all($db = null)
     {
@@ -25,7 +27,7 @@ class ResuLocationPriceQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return ResuLocationPrice|array|null
+     * @return \resutoran\common\models\ResuLocationPrice|array|null
      */
     public function one($db = null)
     {

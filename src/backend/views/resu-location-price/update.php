@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\ResuLocationPrice */
+/* @var $model resutoran\models\ResuLocationPrice */
 
 $this->title = Yii::t('resutoran', 'Update {modelClass}: ', [
     'modelClass' => 'Resu Location Price',

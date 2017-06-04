@@ -1,6 +1,6 @@
 <?php
 
-namespace common\models;
+namespace resutoran\common\models;
 
 use Yii;
 
@@ -17,7 +17,7 @@ use Yii;
  * @property integer $updated_by
  * @property integer $deleted_at
  */
-class ResuLocationPrice extends \yii\db\ActiveRecord
+class ResuLocationPrice extends \resutoran\common\models\ResuBase
 {
     /**
      * @inheritdoc
@@ -59,10 +59,10 @@ class ResuLocationPrice extends \yii\db\ActiveRecord
 
     /**
      * @inheritdoc
-     * @return \common\models\query\ResuLocationPriceQuery the active query used by this AR class.
+     * @return \resutoran\common\models\query\ResuLocationPriceQuery the active query used by this AR class.
      */
     public static function find()
     {
-        return new \common\models\query\ResuLocationPriceQuery(get_called_class());
+        return new \resutoran\common\models\query\ResuLocationPriceQuery(get_called_class());
     }
 }

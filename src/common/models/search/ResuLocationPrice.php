@@ -1,11 +1,11 @@
 <?php
 
-namespace common\models\search;
+namespace resutoran\models\search;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\ResuLocationPrice as ResuLocationPriceModel;
+use resutoran\models\ResuLocationPrice as ResuLocationPriceModel;
 
 /**
  * ResuLocationPrice represents the model behind the search form about `common\models\ResuLocationPrice`.
