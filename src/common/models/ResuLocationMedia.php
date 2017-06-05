@@ -17,6 +17,9 @@ use Yii;
  *
  * @property ResuLocation $resuLocation
  * @property ResuMediaOption $resuMediaOption
+ *
+ * @deprecated 0.0.3
+ * @remove 0.0.4
  */
 class ResuLocationMedia extends \resutoran\common\models\ResuBase
 {

@@ -16,6 +16,9 @@ use Yii;
  * @property integer $deleted_at
  *
  * @property ResuLocationMedia[] $resuLocationMedia
+ *
+ * @deprecated 0.0.3
+ * @remove 0.0.4
  */
 class ResuMediaOption extends \resutoran\common\models\ResuBase
 {

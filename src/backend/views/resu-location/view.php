@@ -96,15 +96,16 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]
                 )
             ],
-            [
-                'label' => 'Media',
-                'value' => \Yii::$app->controller->renderPartial('../partials/multiItemList',
-                    [
-                        'model' => $model,
-                        'option'=> 'media'
-                    ]
-                )
-            ],
+// deprecated in 0.0.3, remove in 0.0.4
+//            [
+//                'label' => 'Media',
+//                'value' => \Yii::$app->controller->renderPartial('../partials/multiItemList',
+//                    [
+//                        'model' => $model,
+//                        'option'=> 'media'
+//                    ]
+//                )
+//            ],
 
             [
                 'label' => 'Price Range',

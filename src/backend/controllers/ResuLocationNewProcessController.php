@@ -152,7 +152,8 @@ class ResuLocationNewProcessController extends ResuLocationController
 
             //if ($model->load($data) && $model->save()) {
             if ($saveStatus === true) {
-                return \Yii::$app->response->redirect('add-option?id=' . $id);
+                // return \Yii::$app->response->redirect('add-option?id=' . $id);
+                return \Yii::$app->response->redirect('../resu-location-new-process');
             }
         }
 
@@ -192,7 +193,7 @@ class ResuLocationNewProcessController extends ResuLocationController
      *
      * @return boolean
      */
-    private function saveLocationPriceValues($resuLocationId, $data)
+    private function saveLocationPriceAmountValues($resuLocationId, $data)
     {
         $returnData = false;
 

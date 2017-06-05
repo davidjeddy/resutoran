@@ -6,6 +6,9 @@ namespace resutoran\common\models\query;
  * This is the ActiveQuery class for [[\common\models\ResuLocationMedia]].
  *
  * @see \common\models\ResuLocationMedia
+ *
+ * @deprecated 0.0.3
+ * @remove 0.0.4
  */
 class ResuLocationMediaQuery extends \yii\db\ActiveQuery
 {
