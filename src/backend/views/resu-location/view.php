@@ -107,8 +107,8 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
 
             [
-                'label' => 'Menu(s) Price Range',
-                'value' =>  \Yii::$app->controller->renderPartial('../partials/MenuAmount',
+                'label' => 'Price Range',
+                'value' =>  \Yii::$app->controller->renderPartial('../partials/LocationPrice',
                     [
                         'model' => $model
                     ]

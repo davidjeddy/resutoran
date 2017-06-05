@@ -148,7 +148,7 @@ class ResuLocationNewProcessController extends ResuLocationController
         if (Yii::$app->request->isPost === true) {
 
             $data = Yii::$app->request->post();
-            $saveStatus = $this->savePriceAmountValues($id, $data['ResuLocation']['resu_location_price']);
+            $saveStatus = $this->saveLocationPriceValues($id, $data['ResuLocation']['resu_location_price']);
 
             //if ($model->load($data) && $model->save()) {
             if ($saveStatus === true) {
@@ -192,7 +192,7 @@ class ResuLocationNewProcessController extends ResuLocationController
      *
      * @return boolean
      */
-    private function savePriceAmountValues($resuLocationId, $data)
+    private function saveLocationPriceValues($resuLocationId, $data)
     {
         $returnData = false;
 
