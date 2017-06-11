@@ -3,7 +3,9 @@
 use \yii\helpers\Html;
 use \yii\widgets\ActiveForm;
 use \yii\helpers\ArrayHelper;
-use \resutoran\frontend\AppAsset;
+use \yii\bootstrap\Collapse;
+
+use \resutoran\frontend\assets\AppAsset;
 
 $assets = AppAsset::register($this);
 
@@ -71,13 +73,70 @@ $this->title = Yii::$app->name;
 
             <br />
 
+            <?php
+            $advSrchOptions = ''; #advanced search option fields
+
+            //dropDownList($name, $selection = null, $items = [], $options = [])
+            $filterOptions = [
+                'ResuPaymentOption',
+                'ResuMenuOption'
+            ];
+
+            // select one data
+            foreach ($filterOptions as $key => $value) {
+                $tboSource = '\resutoran\common\models\\' . $value;
+
+                $advSrchOptions .= Html::dropDownList(
+                    'price',
+                    '',
+                    ArrayHelper::map(
+                        $tboSource::find()
+                            ->select(['id', 'value'])->asArray()->all(),
+                        'id',
+                        'value'
+                    ),
+                    [
+                        'class' => 'form form-control',
+                        'prompt'=> 'Menu Options',
+                    ]
+                );
+            }
+
+            // boolean options as two column checkboxes
+            // checkboxList($name, $selection = null, $items = [], $options = [])
+            $advSrchOptions .= Html::checkboxList(
+                'boolean-option',
+                null,
+                ArrayHelper::map(
+                    \resutoran\common\models\ResuBooleanOption::find()
+                        ->select(['id', 'value'])->asArray()->all(),
+                    'id',
+                    'value'
+                ),
+                [
+                    'class' => 'form form-controls'
+                ]
+            );
+
+            echo Collapse::widget([
+                'items' => [
+                    [
+                        'label'         => 'More search options...',
+                        'content'       => $advSrchOptions,
+                        'contentOptions'=> [
+                            'class' => 'in'
+                        ]
+                    ],
+                ]
+            ]); ?>
+
             <div class="form-group">
                 <div class="col-lg-offset-1 col-lg-11">
                     <?= Html::submitButton('Search', ['class' => 'btn btn-default']) ?>
                 </div>
             </div>
-            <?php ActiveForm::end() ?>
 
+            <?php ActiveForm::end() ?>
         </div>
         <div class="col-md-4"></div>
     </div>
