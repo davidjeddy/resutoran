@@ -1,6 +1,6 @@
 <?php
 
-namespace resutoran\frontend;
+namespace resutoran\frontend\assets;
 
 use yii\web\AssetBundle;
 
@@ -15,5 +15,6 @@ class AppAsset extends AssetBundle
     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
+        'common\assets\Html5shiv',
     ];
 }
