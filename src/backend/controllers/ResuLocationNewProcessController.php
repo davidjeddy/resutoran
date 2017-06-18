@@ -5,6 +5,8 @@ namespace resutoran\backend\controllers;
 use Yii;
 use \yii\base\Exception;
 
+use \resutoran\common\models\ResuLocationContact;
+
 /**
  * ResuLocationController implements the CRUD actions for ResuLocation model.
  */
@@ -71,16 +73,24 @@ class ResuLocationNewProcessController extends ResuLocationController
         $model = \resutoran\common\models\ResuLocation::findOne($id);
 
         if (Yii::$app->request->isPost === true) {
+            $data = !empty(\Yii::$app->request->post()['ResuLocation'])
+                ? Yii::$app->request->post()['ResuLocation']
+                : null;
 
-            $saveStatus  = $this->saveResuLocDressOption(
-                $id,
-                (\Yii::$app->request->post()['ResuLocation']['location_options']['resu_location_dress_code'] ?? null)
-            );
+            // Use !empty as the key will be set but zero string is a false for us here
+            $saveStatus  = !empty($data['location_options']['resu_location_dress_code'])
+                ? $this->saveResuLocDressOption(
+                    $id,
+                    $data['location_options']['resu_location_dress_code']
+                )
+                : true;
 
-            $saveStatus2 = $this->saveBooleanOptionValues(
-                $id,
-                (\Yii::$app->request->post()['ResuLocation']['resu_location_boolean'] ?? null)
-            );
+            $saveStatus2 = !empty($data['resu_location_boolean'])
+                ? $this->saveBooleanOptionValues(
+                    $id,
+                    $data['resu_location_boolean']
+                )
+                : true;
 
             if ($saveStatus === true && $saveStatus2 === true) {
                 return \Yii::$app->response->redirect('add-contact?id=' . $id);
@@ -99,14 +109,12 @@ class ResuLocationNewProcessController extends ResuLocationController
      */
     public function actionAddContact($id)
     {
-        $model = \resutoran\common\models\ResuLocationContact::findOne(['resu_location_id' => $id]);
+        // null coalesce model creation. If exists use, if does not exists create empty model AR.
+        $model = ResuLocationContact::findOne(['resu_location_id' => $id]) ?? new ResuLocationContact();
 
         if (Yii::$app->request->isPost === true) {
 
-            $data = Yii::$app->request->post();
-            $data['ResuLocationContact']['resu_location_id'] = $id;
-
-            if ($model->load($data) && $model->save()) {
+            if ($model->load(Yii::$app->request->getBodyParams()) && $model->save()) {
                 return \Yii::$app->response->redirect('add-hour?id=' . $id);
             }
         }
@@ -127,7 +135,7 @@ class ResuLocationNewProcessController extends ResuLocationController
 
         if (Yii::$app->request->isPost === true) {
             if ($this->saveHoursValues($id, Yii::$app->request->post()['ResuLocationHour'])) {
-                return \Yii::$app->response->redirect('add-menu?id=' . $id);
+                return \Yii::$app->response->redirect('add-price?id=' . $id);
             }
         }
 
@@ -141,22 +149,23 @@ class ResuLocationNewProcessController extends ResuLocationController
      *
      * @return string
      */
-    public function actionAddMenu($id)
+    public function actionAddPrice($id)
     {
-        $model = \resutoran\common\models\ResuLocationMenu::findAll(['resu_location_id' => $id]);
+        $model = \resutoran\common\models\ResuLocationPrice::findAll(['resu_location_id' => $id]);
 
         if (Yii::$app->request->isPost === true) {
 
             $data = Yii::$app->request->post();
-            $saveStatus = $this->saveMenuAmountValues($id, $data['ResuLocation']['resu_location_menu']);
+            $saveStatus = $this->saveLocationPriceValues($id, $data['ResuLocation']['resu_location_price']);
 
             //if ($model->load($data) && $model->save()) {
             if ($saveStatus === true) {
-                return \Yii::$app->response->redirect('add-option?id=' . $id);
+                // return \Yii::$app->response->redirect('add-option?id=' . $id);
+                return \Yii::$app->response->redirect('../resu-location-new-process');
             }
         }
 
-        return $this->render('addMenu', [
+        return $this->render('addPrice', [
             'model' => $model,
         ]);
     }
@@ -175,7 +184,7 @@ class ResuLocationNewProcessController extends ResuLocationController
             $data = Yii::$app->request->post();
 
             if ($model->load($data) && $model->save()) {
-                return \Yii::$app->response->redirect('../resu-location');
+                return \Yii::$app->response->redirect('../resu-location-new-process');
             }
         }
 
@@ -192,44 +201,28 @@ class ResuLocationNewProcessController extends ResuLocationController
      *
      * @return boolean
      */
-    private function saveMenuAmountValues($resuLocationId, $data)
+    private function saveLocationPriceAmountValues($resuLocationId, $data)
     {
         $returnData = false;
 
-        foreach ($data as $key => $menuAmountValue) {
-            // find record
-            $resuLocMenuMDL = \resutoran\common\models\ResuLocationMenu::find()
-                ->andWhere([
-                    'resu_location_id'      => $resuLocationId,
-                    'resu_menu_option_id'   => $key
-                ])
-                ->one();
+        $model = \resutoran\common\models\ResuLocationPrice::findOne(['resu_location_id' => $resuLocationId]);
 
-            // or create AR
-            if ($resuLocMenuMDL === null) {
-                $resuLocMenuMDL = new \resutoran\common\models\ResuLocationMenu();
-                $resuLocMenuMDL->setAttributes([
-                    'resu_location_id'=> $menuAmountValue['high_price'] ?: null,
-                    '' => $menuAmountValue['low_price'] ?: null,
-                ]);
-            }
-
-            // populate values
-            $resuLocMenuMDL->setAttributes([
-                'high_price'=> $menuAmountValue['high_price'] ?: null,
-                'low_price' => $menuAmountValue['low_price'] ?: null,
-            ]);
-
-            // save model
-            if ($resuLocMenuMDL->save()) {
-                $returnData = true;
-            } else {
-                $returnData = $resuLocMenuMDL->getErrors();
-                continue 1;
-            }
+        if ($model === null) {
+            $model = new \resutoran\common\models\ResuLocationPrice();
         }
 
-        return $returnData;
+        $model->setAttributes([
+            'resu_location_id' => $resuLocationId,
+            'low' => $data['low'] ?? null,
+            'high' => $data['high'] ?? null,
+        ]);
+
+        if (!$model->save()) {
+            Yii::error($model->getErrors(), 'warning');
+            throw new \Error('Unable to save Location Price change.');
+        }
+
+        return true;
     }
 
     /**
@@ -249,7 +242,7 @@ class ResuLocationNewProcessController extends ResuLocationController
             \resutoran\common\models\ResuLocationDressCode::updateAll([
                     'resu_location_id' => $id
                 ],
-                'updated_at = ' . time() . ' AND deleted_by = ' . \Yii::$app->user->getId()
+                'deleted_at = ' . time() . ' AND updated_by = ' . \Yii::$app->user->getId()
             );
 
             return true;

@@ -10,7 +10,7 @@ $this->beginContent('@vendor/davidjeddy/yii2-resutoran/src/frontend/views/layout
 ?>
 <div class="wrap">
     <?php
-        NavBar::begin([
+        /*NavBar::begin([
             'brandLabel' => Yii::$app->name,
             'brandUrl' => Yii::$app->homeUrl,
             'options' => [
@@ -18,7 +18,7 @@ $this->beginContent('@vendor/davidjeddy/yii2-resutoran/src/frontend/views/layout
             ],
         ]);
 
-        /*echo Nav::widget([
+        echo Nav::widget([
             'options' => ['class' => 'navbar-nav navbar-right'],
             'items' => [
                 ['label' => Yii::t('frontend', 'Home'), 'url' => ['/site/index']],
@@ -57,8 +57,8 @@ $this->beginContent('@vendor/davidjeddy/yii2-resutoran/src/frontend/views/layout
                     }, array_keys(Yii::$app->params['availableLocales']))
                 ]
             ]
-        ]);*/
-        NavBar::end();
+        ]);
+        NavBar::end();*/
 
         echo $content;
     ?>

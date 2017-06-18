@@ -3,16 +3,16 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model resutoran\models\ResuReview */
+/* @var $model resutoran\models\ResuLocationPrice */
 
 $this->title = Yii::t('resutoran', 'Update {modelClass}: ', [
-    'modelClass' => 'Review for ',
-]) . $this->title = \resutoran\common\models\ResuLocation::findOne(['id' => $model->resu_location_id])->value;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('resutoran', 'Resu Reviews'), 'url' => ['index']];
+    'modelClass' => 'Resu Location Price',
+]) . ' ' . $model->id;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('resutoran', 'Resu Location Prices'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = Yii::t('resutoran', 'Update');
 ?>
-<div class="resu-review-update">
+<div class="resu-location-price-update">
 
     <?php echo $this->render('_form', [
         'model' => $model,

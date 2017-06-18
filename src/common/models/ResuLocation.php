@@ -11,6 +11,7 @@ use Yii;
  * @property string $name
  * @property integer $resu_franchise_id
 
+ * The `additional options` are deprecated in 0.0.4, removed in 0.0.4
  * @property integer $resu_decor_option_id
  * @property integer $resu_ambiance_option_id
  * @property integer $resu_map_id

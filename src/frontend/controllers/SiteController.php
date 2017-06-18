@@ -15,7 +15,12 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        // remove empty items
 
+        echo '<pre>';
+        echo \yii\helpers\VarDumper::dump(\Yii::$app->request->post(), 10, true);
+        echo '</pre>';
+        exit(1);
         return $this->render('index');
     }
 }

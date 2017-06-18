@@ -96,19 +96,20 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]
                 )
             ],
-            [
-                'label' => 'Media',
-                'value' => \Yii::$app->controller->renderPartial('../partials/multiItemList',
-                    [
-                        'model' => $model,
-                        'option'=> 'media'
-                    ]
-                )
-            ],
+// deprecated in 0.0.3, remove in 0.0.4
+//            [
+//                'label' => 'Media',
+//                'value' => \Yii::$app->controller->renderPartial('../partials/multiItemList',
+//                    [
+//                        'model' => $model,
+//                        'option'=> 'media'
+//                    ]
+//                )
+//            ],
 
             [
-                'label' => 'Menu(s) Price Range',
-                'value' =>  \Yii::$app->controller->renderPartial('../partials/MenuAmount',
+                'label' => 'Price Range',
+                'value' =>  \Yii::$app->controller->renderPartial('../partials/LocationPrice',
                     [
                         'model' => $model
                     ]

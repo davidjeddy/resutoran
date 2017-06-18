@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\ResuReview */
+/* @var $model resutoran\models\ResuReview */
 
 //$this->title = $model->id;
 $this->title = \resutoran\common\models\ResuLocation::findOne(['id' => $model->resu_location_id])->value;

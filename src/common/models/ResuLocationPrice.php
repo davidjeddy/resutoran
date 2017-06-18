@@ -5,29 +5,26 @@ namespace resutoran\common\models;
 use Yii;
 
 /**
- * This is the model class for table "{{%resu_media_option}}".
+ * This is the model class for table "{{%resu_location_price}}".
  *
  * @property integer $id
- * @property string $value
+ * @property integer $resu_location_id
+ * @property string $low
+ * @property string $high
  * @property integer $created_at
  * @property integer $created_by
  * @property integer $updated_at
  * @property integer $updated_by
  * @property integer $deleted_at
- *
- * @property ResuLocationMedia[] $resuLocationMedia
- *
- * @deprecated 0.0.3
- * @remove 0.0.4
  */
-class ResuMediaOption extends \resutoran\common\models\ResuBase
+class ResuLocationPrice extends \resutoran\common\models\ResuBase
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return '{{%resu_media_option}}';
+        return '{{%resu_location_price}}';
     }
 
     /**
@@ -36,10 +33,9 @@ class ResuMediaOption extends \resutoran\common\models\ResuBase
     public function rules()
     {
         return [
-            // [['created_by', 'created_at'], 'required'], populated via behavior
-            [['value'], 'required'],
-            [['value'], 'string'],
-            [['created_at', 'created_by', 'updated_at', 'updated_by', 'deleted_at'], 'integer'],
+            [['resu_location_id', 'created_at', 'created_by'], 'required'],
+            [['resu_location_id', 'created_at', 'created_by', 'updated_at', 'updated_by', 'deleted_at'], 'integer'],
+            [['low', 'high'], 'number'],
         ];
     }
 
@@ -50,7 +46,9 @@ class ResuMediaOption extends \resutoran\common\models\ResuBase
     {
         return [
             'id' => Yii::t('resutoran', 'ID'),
-            'value' => Yii::t('resutoran', 'Value'),
+            'resu_location_id' => Yii::t('resutoran', 'Resu Location ID'),
+            'low' => Yii::t('resutoran', 'Low'),
+            'high' => Yii::t('resutoran', 'High'),
             'created_at' => Yii::t('resutoran', 'Created At'),
             'created_by' => Yii::t('resutoran', 'Created By'),
             'updated_at' => Yii::t('resutoran', 'Updated At'),
@@ -60,10 +58,11 @@ class ResuMediaOption extends \resutoran\common\models\ResuBase
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @inheritdoc
+     * @return \resutoran\common\models\query\ResuLocationPriceQuery the active query used by this AR class.
      */
-    public function getResuLocationMedia()
+    public static function find()
     {
-        return $this->hasMany(ResuLocationMedia::className(), ['resu_media_option_id' => 'id']);
+        return new \resutoran\common\models\query\ResuLocationPriceQuery(get_called_class());
     }
 }
