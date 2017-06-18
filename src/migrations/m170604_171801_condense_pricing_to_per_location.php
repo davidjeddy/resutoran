@@ -17,8 +17,8 @@ class m170604_171801_condense_pricing_to_per_location extends Migration
         $this->createTable('{{%resu_location_price}}', [
             'id'                => $this->primaryKey(),
             'resu_location_id'  => $this->integer(10)->notNull(),
-            'low'               => $this->decimal(8,2)->defaultValue(null),
-            'high'              => $this->decimal(8,2)->defaultValue(null),
+            'low'               => $this->decimal(11)->defaultValue(null),
+            'high'              => $this->decimal(11)->defaultValue(null),
             'created_at'        => $this->integer(11)->notNull(),
             'created_by'        => $this->integer(11)->notNull(),
             'updated_at'        => $this->integer(11)->defaultValue(null),

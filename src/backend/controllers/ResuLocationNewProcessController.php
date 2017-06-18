@@ -153,10 +153,12 @@ class ResuLocationNewProcessController extends ResuLocationController
     {
         $model = \resutoran\common\models\ResuLocationPrice::findAll(['resu_location_id' => $id]);
 
-        if (Yii::$app->request->isPost === true) {
+        if (\Yii::$app->request->isPost === true) {
 
             $data = Yii::$app->request->post();
-            $saveStatus = $this->saveLocationPriceValues($id, $data['ResuLocation']['resu_location_price']);
+            $saveStatus = $this->saveLocationPriceValues(
+                $id, \Yii::$app->request->post()
+            );
 
             //if ($model->load($data) && $model->save()) {
             if ($saveStatus === true) {
@@ -194,36 +196,6 @@ class ResuLocationNewProcessController extends ResuLocationController
     }
 
     // private methods
-
-    /**
-     * @param $resuLocationId integer
-     * @param $data array
-     *
-     * @return boolean
-     */
-    private function saveLocationPriceAmountValues($resuLocationId, $data)
-    {
-        $returnData = false;
-
-        $model = \resutoran\common\models\ResuLocationPrice::findOne(['resu_location_id' => $resuLocationId]);
-
-        if ($model === null) {
-            $model = new \resutoran\common\models\ResuLocationPrice();
-        }
-
-        $model->setAttributes([
-            'resu_location_id' => $resuLocationId,
-            'low' => $data['low'] ?? null,
-            'high' => $data['high'] ?? null,
-        ]);
-
-        if (!$model->save()) {
-            Yii::error($model->getErrors(), 'warning');
-            throw new \Error('Unable to save Location Price change.');
-        }
-
-        return true;
-    }
 
     /**
      * We are only adding or remove a resu location {option} values.
@@ -413,6 +385,36 @@ class ResuLocationNewProcessController extends ResuLocationController
                     }
                 }
             }
+        }
+
+        return true;
+    }
+
+    /**
+     * @param $resuLocationId integer
+     * @param $data array
+     *
+     * @return boolean
+     */
+    private function saveLocationPriceValues($resuLocationId, $data)
+    {
+        $returnData = false;
+
+        $model = \resutoran\common\models\ResuLocationPrice::findOne(['resu_location_id' => $resuLocationId]);
+
+        if ($model === null) {
+            $model = new \resutoran\common\models\ResuLocationPrice();
+        }
+
+        $model->setAttributes([
+            'resu_location_id' => $resuLocationId,
+            'low' => $data['low'] ?? null,
+            'high' => $data['high'] ?? null,
+        ]);
+
+        if (!$model->save()) {
+            Yii::error($model->getErrors(), 'warning');
+            throw new \Error('Unable to save Location Price change.');
         }
 
         return true;

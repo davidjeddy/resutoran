@@ -33,7 +33,7 @@ class ResuLocationPrice extends \resutoran\common\models\ResuBase
     public function rules()
     {
         return [
-            [['resu_location_id', 'created_at', 'created_by'], 'required'],
+            [['resu_location_id'], 'required'], // [['created_at', 'created_by'], 'required'],
             [['resu_location_id', 'created_at', 'created_by', 'updated_at', 'updated_by', 'deleted_at'], 'integer'],
             [['low', 'high'], 'number'],
         ];
