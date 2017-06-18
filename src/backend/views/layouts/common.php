@@ -12,10 +12,11 @@ echo Menu::widget([
     'submenuTemplate'   => "\n<ul class=\"treeview-menu\">\n{items}\n</ul>\n",
     'activateParents'   => true,
     'items' => [
-        [
-            'label'     => \Yii::t('resutoran', 'Resutoran'),
-            'options'   => ['class' => 'header']
-        ],
+// deprecated in 0.0.3, remove in 0.0.4
+//        [
+//            'label'     => \Yii::t('resutoran', 'Resutoran'),
+//            'options'   => ['class' => 'header']
+//        ],
         [
             'icon'      => '<i class="fa fa-star"></i>',
             'label'     => \Yii::t('resutoran', 'Reviews'),
@@ -50,6 +51,11 @@ echo Menu::widget([
                     'icon'      => '<i class="fa fa-bars"></i>',
                     'label'     => \Yii::t('resutoran', 'Hours'),
                     'url'       => ['/resutoran/resu-location-hour'],
+                ],
+                [
+                    'icon'      => '<i class="fa fa-bars"></i>',
+                    'label'     => \Yii::t('resutoran', 'Prices'),
+                    'url'       => ['/resutoran/resu-location-price'],
                 ],
             ],
         ],
@@ -93,16 +99,12 @@ echo Menu::widget([
                     'label' => \Yii::t('resutoran', 'Dress Code'),
                     'url'   => ['/resutoran/resu-dress-code-option/'],
                 ],
-                [
-                    'icon'  => '<i class="fa fa-bars"></i>',
-                    'label' => \Yii::t('resutoran', 'Media'),
-                    'url'   => ['/resutoran/resu-media-option/'],
-                ],
-                [
-                    'icon'  => '<i class="fa fa-bars"></i>',
-                    'label' => \Yii::t('resutoran', 'Menu'),
-                    'url'   => ['/resutoran/resu-menu-option/'],
-                ],
+// deprecated in 0.0.3, remove in 0.0.4
+//                [
+//                    'icon'  => '<i class="fa fa-bars"></i>',
+//                    'label' => \Yii::t('resutoran', 'Media'),
+//                    'url'   => ['/resutoran/resu-media-option/'],
+//                ],
                 [
                     'icon'  => '<i class="fa fa-bars"></i>',
                     'label' => \Yii::t('resutoran', 'Payment'),

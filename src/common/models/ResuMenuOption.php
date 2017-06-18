@@ -16,6 +16,8 @@ use Yii;
  * @property integer $deleted_at
  *
  * @property ResuLocationMenu[] $resuLocationMenus
+ *
+ * @deprecated 0.0.3
  */
 class ResuMenuOption extends \resutoran\common\models\ResuBase
 {

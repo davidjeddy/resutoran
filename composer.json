@@ -22,11 +22,12 @@
     "source": "https://github.com/davidjeddy/yii2-resutoran"
   },
   "require": {
-    "yiisoft/yii2":                   "^2.0.8",
-    "yii2tech/ar-softdelete":         "^1.0",
+    "2amigos/yii2-ckeditor-widget":   "^2.0",
     "kartik-v/yii2-widgets":          "^3.4",
     "kartik-v/yii2-checkbox-x":       "^1.0",
-    "2amigos/yii2-ckeditor-widget":   "^2.0"
+    "kartik-v/yii2-money":            "^1.2",
+    "yii2tech/ar-softdelete":         "^1.0",
+    "yiisoft/yii2":                   "^2.0.8"
   },
   "require-dev": {
     "codeception/codeception":  "^2.0",
@@ -34,12 +35,12 @@
     "codeception/verify":       "^0.3.0",
     "yiisoft/yii2-debug":       "^2.0.0",
     "yiisoft/yii2-gii":         "^2.0.0",
-    "yiisoft/yii2-codeception": "^2.0.0",
     "yiisoft/yii2-faker":       "^2.0.0"
   },
   "suggest": {
     "e96/yii2-sentry":          "dev-master as 1.0",
-    "hirak/prestissimo":        "^0.3"
+    "hirak/prestissimo":        "^0.3",
+    "roave/security-advisories":"dev-master@dev"
   },
   "autoload": {
     "psr-4": {

@@ -3,14 +3,13 @@
 namespace resutoran\common\models\query;
 
 /**
- * This is the ActiveQuery class for [[\common\models\ResuLocationMedia]].
+ * This is the ActiveQuery class for [[ResuLocationPrice]].
  *
- * @see \common\models\ResuLocationMedia
+ * @see ResuLocationPrice
  *
  * @deprecated 0.0.3
- * @remove 0.0.4
  */
-class ResuLocationMediaQuery extends \yii\db\ActiveQuery
+class ResuLocationPriceQuery extends \yii\db\ActiveQuery
 {
     /*public function active()
     {
@@ -19,7 +18,7 @@ class ResuLocationMediaQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \common\models\ResuLocationMedia[]|array
+     * @return \resutoran\common\models\ResuLocationPrice[]|array
      */
     public function all($db = null)
     {
@@ -28,7 +27,7 @@ class ResuLocationMediaQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \common\models\ResuLocationMedia|array|null
+     * @return \resutoran\common\models\ResuLocationPrice|array|null
      */
     public function one($db = null)
     {

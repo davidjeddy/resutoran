@@ -38,27 +38,28 @@ $this->params['breadcrumbs'][] = $this->title;
                     : null
                 )
             ],
-            [
-                'label' => 'Decor',
-                'value' => ($model->resu_decor_option_id !== null
-                    ? $franchise['value'] = \resutoran\common\models\ResuDecorOption::findOne(['id' => $model->resu_decor_option_id])->value
-                    : null
-                )
-            ],
-            [
-                'label' => 'Ambiance',
-                'value' => ($model->resu_ambiance_option_id !== null
-                    ? $franchise['value'] = \resutoran\common\models\ResuAmbianceOption::findOne(['id' => $model->resu_ambiance_option_id])->value
-                    : null
-                )
-            ],
-            [
-                'label' => 'Map',
-                'value' => ($model->resu_map_id !== null
-                    ? $franchise['value'] = \resutoran\common\models\ResuMap::findOne(['id' => $model->resu_map_id])->value
-                    : null
-                )
-            ],
+            // The `additional options` are deprecated in 0.0.4, removed in 0.0.4
+//            [
+//                'label' => 'Decor',
+//                'value' => ($model->resu_decor_option_id !== null
+//                    ? $franchise['value'] = \resutoran\common\models\ResuDecorOption::findOne(['id' => $model->resu_decor_option_id])->value
+//                    : null
+//                )
+//            ],
+//            [
+//                'label' => 'Ambiance',
+//                'value' => ($model->resu_ambiance_option_id !== null
+//                    ? $franchise['value'] = \resutoran\common\models\ResuAmbianceOption::findOne(['id' => $model->resu_ambiance_option_id])->value
+//                    : null
+//                )
+//            ],
+//            [
+//                'label' => 'Map',
+//                'value' => ($model->resu_map_id !== null
+//                    ? $franchise['value'] = \resutoran\common\models\ResuMap::findOne(['id' => $model->resu_map_id])->value
+//                    : null
+//                )
+//            ],
 
 //            [
 //                'label' => 'Hours of Operation',
@@ -69,15 +70,15 @@ $this->params['breadcrumbs'][] = $this->title;
 //                )
 //            ],
 
-            [
-                'label' => 'Features Values',
-                'value' => \Yii::$app->controller->renderPartial('../partials/multiItemList',
-                    [
-                        'model' => $model,
-                        'option'=> 'boolean'
-                    ]
-                )
-            ],
+//            [
+//                'label' => 'Features Values',
+//                'value' => \Yii::$app->controller->renderPartial('../partials/multiItemList',
+//                    [
+//                        'model' => $model,
+//                        'option'=> 'boolean'
+//                    ]
+//                )
+//            ],
             [
                 'label' => 'Cuisine',
                 'value' => \Yii::$app->controller->renderPartial('../partials/multiItemList',
@@ -96,19 +97,21 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]
                 )
             ],
-            [
-                'label' => 'Media',
-                'value' => \Yii::$app->controller->renderPartial('../partials/multiItemList',
-                    [
-                        'model' => $model,
-                        'option'=> 'media'
-                    ]
-                )
-            ],
+// deprecated 0.0.3
+// remove 0.0.4
+//            [
+//                'label' => 'Media',
+//                'value' => \Yii::$app->controller->renderPartial('../partials/multiItemList',
+//                    [
+//                        'model' => $model,
+//                        'option'=> 'media'
+//                    ]
+//                )
+//            ],
 
             [
-                'label' => 'Menu(s) Price Range',
-                'value' =>  \Yii::$app->controller->renderPartial('../partials/MenuAmount',
+                'label' => 'Price Range',
+                'value' =>  \Yii::$app->controller->renderPartial('../partials/LocationPrice',
                     [
                         'model' => $model
                     ]

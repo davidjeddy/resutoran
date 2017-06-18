@@ -17,6 +17,8 @@ use Yii;
  *
  * @property ResuLocation $resuLocation
  * @property ResuMenuOption $resuMenuOption
+ *
+ * @deprecated 0.0.3
  */
 class ResuLocationMenu extends \resutoran\common\models\ResuBase
 {
