@@ -73,16 +73,24 @@ class ResuLocationNewProcessController extends ResuLocationController
         $model = \resutoran\common\models\ResuLocation::findOne($id);
 
         if (Yii::$app->request->isPost === true) {
+            $data = !empty(\Yii::$app->request->post()['ResuLocation'])
+                ? Yii::$app->request->post()['ResuLocation']
+                : null;
 
-            $saveStatus  = $this->saveResuLocDressOption(
-                $id,
-                (\Yii::$app->request->post()['ResuLocation']['location_options']['resu_location_dress_code'] ?? null)
-            );
+            // Use !empty as the key will be set but zero string is a false for us here
+            $saveStatus  = !empty($data['location_options']['resu_location_dress_code'])
+                ? $this->saveResuLocDressOption(
+                    $id,
+                    $data['location_options']['resu_location_dress_code']
+                )
+                : true;
 
-            $saveStatus2 = $this->saveBooleanOptionValues(
-                $id,
-                (\Yii::$app->request->post()['ResuLocation']['resu_location_boolean'] ?? null)
-            );
+            $saveStatus2 = !empty($data['resu_location_boolean'])
+                ? $this->saveBooleanOptionValues(
+                    $id,
+                    $data['resu_location_boolean']
+                )
+                : true;
 
             if ($saveStatus === true && $saveStatus2 === true) {
                 return \Yii::$app->response->redirect('add-contact?id=' . $id);
