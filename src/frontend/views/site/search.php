@@ -35,22 +35,49 @@ $this->title = Yii::$app->name;
                 'options'       => ['class' => 'list-group'],
                 'itemView'      => function ($model, $key, $index, $widget) {
 
-                    echo 'Name: ' . $model['value'] . "<br />";
-                    echo 'Address '  . $model['address_1'] . "<br />";
-                    echo 'Phone: ' . "<br />";
+                    $hours = \resutoran\common\models\ResuLocationHour::find()
+                        ->select(['open', 'close'])
+                        ->andWhere(['resu_location_id' => $model['id']])
+                        // php date() starts at 0, db.table starts at 1
+                        ->andWhere(['resu_day_option_id' => date('N')])
+                        ->asArray()
+                        ->orderBy('id DESC')
+                        ->one();
 
-                    // IMG | LocationName
-                    // IMG | User Reviews | ZFG Reviews
-                    // IMG | Today's Hours:
-                    // IMG | Address
-                    // IMG | Phone
+                    $phone = \resutoran\common\models\ResuLocationContact::find()
+                        ->select(['phone'])
+                        ->andWhere(['resu_location_id' => $model['id']])
+                        ->asArray()
+                        ->orderBy('id DESC')
+                        ->one();
 
-//                    echo '<pre>';
-//                    echo \yii\helpers\VarDumper::dump($model, 10, true);
-//                    echo '</pre>';
+                    $entry = '
+                        <div class="well">
+                            <div class="col-sm-12">
+                                <div class="col-sm-4">image</div>
+                                <div class="col-sm-8">
+                                    <div class="col-sm-12 text-left">
+                                        <strong>' . $model['value'] . '</strong>
+                                    </div>
+                                    <div class="col-sm-12 text-left">
+                                        <div class="col-sm-6 text-center">User Reviews</div>
+                                        <div class="col-sm-6 text-center">ZFG Reviews</div>
+                                    </div>
+                                    <div class="col-sm-12 text-left">Todays hours: ' . $hours['open'] . ' - ' . $hours['close'] . '</div>
+                                    <div class="col-sm-12 text-left">' . $model['address_1'] . ', ' . $model['city'] . '</div>
+                                    <div class="col-sm-12 text-left">' . (isset($phone['phone']) ? $phone['phone'] : null) . '</div>
+                                </div>
+                            </div>
+                            .
+                        </div>
+                    ';
+
+                    echo \yii\helpers\Html::a( $entry, 'result-details?id=' . $model['id']);
+
+                    return;
                 },
-                'emptyText'    => 'No locations found.',
-                'summary'      => ''
+                'emptyText'    => 'No results found for your query.',
+                'summary'      => false
             ]); ?>
 
         </div>

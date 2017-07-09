@@ -3,6 +3,7 @@
 namespace resutoran\frontend\controllers;
 
 use yii\web\Controller;
+use \yii\data\ActiveDataProvider;
 
 /**
  * Controller for the `resutoran` frontend module
@@ -55,10 +56,20 @@ class SiteController extends Controller
 
         // return viewModel to results view
         return $this->render('search',[
-            'dataProvider' => new \yii\data\ActiveDataProvider([
+            'dataProvider' => new ActiveDataProvider([
                 'query' => $query,
             ]), // exec query
         ]);
+    }
 
+    /**
+     * @param int $id
+     * @return string
+     */
+    public function actionResultDetails(int $id)
+    {
+        return $this->render('result-details', [
+            'model' => \resutoran\common\models\ResuLocation::findOne($id)
+        ]);
     }
 }

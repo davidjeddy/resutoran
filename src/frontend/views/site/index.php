@@ -29,7 +29,7 @@ $this->title = Yii::$app->name;
                 ActiveForm::begin([
                     'id'        => 'search-form',
                     'options'   => ['class' => 'form form-horizontal'],
-                    'action'    => 'resutoran/site/search'
+                    'action'    => 'search'
                 ]);
             ?>
 
