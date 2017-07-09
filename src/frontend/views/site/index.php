@@ -29,14 +29,14 @@ $this->title = Yii::$app->name;
                 ActiveForm::begin([
                     'id'        => 'search-form',
                     'options'   => ['class' => 'form form-horizontal'],
-                    'action'    => 'search'
+                    'action'    => 'resutoran/site/search'
                 ]);
             ?>
 
             <?php echo Html::input(
                 'text',
                 'search[location]',
-                null,
+                12345,
                 [
                     'class' => 'form form-control input',
                     'placeholder' => ' City, State, or ZIP'

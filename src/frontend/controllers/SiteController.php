@@ -2,11 +2,10 @@
 
 namespace resutoran\frontend\controllers;
 
-use Yii;
 use yii\web\Controller;
 
 /**
- * Site controller for the `resutoran` frontend module
+ * Controller for the `resutoran` frontend module
  */
 class SiteController extends Controller
 {
@@ -15,17 +14,51 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        if (\Yii::$app->request->isPost) {
-            $results = $this->search();
-        }
-        // remove empty items
         return $this->render('index');
     }
 
     /**
-     *
+     * Address, range based, up to 50mi, DESC rate. Something similar to https://www.mapdevelopers.com/distance_from_to.php
+     * cuisine exact
+     * price exact
      */
-    private function search() {
+    public function actionSearch()
+    {
+        if (!\Yii::$app->request->isPost || empty(\Yii::$app->request->getBodyParams()['search'])) {
+            $this->redirect('index');
+        }
+
+        // convert form data
+        $searchData = (object)\Yii::$app->request->getBodyParams()['search'];
+
+        // create query model
+        $query = new \yii\db\Query();
+        $query
+            ->select('*')
+            ->from('resu_location');
+
+//        if ($searchData->cuisine) {
+//            $query
+//                ->leftJoin('resu_location_cuisine', 'resu_location_cuisine.resu_location_id = resu_location.id')
+//                ->andWhere(['resu_location_cuisine.id' => (int)$searchData->cuisine]);
+//        }
+//
+//        if ($searchData->price) {
+//            $query
+//                ->leftJoin('resu_location_cuisine', 'resu_location_cuisine.resu_location_id = resu_location.id')
+//                ->andWhere(['resu_location_cuisine.id' => (int)$searchData->cuisine]);
+//        }
+//
+//        if ($searchData->location) {
+//
+//        }
+
+        // return viewModel to results view
+        return $this->render('search',[
+            'dataProvider' => new \yii\data\ActiveDataProvider([
+                'query' => $query,
+            ]), // exec query
+        ]);
 
     }
 }
